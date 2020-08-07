@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Geolocator from "./geolocator";
 import AccountModal from "./AccountModal";
 import { useStyles } from "./styles";
 import { useTheme } from "@material-ui/core/styles";
@@ -66,6 +67,7 @@ export default function Navbar() {
           <Typography variant="h6" className={classes.title}>
             oneDAM
           </Typography>
+          <Geolocator />
           <Button color="inherit" onClick={openModal}>
             <AccountCircleIcon />
           </Button>

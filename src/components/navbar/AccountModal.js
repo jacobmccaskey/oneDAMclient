@@ -39,7 +39,7 @@ export default function AccountModal(props) {
       >
         <Fade in={props.accountModal}>
           <div className={classes.paper}>
-            <h2>Sign In</h2>
+            <h2>oneDAM account</h2>
             <TextField
               required
               id="standard-required"
