@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Geolocator from "./geolocator";
-import AccountModal from "./AccountModal";
+import AccountModal from "./AccountModals/AccountModal";
 import { useStyles } from "./styles";
 import { useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
