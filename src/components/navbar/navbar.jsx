@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Geolocator from "./geolocator";
 import AccountModal from "./AccountModals/AccountModal";
 import { useStyles } from "./styles";
@@ -24,6 +25,7 @@ import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import NaturePeopleIcon from "@material-ui/icons/NaturePeople";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import HomeIcon from "@material-ui/icons/Home";
 
 export default function Navbar() {
   const classes = useStyles();
@@ -93,36 +95,59 @@ export default function Navbar() {
         </div>
         <Divider />
         <List>
-          <ListItem button key="Shop">
-            <ListItemIcon>
-              <ShopIcon />
-              <ListItemText primary="Shop" style={{ color: "grey" }} />
-            </ListItemIcon>
-          </ListItem>
-          <ListItem button key="misson">
-            <ListItemIcon>
-              <EcoIcon />
-              <ListItemText primary="Misson" />
-            </ListItemIcon>
-          </ListItem>
-          <ListItem button key="account">
-            <ListItemIcon>
-              <PeopleAltIcon />
-              <ListItemText primary="Account" />
-            </ListItemIcon>
-          </ListItem>
-          <ListItem button key="Members">
-            <ListItemIcon>
-              <NaturePeopleIcon />
-              <ListItemText primary="Members" />
-            </ListItemIcon>
-          </ListItem>
-          <ListItem button key="Contact">
-            <ListItemIcon>
-              <PermContactCalendarIcon />
-              <ListItemText primary="Contact Us" />
-            </ListItemIcon>
-          </ListItem>
+          <Link to="/">
+            <ListItem button key="Home" className={classes.linkButton}>
+              <ListItemIcon>
+                <HomeIcon />
+                <ListItemText primary="Home" />
+              </ListItemIcon>
+            </ListItem>
+          </Link>
+
+          <Link to="/shop">
+            <ListItem button key="Shop">
+              <ListItemIcon>
+                <ShopIcon />
+                <ListItemText primary="Shop" style={{ color: "grey" }} />
+              </ListItemIcon>
+            </ListItem>
+          </Link>
+
+          <Link to="/misson">
+            <ListItem button key="misson">
+              <ListItemIcon>
+                <EcoIcon />
+                <ListItemText primary="Misson" />
+              </ListItemIcon>
+            </ListItem>
+          </Link>
+
+          <Link to="/account">
+            <ListItem button key="account">
+              <ListItemIcon>
+                <PeopleAltIcon />
+                <ListItemText primary="Account" />
+              </ListItemIcon>
+            </ListItem>
+          </Link>
+
+          <Link to="/members">
+            <ListItem button key="Members">
+              <ListItemIcon>
+                <NaturePeopleIcon />
+                <ListItemText primary="Members" />
+              </ListItemIcon>
+            </ListItem>
+          </Link>
+
+          <Link to="/contact">
+            <ListItem button key="Contact">
+              <ListItemIcon>
+                <PermContactCalendarIcon />
+                <ListItemText primary="Contact Us" />
+              </ListItemIcon>
+            </ListItem>
+          </Link>
         </List>
       </Drawer>
       <AccountModal
