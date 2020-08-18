@@ -41,7 +41,7 @@ export default function SignInForm(props) {
           onChange={(e) => props.setPassword(e.target.value)}
           value={props.password}
         />
-        <Button label="Sign In" onClick={() => props.login()}>
+        <Button label="Sign In" onClick={props.login}>
           Sign In
         </Button>
       </div>

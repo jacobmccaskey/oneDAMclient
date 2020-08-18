@@ -26,6 +26,7 @@ import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import NaturePeopleIcon from "@material-ui/icons/NaturePeople";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import HomeIcon from "@material-ui/icons/Home";
+import ShoppingCart from "./shoppingCart";
 
 export default function Navbar() {
   const classes = useStyles();
@@ -73,6 +74,7 @@ export default function Navbar() {
           <Button color="inherit" onClick={openModal}>
             <AccountCircleIcon />
           </Button>
+          <ShoppingCart />
         </Toolbar>
       </AppBar>
       <Drawer

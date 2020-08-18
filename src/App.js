@@ -8,32 +8,35 @@ import Account from "./components/account/Account";
 import Members from "./components/members/Member";
 import Mission from "./components/mission/Mission";
 import Contact from "./components/contact/Contact";
+import StateManager from "./Context";
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Navbar />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/shop">
-            <Shop />
-          </Route>
-          <Route path="/misson">
-            <Mission />
-          </Route>
-          <Route path="/members">
-            <Members />
-          </Route>
-          <Route path="/account">
-            <Account />
-          </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-        </Switch>
-      </div>
+      <StateManager>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/shop">
+              <Shop />
+            </Route>
+            <Route path="/misson">
+              <Mission />
+            </Route>
+            <Route path="/members">
+              <Members />
+            </Route>
+            <Route path="/account">
+              <Account />
+            </Route>
+            <Route path="/contact">
+              <Contact />
+            </Route>
+          </Switch>
+        </div>
+      </StateManager>
     </Router>
   );
 }

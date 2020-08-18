@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import authenticate from "../../../Auth/Auth";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import SignInForm from "./SignInForm";
 import Account from "./Account";
-import { UserAuthContext } from "../../../Context";
+import { User } from "../../../Context";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -24,50 +23,36 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AccountModal(props) {
   const classes = useStyles();
-  const [auth, setAuth] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const userAuth = () => {
-    authenticate(email, password);
-    auth === false ? setAuth(true) : setAuth(false);
-  };
+  const context = useContext(User);
 
   return (
     <div>
-      <UserAuthContext.Provider
-        value={{
-          auth,
-          userAuth,
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={props.accountModal}
+        onClose={props.closeModal}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
         }}
       >
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modal}
-          open={props.accountModal}
-          onClose={props.closeModal}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={props.accountModal}>
-            {auth === false ? (
-              <SignInForm
-                login={userAuth}
-                setEmail={setEmail}
-                setPassword={setPassword}
-                password={password}
-                email={email}
-              />
-            ) : (
-              <Account logout={userAuth} />
-            )}
-          </Fade>
-        </Modal>
-      </UserAuthContext.Provider>
+        <Fade in={props.accountModal}>
+          {context.auth === false ? (
+            <SignInForm
+              login={context.userAuth}
+              setEmail={context.emailInput}
+              setPassword={context.passwordInput}
+              password={context.password}
+              email={context.email}
+            />
+          ) : (
+            <Account logout={context.userAuth} />
+          )}
+        </Fade>
+      </Modal>
     </div>
   );
 }

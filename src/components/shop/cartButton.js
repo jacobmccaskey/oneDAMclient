@@ -7,22 +7,22 @@ import CheckIcon from "@material-ui/icons/Check";
 export default function CartButton(props) {
   const [added, setAdd] = useState(false);
 
-  const addItem = (itemId) => {
+  const addCart = (item) => {
     setAdd(true);
-    props.addItem(itemId);
+    props.addCart(item);
   };
 
-  const deleteItem = (itemId) => {
+  const deleteCart = (item) => {
     setAdd(false);
-    props.deleteItem(itemId);
+    props.deleteCart(item);
   };
 
-  const toggleFavorite = () => {
-    added === false ? addItem(props.id) : deleteItem(props.id);
+  const toggleAdd = () => {
+    added === false ? addCart(props.item) : deleteCart(props.item);
   };
   return (
     <div style={{ display: "inline-block" }}>
-      <IconButton onClick={toggleFavorite}>
+      <IconButton onClick={toggleAdd}>
         {added !== true ? <AddIcon /> : <CheckIcon />}
       </IconButton>
     </div>
