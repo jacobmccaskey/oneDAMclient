@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Geolocator from "./geolocator";
 import AccountModal from "./AccountModals/AccountModal";
@@ -19,6 +19,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Drawer from "@material-ui/core/Drawer";
+import Popover from "@material-ui/core/Popover";
 import ShopIcon from "@material-ui/icons/Shop";
 import EcoIcon from "@material-ui/icons/Eco";
 import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
@@ -27,12 +28,30 @@ import NaturePeopleIcon from "@material-ui/icons/NaturePeople";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import HomeIcon from "@material-ui/icons/Home";
 import ShoppingCart from "./shoppingCart";
+import { User } from "../../Context";
 
 export default function Navbar() {
+  const context = useContext(User);
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [accountModal, modalShow] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const openPopover = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
+  const popoverHandle = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const popoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const logout = () => {
+    context.logoutAccount();
+    popoverClose();
+  };
 
   const openModal = () => {
     modalShow(true);
@@ -71,9 +90,42 @@ export default function Navbar() {
             oneDAM
           </Typography>
           <Geolocator />
-          <Button color="inherit" onClick={openModal}>
+
+          <Button aria-describedby={id} onClick={popoverHandle}>
             <AccountCircleIcon />
           </Button>
+          <Popover
+            id={id}
+            open={openPopover}
+            anchorEl={anchorEl}
+            onClose={popoverClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "center",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "center",
+            }}
+          >
+            {!context.auth ? (
+              <Button onClick={openModal}>Sign In</Button>
+            ) : (
+              <Button>My Account</Button>
+            )}
+            <br />
+            <Button>Favorites</Button>
+            <br />
+
+            <Button>cart</Button>
+            <br />
+            {!context.auth ? (
+              <Button>Create Profile</Button>
+            ) : (
+              <Button onClick={logout}>logout</Button>
+            )}
+          </Popover>
+
           <ShoppingCart />
         </Toolbar>
       </AppBar>

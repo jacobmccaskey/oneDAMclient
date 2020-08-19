@@ -4,7 +4,6 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import SignInForm from "./SignInForm";
-import Account from "./Account";
 import { User } from "../../../Context";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,6 +24,11 @@ export default function AccountModal(props) {
   const classes = useStyles();
   const context = useContext(User);
 
+  const authAndClose = () => {
+    context.userAuth();
+    props.closeModal();
+  };
+
   return (
     <div>
       <Modal
@@ -40,17 +44,13 @@ export default function AccountModal(props) {
         }}
       >
         <Fade in={props.accountModal}>
-          {context.auth === false ? (
-            <SignInForm
-              login={context.userAuth}
-              setEmail={context.emailInput}
-              setPassword={context.passwordInput}
-              password={context.password}
-              email={context.email}
-            />
-          ) : (
-            <Account logout={context.userAuth} />
-          )}
+          <SignInForm
+            login={authAndClose}
+            setEmail={context.emailInput}
+            setPassword={context.passwordInput}
+            password={context.password}
+            email={context.email}
+          />
         </Fade>
       </Modal>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import authenticate from "./Auth/Auth";
+import authenticate, { authCheck } from "./Auth/Auth";
 // import PropTypes from "prop-types";
 
 export const User = React.createContext();
@@ -21,37 +21,48 @@ export default function StateManager({ children }) {
   };
 
   const userAuth = () => {
-    authenticate(email, password);
-    auth === false ? setAuth(true) : setAuth(false);
+    authenticate(email, password, setAuth);
+  };
+
+  const logoutAccount = () => {
+    const keys = ["cart", "email", "name", "auth", "token", "address"];
+    keys.forEach((item) => localStorage.removeItem(item));
+    setAuth(false);
+    setfavorites([]);
+    setCart([]);
   };
 
   const addCart = (item) => {
-    cart.length === 0 ? setCart([{ item }]) : setCart([...cart, { item }]);
+    setCart([...cart, { item }]);
   };
 
   const deleteCart = (item) => {
-    let filteredArray = cart.filter((items) => items !== item);
+    console.log(item._id);
+    let filteredArray = cart.filter((index) => index.item._id !== item._id);
     setCart(filteredArray);
   };
 
-  const addFav = (itemId) => {
-    favorites.length === 0
-      ? setfavorites([{ id: itemId }])
-      : setfavorites([...favorites, { id: itemId }]);
+  const addFav = (item) => {
+    setfavorites([...favorites, { favorite: item }]);
   };
-  const deleteFav = (itemId) => {
-    let filteredArray = favorites.filter((items) => items.id !== itemId);
+  const deleteFav = (item) => {
+    let filteredArray = favorites.filter(
+      (index) => index.favorite._id !== item._id
+    );
     setfavorites(filteredArray);
   };
 
-  const fetchData = () => {
+  const fetchShop = () => {
     axios
       .get("http://localhost:4545/api/store")
       .then((response) => setStore(response.data));
   };
 
   useEffect(() => {
-    fetchData();
+    fetchShop();
+  }, []);
+  useEffect(() => {
+    authCheck(setAuth);
   }, []);
 
   return (
@@ -68,6 +79,7 @@ export default function StateManager({ children }) {
         userAuth,
         emailInput,
         passwordInput,
+        logoutAccount,
       }}
     >
       {children}

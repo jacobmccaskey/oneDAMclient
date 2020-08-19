@@ -7,18 +7,18 @@ import IconButton from "@material-ui/core/IconButton";
 export default function FavButton(props) {
   const [picked, setPick] = useState(false);
 
-  const addFav = (itemId) => {
+  const addFav = (item) => {
     setPick(true);
-    props.addFav(itemId);
+    props.addFav(item);
   };
 
-  const deleteFav = (itemId) => {
+  const deleteFav = (item) => {
     setPick(false);
-    props.deleteFav(itemId);
+    props.deleteFav(item);
   };
 
   const toggleFavorite = () => {
-    picked === false ? addFav(props.id) : deleteFav(props.id);
+    picked === false ? addFav(props.item) : deleteFav(props.item);
   };
   return (
     <div style={{ display: "inline-block" }}>
@@ -30,6 +30,6 @@ export default function FavButton(props) {
 }
 
 FavButton.propTypes = {
-  id: PropTypes.string,
+  item: PropTypes.object,
   favorites: PropTypes.array,
 };

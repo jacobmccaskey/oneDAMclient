@@ -53,7 +53,7 @@ export default function Shop() {
                     </Typography>
 
                     <FavButton
-                      id={item._id}
+                      item={item}
                       favorites={context.favorites}
                       addFav={context.addFav}
                       deleteFav={context.deleteFav}
