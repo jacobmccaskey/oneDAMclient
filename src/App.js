@@ -9,6 +9,7 @@ import Members from "./components/members/Member";
 import Mission from "./components/mission/Mission";
 import Contact from "./components/contact/Contact";
 import StateManager from "./Context";
+
 function App() {
   return (
     <Router>

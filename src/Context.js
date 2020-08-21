@@ -12,6 +12,22 @@ export default function StateManager({ children }) {
   const [auth, setAuth] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [deviceType, setDevice] = useState("desktop");
+
+  const getDeviceType = () => {
+    const ua = navigator.userAgent;
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+      return "tablet";
+    }
+    if (
+      /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+        ua
+      )
+    ) {
+      return setDevice("mobile");
+    }
+    return setDevice("desktop");
+  };
 
   const emailInput = (value) => {
     setEmail(value);
@@ -60,6 +76,7 @@ export default function StateManager({ children }) {
 
   useEffect(() => {
     fetchShop();
+    getDeviceType();
   }, []);
   useEffect(() => {
     authCheck(setAuth);
@@ -80,6 +97,7 @@ export default function StateManager({ children }) {
         emailInput,
         passwordInput,
         logoutAccount,
+        deviceType,
       }}
     >
       {children}

@@ -72,9 +72,9 @@ export default function Navbar() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        position="static"
+        position="sticky"
         className={classes.navbar}
-        style={{ backgroundColor: "rgb(210,180,140)" }}
+        style={{ backgroundColor: "rgb(40,40,40)" }}
       >
         <Toolbar>
           <IconButton
@@ -130,7 +130,6 @@ export default function Navbar() {
         </Toolbar>
       </AppBar>
       <Drawer
-        className={classes.drawer}
         variant="persistent"
         anchor="left"
         open={open}
@@ -141,62 +140,66 @@ export default function Navbar() {
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
+              <ChevronLeftIcon style={{ color: "rgb(232,232,232)" }} />
             ) : (
-              <ChevronRightIcon />
+              <ChevronRightIcon style={{ color: "rgb(232,232,232)" }} />
             )}
           </IconButton>
         </div>
         <Divider />
         <List>
-          <Link to="/">
-            <ListItem button key="Home" className={classes.linkButton}>
-              <ListItemIcon>
+          <Link to="/" className={classes.iconText}>
+            <ListItem button key="Home">
+              <ListItemIcon
+                style={{
+                  color: "rgb(232,232,232)",
+                }}
+              >
                 <HomeIcon />
                 <ListItemText primary="Home" />
               </ListItemIcon>
             </ListItem>
           </Link>
 
-          <Link to="/shop">
+          <Link to="/shop" className={classes.iconText}>
             <ListItem button key="Shop">
-              <ListItemIcon>
+              <ListItemIcon style={{ color: "rgb(232,232,232)" }}>
                 <ShopIcon />
-                <ListItemText primary="Shop" style={{ color: "grey" }} />
+                <ListItemText primary="Shop" />
               </ListItemIcon>
             </ListItem>
           </Link>
 
-          <Link to="/misson">
+          <Link to="/misson" className={classes.iconText}>
             <ListItem button key="misson">
-              <ListItemIcon>
+              <ListItemIcon style={{ color: "rgb(232,232,232)" }}>
                 <EcoIcon />
                 <ListItemText primary="Misson" />
               </ListItemIcon>
             </ListItem>
           </Link>
 
-          <Link to="/account">
+          <Link to="/account" className={classes.iconText}>
             <ListItem button key="account">
-              <ListItemIcon>
+              <ListItemIcon style={{ color: "rgb(232,232,232)" }}>
                 <PeopleAltIcon />
                 <ListItemText primary="Account" />
               </ListItemIcon>
             </ListItem>
           </Link>
 
-          <Link to="/members">
+          <Link to="/members" className={classes.iconText}>
             <ListItem button key="Members">
-              <ListItemIcon>
+              <ListItemIcon style={{ color: "rgb(232,232,232)" }}>
                 <NaturePeopleIcon />
                 <ListItemText primary="Members" />
               </ListItemIcon>
             </ListItem>
           </Link>
 
-          <Link to="/contact">
+          <Link to="/contact" className={classes.iconText}>
             <ListItem button key="Contact">
-              <ListItemIcon>
+              <ListItemIcon style={{ color: "rgb(232,232,232)" }}>
                 <PermContactCalendarIcon />
                 <ListItemText primary="Contact Us" />
               </ListItemIcon>

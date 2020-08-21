@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+// import drawerBg from "../../img/drawerbg.jpg";
 
 const drawerWidth = 240;
 
@@ -11,9 +12,13 @@ export const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    background: "-webkit-linear-gradient(right,pink, blue)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
   },
   navbar: {
-    backgroundColor: "rgb(210,180,140)",
+    // backgroundColor: "rgb(210,180,140)",
+    backgroundColor: "rgb(40,40,40)",
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
@@ -38,6 +43,14 @@ export const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    backgroundColor: "rgb(40,40,40)",
+    // backgroundImage: `url(${drawerBg})`,
+    // backgroundSize: "cover",
+    // backgroundRepeat: "no-repeat",
+    loading: "lazy",
+    // filter: "brightness(20%)",
+    textDecoration: "none",
+    color: "white",
   },
   drawerHeader: {
     display: "flex",
@@ -63,7 +76,9 @@ export const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
-  linkButton: {
-    textDecorationLine: "none",
+
+  iconText: {
+    color: "white",
+    textDecoration: "none",
   },
 }));
