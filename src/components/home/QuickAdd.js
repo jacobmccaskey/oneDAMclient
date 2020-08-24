@@ -1,96 +1,76 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Carousel from "react-multi-carousel";
-import Image from "material-ui-image";
 import Container from "@material-ui/core/Container";
-import "react-multi-carousel/lib/styles.css";
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import Image from "material-ui-image";
+import Typography from "@material-ui/core/Typography";
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
 import { makeStyles } from "@material-ui/core/styles";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import IconButton from "@material-ui/core/IconButton";
-import InfoIcon from "@material-ui/icons/Info";
+import CardContent from "@material-ui/core/CardContent";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
-    backgroundColor: theme.palette.background.paper,
+    position: "relative",
   },
-  gridList: {
-    width: 500,
-    height: 450,
+  image: {
+    height: "300px",
+    width: "300px",
+    margin: "0px",
   },
-  icon: {
-    color: "rgba(255, 255, 255, 0.54)",
+  cardInfo: {
+    position: "absolute",
+    top: "10px",
+    left: "10px",
+    padding: "5px",
   },
 }));
 
 export default function QuickAdd(props) {
   const classes = useStyles();
-
   const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-      slidesToSlide: 3, // optional, default to 1.
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      slidesToSlide: 2, // optional, default to 1.
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      slidesToSlide: 1, // optional, default to 1.
-    },
+    0: { items: 1 },
+    1024: { items: 3 },
   };
+
   return (
     <Container maxWidth="md" style={{ marginTop: "1rem" }}>
-      <Carousel
-        swipeable={false}
-        draggable={false}
-        showDots={true}
+      <AliceCarousel
         responsive={responsive}
-        ssr={true}
-        infinite={true}
-        autoPlay={props.deviceType !== "mobile" ? true : false}
-        autoPlaySpeed={1000}
-        keyBoardControl={true}
-        customTransition="all .5"
-        transitionDuration={500}
-        containerClass="carousel-container"
-        removeArrowOnDeviceType={["tablet", "mobile"]}
-        deviceType={props.deviceType}
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
+        autoPlayInterval={4000}
+        autoPlay={props.deviceType === "mobile" ? false : true}
+        mouseTrackingEnabled={true}
+        disableAutoPlayOnAction={true}
+        stagePadding={0}
       >
         {props.store.map((item) => (
-          <div className={classes.root}>
-            <GridList cellHeight={180} className={classes.gridList}>
-              <GridListTile key={item._id}>
-                <img src={item.imageUrl} alt={item.name} />
-                <GridListTileBar
-                  title={item.name}
-                  subtitle={item.description}
-                  actionIcon={
-                    <IconButton
-                      aria-label={`info about ${item.name}`}
-                      className={classes.icon}
-                    >
-                      <InfoIcon />
-                    </IconButton>
-                  }
-                />
-              </GridListTile>
-            </GridList>
-          </div>
+          <Card>
+            <CardMedia title={item.name}>
+              <Image
+                src={item.imageUrl}
+                className={classes.image}
+                alt={item.name}
+              />
+            </CardMedia>
+            <CardContent>
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                component="span"
+              >
+                {item.name}
+                <br />${item.price}
+              </Typography>
+              <br />
+              <Button size="small" color="primary">
+                add to cart
+              </Button>
+            </CardContent>
+          </Card>
         ))}
-      </Carousel>
+      </AliceCarousel>
     </Container>
   );
 }
