@@ -17,7 +17,6 @@ export const useStyles = makeStyles((theme) => ({
     WebkitTextFillColor: "transparent",
   },
   navbar: {
-    // backgroundColor: "rgb(210,180,140)",
     backgroundColor: "rgb(40,40,40)",
   },
   appBar: {

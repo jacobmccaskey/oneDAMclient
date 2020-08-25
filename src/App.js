@@ -8,7 +8,10 @@ import Account from "./components/account/Account";
 import Members from "./components/members/Member";
 import Mission from "./components/mission/Mission";
 import Contact from "./components/contact/Contact";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
 import StateManager from "./Context";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -35,7 +38,14 @@ function App() {
             <Route path="/contact">
               <Contact />
             </Route>
+            <Route path="/signup">
+              <SignUp />
+            </Route>
+            <Route path="/signin">
+              <SignIn />
+            </Route>
           </Switch>
+          <Footer />
         </div>
       </StateManager>
     </Router>

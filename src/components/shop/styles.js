@@ -6,9 +6,10 @@ export const useStyles = makeStyles((theme) => ({
   },
   gridbox: {
     marginTop: "10%",
+    marginBottom: "5%",
   },
   paper: {
-    height: 400,
+    height: 480,
     width: 300,
   },
   media: {

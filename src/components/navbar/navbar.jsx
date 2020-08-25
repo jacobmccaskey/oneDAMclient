@@ -109,7 +109,9 @@ export default function Navbar() {
             }}
           >
             {!context.auth ? (
-              <Button onClick={openModal}>Sign In</Button>
+              <Link to="./signin" style={{ textDecoration: "none" }}>
+                <Button>Sign In</Button>
+              </Link>
             ) : (
               <Button>My Account</Button>
             )}
@@ -120,7 +122,9 @@ export default function Navbar() {
             <Button>cart</Button>
             <br />
             {!context.auth ? (
-              <Button>Create Profile</Button>
+              <Link to="./signup" style={{ textDecoration: "none" }}>
+                <Button>Create Profile</Button>
+              </Link>
             ) : (
               <Button onClick={logout}>logout</Button>
             )}

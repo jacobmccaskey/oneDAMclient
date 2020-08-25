@@ -41,7 +41,15 @@ export default function StateManager({ children }) {
   };
 
   const logoutAccount = () => {
-    const keys = ["cart", "email", "name", "auth", "token", "address"];
+    const keys = [
+      "cart",
+      "email",
+      "name",
+      "auth",
+      "token",
+      "address",
+      "favorites",
+    ];
     keys.forEach((item) => localStorage.removeItem(item));
     setAuth(false);
     setfavorites([]);
@@ -50,6 +58,7 @@ export default function StateManager({ children }) {
 
   const addCart = (item) => {
     setCart([...cart, { item }]);
+    localStorage.setItem("cart", JSON.stringify([...cart, { item }]));
   };
 
   const deleteCart = (item) => {
@@ -60,6 +69,7 @@ export default function StateManager({ children }) {
 
   const addFav = (item) => {
     setfavorites([...favorites, { favorite: item }]);
+    localStorage.setItem("favorites", JSON.stringify([...favorites, { item }]));
   };
   const deleteFav = (item) => {
     let filteredArray = favorites.filter(

@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import BrickWall from "../../img/brickwall.jpg";
 import oneDamLogo from "../../img/onedamlogo.jpg";
 import Shop from "../../img/shop.JPG";
 import Road from "../../img/road.jpg";
-import QuickAdd from "./QuickAdd";
+import Blurb from "./Blurb";
 import { User } from "../../Context";
 
 const useStyles = makeStyles((theme) => ({
@@ -77,15 +78,19 @@ export default function Home() {
         <img src={oneDamLogo} alt="logo" className={classes.logo} />
       </div>
       <Container className={classes.root}>
-        <Button className={classes.gridItemShop} alt="shop products">
-          {" "}
-          Shop
-        </Button>
-        <Button alt="oneDams mission" className={classes.gridItemMission}>
-          Mission
-        </Button>
+        <Link to="./shop" style={{ textDecoration: "none" }}>
+          <Button className={classes.gridItemShop} alt="shop products">
+            {" "}
+            Shop
+          </Button>
+        </Link>
+        <Link to="./mission" style={{ textDecoration: "none" }}>
+          <Button alt="oneDams mission" className={classes.gridItemMission}>
+            Mission
+          </Button>
+        </Link>
       </Container>
-      <QuickAdd store={context.store} deviceType={context.deviceType} />
+      <Blurb store={context.store} deviceType={context.deviceType} />
     </div>
   );
 }
