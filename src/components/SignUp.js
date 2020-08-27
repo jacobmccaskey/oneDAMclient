@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,6 +12,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { User } from "../Context";
+import axios from "axios";
 
 function Copyright() {
   return (
@@ -47,7 +49,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
+  const context = useContext(User);
   const classes = useStyles();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    context.createNewUser();
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -59,10 +67,21 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form
+          className={classes.form}
+          noValidate
+          onSubmit={(e) => handleSubmit(e)}
+        >
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
+                onChange={(e) =>
+                  context.setUserData({
+                    firstName: e.target.value,
+                    lastName: context.userData.lastName,
+                    address: context.userData.address,
+                  })
+                }
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
@@ -71,10 +90,18 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                value={context.userData.firstName}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                onChange={(e) =>
+                  context.setUserData({
+                    firstName: context.userData.firstName,
+                    lastName: e.target.value,
+                    address: context.userData.address,
+                  })
+                }
                 variant="outlined"
                 required
                 fullWidth
@@ -82,10 +109,12 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                value={context.userData.lastName}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                onChange={(e) => context.setEmail(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -93,10 +122,12 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={context.email}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                onChange={(e) => context.setPassword(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -105,6 +136,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={context.password}
               />
             </Grid>
             <Grid item xs={12}>

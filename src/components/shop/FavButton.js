@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";

@@ -13,6 +13,29 @@ export default function StateManager({ children }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [deviceType, setDevice] = useState("desktop");
+  const [serverResponse, setServerResponse] = useState("");
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+  });
+  const [location, setLocation] = useState(false);
+  const [city, setCity] = useState(null);
+  const [state, setState] = useState(null);
+
+  //fetches location from third party api, limited to 45 requests a minute
+  const getLocation = () => {
+    fetch(
+      "http://ip-api.com/json/?fields=status,message,country,region,city,query"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setCity(data.city);
+        setState(data.region);
+        setLocation(true);
+      })
+      .catch((err) => console.error(err));
+  };
 
   const getDeviceType = () => {
     const ua = navigator.userAgent;
@@ -37,14 +60,24 @@ export default function StateManager({ children }) {
   };
 
   const userAuth = () => {
-    authenticate(email, password, setAuth);
+    authenticate(
+      email,
+      password,
+      setAuth,
+      setfavorites,
+      setCart,
+      setEmail,
+      setPassword,
+      setServerResponse
+    );
   };
 
   const logoutAccount = () => {
     const keys = [
       "cart",
       "email",
-      "name",
+      "firstName",
+      "lastName",
       "auth",
       "token",
       "address",
@@ -78,6 +111,11 @@ export default function StateManager({ children }) {
     setfavorites(filteredArray);
   };
 
+  const createNewUser = () => {
+    console.log(userData.firstName);
+    console.log(userData.lastName);
+  };
+
   const fetchShop = () => {
     axios
       .get("http://localhost:4545/api/store")
@@ -87,10 +125,11 @@ export default function StateManager({ children }) {
   useEffect(() => {
     fetchShop();
     getDeviceType();
+    authCheck(setAuth, setCart, setfavorites, setServerResponse, setUserData);
   }, []);
   useEffect(() => {
-    authCheck(setAuth);
-  }, []);
+    if (location === false) getLocation();
+  }, [location]);
 
   return (
     <User.Provider
@@ -108,6 +147,14 @@ export default function StateManager({ children }) {
         passwordInput,
         logoutAccount,
         deviceType,
+        city,
+        state,
+        userData,
+        serverResponse,
+        setUserData,
+        setEmail,
+        setPassword,
+        createNewUser,
       }}
     >
       {children}

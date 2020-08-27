@@ -51,6 +51,11 @@ export default function SignIn() {
   const classes = useStyles();
   const context = useContext(User);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    context.userAuth();
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -61,8 +66,13 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form
+          className={classes.form}
+          noValidate
+          onSubmit={(e) => handleSubmit(e)}
+        >
           <TextField
+            onChange={(e) => context.emailInput(e.target.value)}
             variant="outlined"
             margin="normal"
             required
@@ -72,8 +82,10 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            value={context.email}
           />
           <TextField
+            onChange={(e) => context.passwordInput(e.target.value)}
             variant="outlined"
             margin="normal"
             required
@@ -83,6 +95,7 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={context.password}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
