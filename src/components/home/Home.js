@@ -86,7 +86,7 @@ export default function Home() {
         </Link>
         <Link to="./mission" style={{ textDecoration: "none" }}>
           <Button alt="oneDams mission" className={classes.gridItemMission}>
-            Mission
+            Blueprint
           </Button>
         </Link>
       </Container>

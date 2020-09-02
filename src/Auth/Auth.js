@@ -12,7 +12,9 @@ export function authCheck(
   setCart,
   setfavorites,
   setServerResponse,
-  setUserData
+  setFirstName,
+  setLastName,
+  setAddress
 ) {
   let localAuth = window.localStorage.getItem("auth");
   let localToken = window.localStorage.getItem("token");
@@ -30,11 +32,9 @@ export function authCheck(
           setCart(res.data.cart);
           setfavorites(res.data.favorites);
           setServerResponse(200);
-          setUserData({
-            firstName: res.data.firstName,
-            lastName: res.data.lastName,
-            address: res.data.address,
-          });
+          setFirstName(res.data.firstName);
+          setLastName(res.data.lastName);
+          setAddress(res.data.address);
           let dataAsArray = Object.entries(res.data);
           dataAsArray.forEach((element) =>
             localStorage.setItem(`${element[0]}`, element[1])

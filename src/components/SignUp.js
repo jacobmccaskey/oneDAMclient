@@ -13,7 +13,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { User } from "../Context";
-import axios from "axios";
 
 function Copyright() {
   return (
@@ -75,13 +74,7 @@ export default function SignUp() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
-                onChange={(e) =>
-                  context.setUserData({
-                    firstName: e.target.value,
-                    lastName: context.userData.lastName,
-                    address: context.userData.address,
-                  })
-                }
+                onChange={(e) => context.setFirstName(e.target.value)}
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
@@ -90,18 +83,12 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
-                value={context.userData.firstName}
+                value={context.firstName}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                onChange={(e) =>
-                  context.setUserData({
-                    firstName: context.userData.firstName,
-                    lastName: e.target.value,
-                    address: context.userData.address,
-                  })
-                }
+                onChange={(e) => context.setLastName(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -109,7 +96,7 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
-                value={context.userData.lastName}
+                value={context.lastName}
               />
             </Grid>
             <Grid item xs={12}>

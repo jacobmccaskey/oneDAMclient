@@ -7,19 +7,18 @@ export const User = React.createContext();
 
 export default function StateManager({ children }) {
   const [store, setStore] = useState([]);
-  const [favorites, setfavorites] = useState([]);
+  const [favorites, setfavorites] = useState(null);
   const [cart, setCart] = useState([]);
   const [auth, setAuth] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [deviceType, setDevice] = useState("desktop");
   const [serverResponse, setServerResponse] = useState("");
-  const [userData, setUserData] = useState({
-    firstName: "",
-    lastName: "",
-    address: "",
-  });
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [location, setLocation] = useState(false);
+  const [address, setAddress] = useState("");
+  const [token, setToken] = useState();
   const [city, setCity] = useState(null);
   const [state, setState] = useState(null);
 
@@ -82,6 +81,7 @@ export default function StateManager({ children }) {
       "token",
       "address",
       "favorites",
+      "status",
     ];
     keys.forEach((item) => localStorage.removeItem(item));
     setAuth(false);
@@ -101,19 +101,40 @@ export default function StateManager({ children }) {
   };
 
   const addFav = (item) => {
-    setfavorites([...favorites, { favorite: item }]);
+    setfavorites([...favorites, { item }]);
     localStorage.setItem("favorites", JSON.stringify([...favorites, { item }]));
   };
   const deleteFav = (item) => {
     let filteredArray = favorites.filter(
-      (index) => index.favorite._id !== item._id
+      (index) => index.item._id !== item._id
     );
     setfavorites(filteredArray);
   };
 
   const createNewUser = () => {
-    console.log(userData.firstName);
-    console.log(userData.lastName);
+    axios({
+      method: "post",
+      url: "http://localhost:4545/api/auth/register",
+      data: {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+      },
+    }).then((res) => {
+      console.log(res.data);
+      setAuth(res.data.auth);
+      setEmail(res.data.email);
+      setAddress(res.data.address);
+      setCart(res.data.cart);
+      setfavorites(res.data.favorites);
+      setToken(res.data.token);
+      setServerResponse(res.data.status);
+      let dataAsArray = Object.entries(res.data);
+      dataAsArray.forEach((element) =>
+        localStorage.setItem(`${element[0]}`, element[1])
+      );
+    });
   };
 
   const fetchShop = () => {
@@ -125,7 +146,15 @@ export default function StateManager({ children }) {
   useEffect(() => {
     fetchShop();
     getDeviceType();
-    authCheck(setAuth, setCart, setfavorites, setServerResponse, setUserData);
+    authCheck(
+      setAuth,
+      setCart,
+      setfavorites,
+      setServerResponse,
+      setFirstName,
+      setLastName,
+      setAddress
+    );
   }, []);
   useEffect(() => {
     if (location === false) getLocation();
@@ -149,12 +178,16 @@ export default function StateManager({ children }) {
         deviceType,
         city,
         state,
-        userData,
         serverResponse,
-        setUserData,
         setEmail,
         setPassword,
         createNewUser,
+        setFirstName,
+        setLastName,
+        firstName,
+        lastName,
+        address,
+        setAddress,
       }}
     >
       {children}

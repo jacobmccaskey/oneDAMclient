@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
 import IconButton from "@material-ui/core/IconButton";
+import { User } from "../../Context";
 
 export default function FavButton(props) {
   const [picked, setPick] = useState(false);
+  const context = useContext(User);
+
+  const checksFavs = () => {
+    const { favorites } = context;
+    if (favorites !== []) {
+      for (let i = 0; i <= favorites.length; i++) {
+        if (favorites[i].item._id === props.item._id) return setPick(true);
+      }
+    }
+  };
+
+  // checksFavs();
 
   const addFav = (item) => {
     setPick(true);

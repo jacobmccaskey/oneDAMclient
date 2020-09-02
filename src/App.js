@@ -12,6 +12,7 @@ import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import StateManager from "./Context";
 import Footer from "./components/Footer";
+// import ViewItem from "./components/shop/ViewItem";
 
 function App() {
   return (
@@ -20,30 +21,20 @@ function App() {
         <div className="App">
           <Navbar />
           <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/shop">
-              <Shop />
-            </Route>
-            <Route path="/misson">
-              <Mission />
-            </Route>
-            <Route path="/members">
-              <Members />
-            </Route>
-            <Route path="/account">
-              <Account />
-            </Route>
-            <Route path="/contact">
-              <Contact />
-            </Route>
-            <Route path="/signup">
-              <SignUp />
-            </Route>
-            <Route path="/signin">
-              <SignIn />
-            </Route>
+            <Route exact path="/" component={Home} />
+
+            <Route path="/shop" component={Shop} />
+            <Route path="/misson" component={Mission} />
+
+            <Route path="/members" component={Members} />
+
+            <Route path="/account" component={Account} />
+
+            <Route path="/contact" component={Contact} />
+
+            <Route path="/signup" component={SignUp} />
+
+            <Route path="/signin" component={SignIn} />
           </Switch>
           <Footer />
         </div>
