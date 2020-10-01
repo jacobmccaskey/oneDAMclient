@@ -12,7 +12,7 @@ export default function Shop() {
       <CssBaseline />
       <Route exact path={path} component={ShopList} />
       <Switch>
-        <Route path={`${path}/:ID/:name`} component={ViewItem} />
+        <Route path={`${path}/:ID`} render={() => <ViewItem />} />
       </Switch>
     </React.Fragment>
   );

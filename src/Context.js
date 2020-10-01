@@ -188,6 +188,7 @@ export default function StateManager({ children }) {
         lastName,
         address,
         setAddress,
+        token,
       }}
     >
       {children}
