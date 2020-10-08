@@ -16,7 +16,6 @@ export default function ShopList() {
   const classes = useStyles();
   const context = useContext(User);
   let { url } = useRouteMatch();
-  console.log(context.store);
   return (
     <React.Fragment>
       <Container maxWidth="lg" className={classes.gridbox}>

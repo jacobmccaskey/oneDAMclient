@@ -90,12 +90,11 @@ export default function StateManager({ children }) {
   };
 
   const addCart = (item) => {
-    setCart([...cart, { item }]);
+    setCart((prevState) => [...prevState, { item }]);
     localStorage.setItem("cart", JSON.stringify([...cart, { item }]));
   };
 
   const deleteCart = (item) => {
-    console.log(item._id);
     let filteredArray = cart.filter((index) => index.item._id !== item._id);
     setCart(filteredArray);
   };
