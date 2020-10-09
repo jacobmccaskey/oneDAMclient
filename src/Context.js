@@ -7,7 +7,7 @@ export const User = React.createContext();
 
 export default function StateManager({ children }) {
   const [store, setStore] = useState([]);
-  const [favorites, setfavorites] = useState(null);
+  const [favorites, setfavorites] = useState([]);
   const [cart, setCart] = useState([]);
   const [auth, setAuth] = useState(false);
   const [email, setEmail] = useState("");
@@ -100,7 +100,7 @@ export default function StateManager({ children }) {
   };
 
   const addFav = (item) => {
-    setfavorites([...favorites, { item }]);
+    setfavorites((prevState) => [...prevState, { item }]);
     localStorage.setItem("favorites", JSON.stringify([...favorites, { item }]));
   };
   const deleteFav = (item) => {

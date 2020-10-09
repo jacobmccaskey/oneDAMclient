@@ -100,6 +100,7 @@ const useStyles = makeStyles((theme) => ({
   breadcrumbs: {
     color: "grey",
     textDecoration: "none",
+    fontSize: "15px",
   },
 }));
 
@@ -143,7 +144,7 @@ export default function ViewItem() {
       setaddItem(false);
       context.deleteCart(item);
     }
-    if (count === 0 || sizePick === "") {
+    if ((count === 0 || sizePick === "") && addItem === false) {
       setMessageUser(
         "looks like something went wrong :/ please make sure you have picked your size and how many you would like to buy. Thanks! "
       );
@@ -166,8 +167,7 @@ export default function ViewItem() {
 
   useEffect(() => {
     const cartCheck = context.cart.find((element) => element.item._id === ID);
-    console.log(cartCheck);
-    if (cartCheck && cartCheck._id === ID) {
+    if (cartCheck !== undefined && cartCheck.item._id) {
       setaddItem(true);
     }
   }, [ID, context.cart]);
@@ -176,10 +176,10 @@ export default function ViewItem() {
     <Container maxWidth="md" className={classes.box}>
       <Breadcrumbs separator="›" aria-label="breadcrumb">
         <Link to="/" className={classes.breadcrumbs}>
-          <HomeIcon />
+          <HomeIcon style={{ fontSize: "25px" }} />
         </Link>
         <Link to="/shop" className={classes.breadcrumbs}>
-          <Typography>shop</Typography>
+          <Typography className={classes.breadcrumbs}>shop</Typography>
         </Link>
         <Link to={`/shop/${item._id}`} className={classes.breadcrumbs}>
           {item.name}

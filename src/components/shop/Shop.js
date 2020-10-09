@@ -10,7 +10,7 @@ export default function Shop() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Route exact path={path} component={ShopList} />
+      <Route exact path={path} render={() => <ShopList />} />
       <Switch>
         <Route path={`${path}/:ID`} render={() => <ViewItem />} />
       </Switch>
