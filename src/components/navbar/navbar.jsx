@@ -109,7 +109,7 @@ export default function Navbar() {
             }}
           >
             {!context.auth ? (
-              <Link to="./signin" style={{ textDecoration: "none" }}>
+              <Link to="/signin" style={{ textDecoration: "none" }}>
                 <Button>Sign In</Button>
               </Link>
             ) : (
@@ -122,7 +122,7 @@ export default function Navbar() {
             <Button>cart</Button>
             <br />
             {!context.auth ? (
-              <Link to="./signup" style={{ textDecoration: "none" }}>
+              <Link to="/signup" style={{ textDecoration: "none" }}>
                 <Button>Create Profile</Button>
               </Link>
             ) : (

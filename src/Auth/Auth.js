@@ -7,6 +7,24 @@ const encodeFormData = (data) => {
     .join("&");
 };
 
+//returns value of cookie if exists, returns null if does not exist
+function getCookie(name) {
+  var cookieArr = document.cookie.split(";");
+
+  for (var i = 0; i < cookieArr.length; i++) {
+    var cookiePair = cookieArr[i].split("=");
+
+    /* Removing whitespace at the beginning of the cookie name
+      and compare it with the given string */
+    if (name === cookiePair[0].trim()) {
+      return decodeURIComponent(cookiePair[1]);
+    }
+  }
+
+  // Return null if not found
+  return null;
+}
+
 export function authCheck(
   setAuth,
   setCart,
@@ -14,36 +32,35 @@ export function authCheck(
   setServerResponse,
   setFirstName,
   setLastName,
-  setAddress
+  setAddress,
+  setToken
 ) {
-  let localAuth = window.localStorage.getItem("auth");
-  let localToken = window.localStorage.getItem("token");
-  if (localAuth) {
+  const token = getCookie("token");
+  if (token !== null) {
     axios
       .get(process.env.REACT_APP_USER, {
         headers: {
-          "x-access-token": localToken,
+          "x-access-token": token,
         },
       })
       .then((res) => {
         setAuth(res.data.auth);
         //fetches from db and persists to app's state
         if (res.data.status === 200) {
+          // console.log(res.data);
           setCart(res.data.cart);
           setfavorites(res.data.favorites);
           setServerResponse(200);
           setFirstName(res.data.firstName);
           setLastName(res.data.lastName);
           setAddress(res.data.address);
-          let dataAsArray = Object.entries(res.data);
-          dataAsArray.forEach((element) =>
-            localStorage.setItem(`${element[0]}`, element[1])
-          );
+          setToken(token);
         }
       });
   }
 }
 
+//used for logging in, set hooks to populate rest of app pages
 export default function authenticate(
   email,
   password,
@@ -52,7 +69,8 @@ export default function authenticate(
   setCart,
   setEmail,
   setPassword,
-  setServerResponse
+  setServerResponse,
+  setToken
 ) {
   let body = {
     email: email,
@@ -84,10 +102,8 @@ export default function authenticate(
           setCart(data.cart);
           setEmail("");
           setPassword("");
-          let dataAsArray = Object.entries(data);
-          dataAsArray.forEach((element) => {
-            localStorage.setItem(`${element[0]}`, element[1]);
-          });
+          setToken(data.token);
+          document.cookie = `token=${data.token}`;
           break;
         default:
           setAuth(false);

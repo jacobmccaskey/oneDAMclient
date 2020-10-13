@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
   breadcrumbs: {
     color: "grey",
     textDecoration: "none",
-    fontSize: "15px",
+    fontSize: "18px",
   },
 }));
 
@@ -163,10 +163,11 @@ export default function ViewItem() {
         setInStock(false);
       }
     });
-  }, [ID]);
+    // console.log(context.cart);
+  }, [ID, context.cart]);
 
   useEffect(() => {
-    const cartCheck = context.cart.find((element) => element.item._id === ID);
+    const cartCheck = context.cart.find((element) => element._id === ID);
     if (cartCheck !== undefined && cartCheck.item._id) {
       setaddItem(true);
     }
@@ -176,13 +177,15 @@ export default function ViewItem() {
     <Container maxWidth="md" className={classes.box}>
       <Breadcrumbs separator="›" aria-label="breadcrumb">
         <Link to="/" className={classes.breadcrumbs}>
-          <HomeIcon style={{ fontSize: "25px" }} />
+          <Typography className={classes.breadcrumbs}>
+            <HomeIcon style={{ fontSize: "25px" }} />
+          </Typography>
         </Link>
         <Link to="/shop" className={classes.breadcrumbs}>
           <Typography className={classes.breadcrumbs}>shop</Typography>
         </Link>
         <Link to={`/shop/${item._id}`} className={classes.breadcrumbs}>
-          {item.name}
+          <Typography className={classes.breadcrumbs}>{item.name}</Typography>
         </Link>
       </Breadcrumbs>
       <div className={classes.box}>

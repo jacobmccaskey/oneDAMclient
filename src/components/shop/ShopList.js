@@ -5,7 +5,6 @@ import { useStyles } from "./styles.js";
 import Container from "@material-ui/core/Container";
 import { Link, useRouteMatch } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
-import ViewItem from "./ViewItem";
 import { User } from "../../Context";
 import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
@@ -16,28 +15,6 @@ export default function ShopList() {
   const classes = useStyles();
   const context = useContext(User);
   let { url } = useRouteMatch();
-
-  // const checkIfFaved = (ID) => {
-  //   console.log(ID);
-  //   const value = context.favorites.find((fav) => fav._id === ID);
-  //   if (value !== undefined && value === ID) {
-  //     console.log(value);
-  //     return true;
-  //   } else return false;
-  // };
-
-  // const toggleFav = (item) => {
-  //   const value = context.favorites.find((fav) => fav._id === item._id);
-
-  //   if (value === undefined) {
-  //     context.addFav(item);
-  //     checkIfFaved(item._id);
-  //   }
-  //   if (value) {
-  //     context.deleteFav(item);
-  //     checkIfFaved(item._id);
-  //   }
-  // };
 
   return (
     <React.Fragment>

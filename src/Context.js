@@ -10,7 +10,7 @@ export default function StateManager({ children }) {
   const [favorites, setfavorites] = useState([]);
   const [cart, setCart] = useState([]);
   const [auth, setAuth] = useState(false);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(" ");
   const [password, setPassword] = useState("");
   const [deviceType, setDevice] = useState("desktop");
   const [serverResponse, setServerResponse] = useState("");
@@ -67,36 +67,58 @@ export default function StateManager({ children }) {
       setCart,
       setEmail,
       setPassword,
-      setServerResponse
+      setServerResponse,
+      setToken
     );
   };
 
   const logoutAccount = () => {
-    const keys = [
-      "cart",
-      "email",
-      "firstName",
-      "lastName",
-      "auth",
-      "token",
-      "address",
-      "favorites",
-      "status",
-    ];
-    keys.forEach((item) => localStorage.removeItem(item));
+    document.cookie = "token=;max-age=0";
+    setAuth(null);
+    setToken(null);
     setAuth(false);
     setfavorites([]);
     setCart([]);
   };
 
   const addCart = (item) => {
-    setCart((prevState) => [...prevState, { item }]);
-    localStorage.setItem("cart", JSON.stringify([...cart, { item }]));
+    //declare variable for HTTP Request
+    const items = [...cart, item];
+    if (token === null) {
+      setCart((prevState) => [...prevState, item]);
+    }
+    if (token === undefined) console.log("token undefined");
+    if (token !== null) {
+      axios({
+        method: "post",
+        url: process.env.REACT_APP_UPDATECART,
+        headers: { "x-access-token": token },
+        data: {
+          items: items,
+        },
+      }).then((response) =>
+        setCart((prevState) => [...prevState, response.data])
+      );
+    }
   };
 
   const deleteCart = (item) => {
-    let filteredArray = cart.filter((index) => index.item._id !== item._id);
-    setCart(filteredArray);
+    // let filteredArray = cart.filter((index) => index.item._id !== item._id);
+    // setCart(filteredArray);
+    // // if (token === null) {
+    // //   setCart(filteredArray);
+    // // }
+    // if (token !== null) {
+    //   axios({
+    //     method: "post",
+    //     url: process.env.REACT_APP_UPDATECART,
+    //     headers: { "x-access-token": token },
+    //     data: {
+    //       items: filteredArray,
+    //     },
+    //   }).then((response) => console.log(response));
+    // }
+    console.log(item);
   };
 
   const addFav = (item) => {
@@ -121,7 +143,7 @@ export default function StateManager({ children }) {
         password: password,
       },
     }).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setAuth(res.data.auth);
       setEmail(res.data.email);
       setAddress(res.data.address);
@@ -129,10 +151,7 @@ export default function StateManager({ children }) {
       setfavorites(res.data.favorites);
       setToken(res.data.token);
       setServerResponse(res.data.status);
-      let dataAsArray = Object.entries(res.data);
-      dataAsArray.forEach((element) =>
-        localStorage.setItem(`${element[0]}`, element[1])
-      );
+      document.cookie = `token=${res.data.token}`;
     });
   };
 
@@ -152,7 +171,8 @@ export default function StateManager({ children }) {
       setServerResponse,
       setFirstName,
       setLastName,
-      setAddress
+      setAddress,
+      setToken
     );
   }, []);
   useEffect(() => {
@@ -188,6 +208,8 @@ export default function StateManager({ children }) {
         address,
         setAddress,
         token,
+        password,
+        email,
       }}
     >
       {children}

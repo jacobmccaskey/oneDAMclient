@@ -25,10 +25,7 @@ export default function FavButton(props) {
   useEffect(() => {
     const ID = item._id;
     const checkForFav = favorites.find((fav) => fav.item._id === ID);
-    console.log(favorites);
-    console.log(checkForFav);
     if (checkForFav !== undefined && checkForFav.item._id === ID) {
-      console.log(checkForFav._id);
       setPick(true);
     }
   }, [favorites, item._id]);
