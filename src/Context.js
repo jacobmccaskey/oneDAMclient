@@ -96,29 +96,27 @@ export default function StateManager({ children }) {
         data: {
           items: items,
         },
-      }).then((response) =>
-        setCart((prevState) => [...prevState, response.data])
-      );
+      }).then((response) => setCart(response.data));
     }
   };
 
   const deleteCart = (item) => {
-    // let filteredArray = cart.filter((index) => index.item._id !== item._id);
-    // setCart(filteredArray);
-    // // if (token === null) {
-    // //   setCart(filteredArray);
-    // // }
-    // if (token !== null) {
-    //   axios({
-    //     method: "post",
-    //     url: process.env.REACT_APP_UPDATECART,
-    //     headers: { "x-access-token": token },
-    //     data: {
-    //       items: filteredArray,
-    //     },
-    //   }).then((response) => console.log(response));
+    let filteredArray = cart.filter((index) => index._id !== item._id);
+    setCart(filteredArray);
+    // if (token === null) {
+    //   setCart(filteredArray);
     // }
-    console.log(item);
+    if (token !== null) {
+      axios({
+        method: "post",
+        url: process.env.REACT_APP_UPDATECART,
+        headers: { "x-access-token": token },
+        data: {
+          items: filteredArray,
+        },
+      }).then((response) => console.log(response));
+    }
+    // console.log(item);
   };
 
   const addFav = (item) => {
