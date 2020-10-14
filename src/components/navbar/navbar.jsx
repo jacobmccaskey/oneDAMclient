@@ -27,7 +27,7 @@ import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import NaturePeopleIcon from "@material-ui/icons/NaturePeople";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import HomeIcon from "@material-ui/icons/Home";
-import ShoppingCart from "./shoppingCart";
+import ShoppingCart from "./shoppingCartBtn";
 import { User } from "../../Context";
 
 export default function Navbar() {
@@ -92,7 +92,7 @@ export default function Navbar() {
           <Geolocator />
 
           <Button aria-describedby={id} onClick={popoverHandle}>
-            <AccountCircleIcon />
+            <AccountCircleIcon style={{ color: "grey" }} />
           </Button>
           <Popover
             id={id}
@@ -109,7 +109,7 @@ export default function Navbar() {
             }}
           >
             {!context.auth ? (
-              <Link to="/signin" style={{ textDecoration: "none" }}>
+              <Link to="/signin" className={classes.btn}>
                 <Button>Sign In</Button>
               </Link>
             ) : (
@@ -118,19 +118,21 @@ export default function Navbar() {
             <br />
             <Button>Favorites</Button>
             <br />
-
-            <Button>cart</Button>
+            <Link to="/checkout" className={classes.btn}>
+              <Button>cart</Button>
+            </Link>
             <br />
             {!context.auth ? (
-              <Link to="/signup" style={{ textDecoration: "none" }}>
+              <Link to="/signup" className={classes.btn}>
                 <Button>Create Profile</Button>
               </Link>
             ) : (
               <Button onClick={logout}>logout</Button>
             )}
           </Popover>
-
-          <ShoppingCart />
+          <Link to="/checkout" className={classes.btn}>
+            <ShoppingCart />
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer

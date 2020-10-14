@@ -18,7 +18,7 @@ export default function StateManager({ children }) {
   const [lastName, setLastName] = useState("");
   const [location, setLocation] = useState(false);
   const [address, setAddress] = useState("");
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(null);
   const [city, setCity] = useState(null);
   const [state, setState] = useState(null);
 

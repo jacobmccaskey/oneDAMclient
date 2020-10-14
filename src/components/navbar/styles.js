@@ -80,4 +80,7 @@ export const useStyles = makeStyles((theme) => ({
     color: "white",
     textDecoration: "none",
   },
+  btn: {
+    textDecoration: "none",
+  },
 }));

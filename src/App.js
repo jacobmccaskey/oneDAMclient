@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/navbar/navbar";
@@ -12,7 +12,7 @@ import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import StateManager from "./Context";
 import Footer from "./components/Footer";
-// import ViewItem from "./components/shop/ViewItem";
+const Checkout = React.lazy(() => import("./components/checkout/Main"));
 
 function App() {
   return (
@@ -36,6 +36,15 @@ function App() {
             <Route path="/signup" component={SignUp} />
 
             <Route path="/signin" component={SignIn} />
+
+            <Route
+              path="/checkout"
+              render={() => (
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Checkout />
+                </Suspense>
+              )}
+            />
           </Switch>
           <Footer />
         </div>
