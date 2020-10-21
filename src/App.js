@@ -12,6 +12,10 @@ import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import StateManager from "./Context";
 import Footer from "./components/Footer";
+import ErrorModal from "./components/errorModal";
+const PaymentSuccess = React.lazy(() =>
+  import("./components/checkout/PaymentSuccess")
+);
 const Checkout = React.lazy(() => import("./components/checkout/Main"));
 
 function App() {
@@ -41,7 +45,17 @@ function App() {
               path="/checkout"
               render={() => (
                 <Suspense fallback={<div>Loading...</div>}>
-                  <Checkout />
+                  <ErrorModal>
+                    <Checkout />
+                  </ErrorModal>
+                </Suspense>
+              )}
+            />
+            <Route
+              path="/paymentsuccess"
+              render={() => (
+                <Suspense fallback={<div>Loading...</div>}>
+                  <PaymentSuccess />
                 </Suspense>
               )}
             />

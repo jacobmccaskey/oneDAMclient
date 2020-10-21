@@ -6,6 +6,10 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Link } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+import { useAlert } from "react-alert";
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_DEV);
 
 const useStyles = makeStyles((theme) => ({
   emptyCartContainer: {
@@ -24,11 +28,12 @@ const useStyles = makeStyles((theme) => ({
 
   cartContainer: {
     width: "60%",
-    height: "auto",
     display: "inline-block",
     marginBottom: "1rem",
     paddingBottom: "1rem",
+    height: "40rem",
     [theme.breakpoints.down("sm")]: {
+      height: "auto",
       textAlign: "center",
       width: "100%",
       display: "block",
@@ -55,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     textAlign: "center",
     position: "relative",
-    boxShadow: "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
+    boxShadow: "0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23)",
   },
   dynamicDisplay: {
     display: "",
@@ -83,6 +88,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "lightgrey",
     color: "black",
     borderRadius: "0px 0px 5px 5px",
+    marginTop: "1rem",
+    "&:hover": {
+      backgroundColor: "#6F00FF",
+      color: "white",
+    },
   },
 }));
 
@@ -91,6 +101,26 @@ export default function Checkout() {
   const context = useContext(User);
   const [subtotal, setSubtotal] = useState(0);
   const { cart } = context;
+  //hook for showing alertModal. imported from react-alert
+  const alert = useAlert();
+
+  const handleClick = async (event) => {
+    const stripe = await stripePromise;
+    //replace with .env variable
+    const response = await fetch("http://localhost:4545/api/checkout-session", {
+      method: "POST",
+    });
+    const session = await response.json();
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+    if (result.error) {
+      alert.show(
+        "whoops!! :( Looks like there was a problem with your request. Please try again in a moment.."
+      );
+    }
+  };
+
   useEffect(() => {
     let amount = 0;
     cart.forEach((item) => (amount += item.item.price * item.count));
@@ -116,10 +146,6 @@ export default function Checkout() {
             <h1>Shopping Cart</h1>
           </div>
           <Container>
-            {/* <div className={styles.shoppingCartHeader}>
-            <h1>Shopping Cart</h1>
-          </div> */}
-
             <Container className={styles.cartContainer}>
               <h3>
                 {context.firstName}'s Cart ({cart.length} items)
@@ -182,7 +208,8 @@ export default function Checkout() {
                 Subtotal
               </Typography>
               <Typography>${subtotal}</Typography>
-              <Button className={styles.checkoutBtn}>
+              <Typography>(plus tax)</Typography>
+              <Button className={styles.checkoutBtn} onClick={handleClick}>
                 <Typography>go to checkout</Typography>
               </Button>
             </div>
