@@ -8,7 +8,7 @@ export default function Geolocator() {
   return (
     <React.Fragment>
       <Typography style={{ color: "grey", fontSize: "small" }}>
-        {context.city}, {context.state}
+        {context.cityFetch}, {context.stateFetch}
       </Typography>
     </React.Fragment>
   );

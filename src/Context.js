@@ -18,9 +18,16 @@ export default function StateManager({ children }) {
   const [lastName, setLastName] = useState("");
   const [location, setLocation] = useState(false);
   const [address, setAddress] = useState("");
-  const [token, setToken] = useState(null);
+  const [addressTwo, setAddressTwo] = useState("");
   const [city, setCity] = useState(null);
   const [state, setState] = useState(null);
+  const [county, setCounty] = useState(null);
+  const [postalCode, setPostalCode] = useState(null);
+  const [token, setToken] = useState(null);
+  const [cityFetch, setCityFetch] = useState(null);
+  const [stateFetch, setStateFetch] = useState(null);
+  const [guest, setGuest] = useState(true);
+  const [guestId, setGuestId] = useState(null);
 
   //fetches location from third party api, limited to 45 requests a minute
   const getLocation = () => {
@@ -29,8 +36,8 @@ export default function StateManager({ children }) {
     )
       .then((res) => res.json())
       .then((data) => {
-        setCity(data.city);
-        setState(data.region);
+        setCityFetch(data.city);
+        setStateFetch(data.region);
         setLocation(true);
       })
       .catch((err) => console.error(err));
@@ -68,7 +75,8 @@ export default function StateManager({ children }) {
       setEmail,
       setPassword,
       setServerResponse,
-      setToken
+      setToken,
+      setGuest
     );
   };
 
@@ -79,6 +87,7 @@ export default function StateManager({ children }) {
     setAuth(false);
     setfavorites([]);
     setCart([]);
+    setGuest(true);
   };
 
   const addCart = (item) => {
@@ -195,6 +204,7 @@ export default function StateManager({ children }) {
         deviceType,
         city,
         state,
+        setState,
         serverResponse,
         setEmail,
         setPassword,
@@ -208,6 +218,21 @@ export default function StateManager({ children }) {
         token,
         password,
         email,
+        addressTwo,
+        setAddressTwo,
+        guest,
+        setGuest,
+        guestId,
+        setGuestId,
+        setCity,
+        county,
+        setCounty,
+        setPostalCode,
+        postalCode,
+        setCityFetch,
+        cityFetch,
+        setStateFetch,
+        stateFetch,
       }}
     >
       {children}

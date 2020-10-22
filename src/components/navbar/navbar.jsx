@@ -113,7 +113,9 @@ export default function Navbar() {
                 <Button>Sign In</Button>
               </Link>
             ) : (
-              <Button>My Account</Button>
+              <Link to="/account" className={classes.btn}>
+                <Button>My Account</Button>
+              </Link>
             )}
             <br />
             <Button>Favorites</Button>

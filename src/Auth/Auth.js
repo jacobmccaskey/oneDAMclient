@@ -70,12 +70,19 @@ export default function authenticate(
   setEmail,
   setPassword,
   setServerResponse,
-  setToken
+  setToken,
+  setGuest
 ) {
   let body = {
     email: email,
     password: password,
   };
+
+  let expiry = new Date(
+    //sets time cookie to expire in clients browser
+    new Date().getTime() + 60 * 60 * 24 * 1000
+  ).toUTCString();
+
   fetch("http://localhost:4545/api/auth/login", {
     method: "POST",
     headers: {
@@ -102,8 +109,9 @@ export default function authenticate(
           setCart(data.cart);
           setEmail("");
           setPassword("");
+          setGuest(false);
           setToken(data.token);
-          document.cookie = `token=${data.token}`;
+          document.cookie = `token=${data.token};expires=${expiry}`;
           break;
         default:
           setAuth(false);

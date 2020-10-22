@@ -107,18 +107,23 @@ export default function Checkout() {
   const handleClick = async (event) => {
     const stripe = await stripePromise;
     //replace with .env variable
-    const response = await fetch("http://localhost:4545/api/checkout-session", {
-      method: "POST",
-    });
+    const response = await fetch(
+      "http://localhost:4545/orders/checkout-session",
+      {
+        method: "POST",
+      }
+    );
     const session = await response.json();
-    const result = await stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
-    if (result.error) {
-      alert.show(
-        "whoops!! :( Looks like there was a problem with your request. Please try again in a moment.."
-      );
-    }
+
+    console.log(session);
+    // const result = await stripe.redirectToCheckout({
+    //   sessionId: session.id,
+    // });
+    // if (result.error) {
+    //   alert.show(
+    //     "whoops!! :( Looks like there was a problem with your request. Please try again in a moment.."
+    //   );
+    // }
   };
 
   useEffect(() => {
