@@ -23,6 +23,7 @@ export default function StateManager({ children }) {
   const [state, setState] = useState(null);
   const [county, setCounty] = useState(null);
   const [postalCode, setPostalCode] = useState(null);
+  const [phone, setPhone] = useState(null);
   const [token, setToken] = useState(null);
   const [cityFetch, setCityFetch] = useState(null);
   const [stateFetch, setStateFetch] = useState(null);
@@ -179,6 +180,7 @@ export default function StateManager({ children }) {
       setFirstName,
       setLastName,
       setAddress,
+      setEmail,
       setToken
     );
   }, []);
@@ -233,6 +235,8 @@ export default function StateManager({ children }) {
         cityFetch,
         setStateFetch,
         stateFetch,
+        phone,
+        setPhone,
       }}
     >
       {children}

@@ -33,6 +33,7 @@ export function authCheck(
   setFirstName,
   setLastName,
   setAddress,
+  setEmail,
   setToken
 ) {
   const token = getCookie("token");
@@ -54,6 +55,7 @@ export function authCheck(
           setFirstName(res.data.firstName);
           setLastName(res.data.lastName);
           setAddress(res.data.address);
+          setEmail(res.data.email);
           setToken(token);
         }
       });
