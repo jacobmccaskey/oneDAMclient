@@ -1,4 +1,6 @@
+import { SettingsPhone } from "@material-ui/icons";
 import axios from "axios";
+import { scryRenderedComponentsWithType } from "react-dom/test-utils";
 
 //for sending x-www-urlencoded data
 const encodeFormData = (data) => {
@@ -34,6 +36,12 @@ export function authCheck(
   setLastName,
   setAddress,
   setEmail,
+  setAddressTwo,
+  setCounty,
+  setPhone,
+  setPostalCode,
+  setCity,
+  setOrders,
   setToken
 ) {
   const token = getCookie("token");
@@ -56,6 +64,12 @@ export function authCheck(
           setLastName(res.data.lastName);
           setAddress(res.data.address);
           setEmail(res.data.email);
+          setAddressTwo(res.data.addressTwo);
+          setCounty(res.data.county);
+          setPhone(res.data.phone);
+          setPostalCode(res.data.postalCode);
+          setCity(res.data.city);
+          setOrders(res.data.orders);
           setToken(token);
         }
       });

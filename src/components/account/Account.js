@@ -4,23 +4,8 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import Input from "@material-ui/core/Input";
+import AccountInfoForm from "./AccountInfoForm";
 import { useStyles } from "./styles";
-
-//function to cut back on amount of code written in Account Component
-function InputForm(props) {
-  const style = useStyles();
-  const { hook, toEdit, setHook } = props;
-  return (
-    <Input
-      value={hook}
-      disabled={!toEdit}
-      disableUnderline
-      className={!toEdit ? style.inputReadOnly : style.inputCanEdit}
-      onChange={(e) => setHook(e.target.value)}
-    />
-  );
-}
 
 export default function Account() {
   const style = useStyles();
@@ -84,33 +69,7 @@ export default function Account() {
     });
   };
 
-  const {
-    favorites,
-    deviceType,
-    deleteFav,
-    logoutAccount,
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    address,
-    setAddress,
-    setAddressTwo,
-    addressTwo,
-    auth,
-    email,
-    setEmail,
-    city,
-    state,
-    postalCode,
-    county,
-    setCity,
-    setState,
-    setPostalCode,
-    setCounty,
-    phone,
-    setPhone,
-  } = context;
+  const { favorites, deviceType, deleteFav, auth } = context;
   return (
     <div>
       <div className={style.root}>
@@ -120,7 +79,7 @@ export default function Account() {
               Account Settings
             </Typography>
             <Button className={style.menuBtn} onClick={openNameForm}>
-              Name & Email
+              Personal Information
             </Button>
             <Button className={style.menuBtn} onClick={openShippingForm}>
               Shipping Address
@@ -138,7 +97,7 @@ export default function Account() {
         </Paper>
 
         <Paper className={style.paperRight}>
-          {/* Name and address form */}
+          {/* Personal info form */}
           <Container
             style={
               showForm.nameMenu === false
@@ -146,44 +105,9 @@ export default function Account() {
                 : { display: "block" }
             }
           >
-            <Typography varaint="h6" style={{ textDecoration: "underline" }}>
-              Personal Information
-            </Typography>
-            <div style={{ textAlign: "left" }}>
-              <Typography className={style.smallHeader}>Name</Typography>
-              <div style={{ display: "inline-block" }}>
-                <InputForm
-                  toEdit={toEdit}
-                  hook={firstName}
-                  setHook={setFirstName}
-                />
-
-                <InputForm
-                  toEdit={toEdit}
-                  hook={lastName}
-                  setHook={setLastName}
-                />
-              </div>
-              <div style={{ display: "block" }}>
-                <div className={style.contactDiv}>
-                  <Typography
-                    className={style.smallHeader}
-                    style={{ display: "inline" }}
-                  >
-                    Email
-                  </Typography>
-                  <InputForm toEdit={toEdit} hook={email} setHook={setEmail} />
-                </div>
-                <Typography
-                  className={style.smallHeader}
-                  style={{ display: "inline" }}
-                >
-                  phone
-                </Typography>
-                <InputForm toEdit={toEdit} hook={phone} setHook={setPhone} />
-              </div>
-            </div>
+            <AccountInfoForm toEdit={toEdit} setToEdit={setToEdit} />
           </Container>
+
           {/* shipping address form */}
           <Container
             style={

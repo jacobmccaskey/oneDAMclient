@@ -29,6 +29,7 @@ export default function StateManager({ children }) {
   const [stateFetch, setStateFetch] = useState(null);
   const [guest, setGuest] = useState(true);
   const [guestId, setGuestId] = useState(null);
+  const [orders, setOrders] = useState();
 
   //fetches location from third party api, limited to 45 requests a minute
   const getLocation = () => {
@@ -181,6 +182,12 @@ export default function StateManager({ children }) {
       setLastName,
       setAddress,
       setEmail,
+      setAddressTwo,
+      setCounty,
+      setPhone,
+      setPostalCode,
+      setCity,
+      setOrders,
       setToken
     );
   }, []);
@@ -237,6 +244,8 @@ export default function StateManager({ children }) {
         stateFetch,
         phone,
         setPhone,
+        orders,
+        setOrders,
       }}
     >
       {children}

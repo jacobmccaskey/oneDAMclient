@@ -1,12 +1,12 @@
 .App {
   text-align: center;
   /* background-color: "rgb(232,232,232)"; */
-  /* font-family: "Roboto", sans-serif; */
+  font-family: "Roboto", sans-serif;
   /* font-family: "Playfair Display", serif; */
   font-weight: 500;
 }
 
-h2 {
+/* h2 {
   font-family: "Roboto", sans-serif;
 }
 
@@ -17,4 +17,4 @@ p {
 
 span {
   font-family: "Cormorant Garamond", serif;
-}
+} */

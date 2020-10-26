@@ -32,14 +32,39 @@ export const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     margin: theme.spacing(1),
     borderRadius: "2px",
+    border: theme.shadows,
   },
   inputCanEdit: {
     backgroundColor: "rgb(224,224,224)",
+    margin: theme.spacing(1),
+    borderRadius: "2px",
   },
   contactDiv: {
     display: "inline-block",
     [theme.breakpoints.down("sm")]: {
       display: "block",
+    },
+  },
+  accountBtn: {
+    textTransform: "none",
+    backgroundColor: "#0063cc",
+    fontSize: 16,
+    color: "white",
+    padding: "6px 12px",
+    margin: theme.spacing(1),
+    "&:hover": {
+      color: "black",
+      backgroundColor: "grey",
+    },
+  },
+  logoutBtn: {
+    backgroundColor: "red",
+    color: "white",
+    fontSize: 16,
+    padding: "6px 12px",
+    margin: theme.spacing(1),
+    "&:hover": {
+      color: "black",
     },
   },
 }));
