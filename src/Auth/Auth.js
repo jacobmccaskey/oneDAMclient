@@ -1,6 +1,6 @@
-import { SettingsPhone } from "@material-ui/icons";
 import axios from "axios";
-import { scryRenderedComponentsWithType } from "react-dom/test-utils";
+import { useContext } from "react";
+import { User } from "../Context";
 
 //for sending x-www-urlencoded data
 const encodeFormData = (data) => {
@@ -42,6 +42,7 @@ export function authCheck(
   setPostalCode,
   setCity,
   setOrders,
+  setState,
   setToken
 ) {
   const token = getCookie("token");
@@ -70,6 +71,7 @@ export function authCheck(
           setPostalCode(res.data.postalCode);
           setCity(res.data.city);
           setOrders(res.data.orders);
+          setState(res.data.state);
           setToken(token);
         }
       });
@@ -83,11 +85,19 @@ export default function authenticate(
   setAuth,
   setfavorites,
   setCart,
-  setEmail,
   setPassword,
   setServerResponse,
   setToken,
-  setGuest
+  setGuest,
+  setAddress,
+  setAddressTwo,
+  setEmail,
+  setPhone,
+  setCounty,
+  setCity,
+  setPostalCode,
+  setOrders,
+  setState
 ) {
   let body = {
     email: email,
@@ -127,6 +137,15 @@ export default function authenticate(
           setPassword("");
           setGuest(false);
           setToken(data.token);
+          setAddress(data.address);
+          setAddressTwo(data.addressTwo);
+          setEmail(data.email);
+          setPhone(data.phone);
+          setCounty(data.county);
+          setCity(data.city);
+          setPostalCode(data.postalCode);
+          setOrders(data.orders);
+          setState(data.state);
           document.cookie = `token=${data.token};expires=${expiry}`;
           break;
         default:

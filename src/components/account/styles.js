@@ -29,13 +29,13 @@ export const useStyles = makeStyles((theme) => ({
     textDecoration: "underline",
   },
   inputReadOnly: {
-    backgroundColor: "white",
+    backgroundColor: "#F5F5F5",
     margin: theme.spacing(1),
     borderRadius: "2px",
     border: theme.shadows,
   },
   inputCanEdit: {
-    backgroundColor: "rgb(224,224,224)",
+    backgroundColor: "white",
     margin: theme.spacing(1),
     borderRadius: "2px",
   },

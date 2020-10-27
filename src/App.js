@@ -21,48 +21,50 @@ const Checkout = React.lazy(() => import("./components/checkout/Main"));
 function App() {
   return (
     <Router>
-      <StateManager>
-        <div className="App">
-          <Navbar />
-          <Switch>
-            <Route exact path="/" component={Home} />
+      <ErrorModal>
+        <StateManager>
+          <div className="App">
+            <Navbar />
+            <Switch>
+              <Route exact path="/" component={Home} />
 
-            <Route path="/shop" component={Shop} />
+              <Route path="/shop" component={Shop} />
 
-            <Route path="/misson" component={Mission} />
+              <Route path="/misson" component={Mission} />
 
-            <Route path="/members" component={Members} />
+              <Route path="/members" component={Members} />
 
-            <Route path="/account" component={Account} />
+              <Route path="/account" component={Account} />
 
-            <Route path="/contact" component={Contact} />
+              <Route path="/contact" component={Contact} />
 
-            <Route path="/signup" component={SignUp} />
+              <Route path="/signup" component={SignUp} />
 
-            <Route path="/signin" component={SignIn} />
+              <Route path="/signin" component={SignIn} />
 
-            <Route
-              path="/checkout"
-              render={() => (
-                <Suspense fallback={<div>Loading...</div>}>
-                  <ErrorModal>
+              <Route
+                path="/checkout"
+                render={() => (
+                  <Suspense fallback={<div>Loading...</div>}>
+                    {/* <ErrorModal> */}
                     <Checkout />
-                  </ErrorModal>
-                </Suspense>
-              )}
-            />
-            <Route
-              path="/paymentsuccess"
-              render={() => (
-                <Suspense fallback={<div>Loading...</div>}>
-                  <PaymentSuccess />
-                </Suspense>
-              )}
-            />
-          </Switch>
-          <Footer />
-        </div>
-      </StateManager>
+                    {/* </ErrorModal> */}
+                  </Suspense>
+                )}
+              />
+              <Route
+                path="/paymentsuccess"
+                render={() => (
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <PaymentSuccess />
+                  </Suspense>
+                )}
+              />
+            </Switch>
+            <Footer />
+          </div>
+        </StateManager>
+      </ErrorModal>
     </Router>
   );
 }

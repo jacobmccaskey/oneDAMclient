@@ -78,7 +78,16 @@ export default function StateManager({ children }) {
       setPassword,
       setServerResponse,
       setToken,
-      setGuest
+      setGuest,
+      setAddress,
+      setAddressTwo,
+      setEmail,
+      setPhone,
+      setCounty,
+      setCity,
+      setPostalCode,
+      setOrders,
+      setState
     );
   };
 
@@ -164,6 +173,19 @@ export default function StateManager({ children }) {
     });
   };
 
+  const updateAccount = (update) => {
+    axios({
+      method: "post",
+      url: process.env.REACT_APP_UPDATE_USER,
+      headers: {
+        "x-access-token": token,
+      },
+      data: {
+        update: update,
+      },
+    }).then((response) => setServerResponse(response.status));
+  };
+
   const fetchShop = () => {
     axios
       .get("http://localhost:4545/api/store")
@@ -188,6 +210,7 @@ export default function StateManager({ children }) {
       setPostalCode,
       setCity,
       setOrders,
+      setState,
       setToken
     );
   }, []);
@@ -215,6 +238,7 @@ export default function StateManager({ children }) {
         state,
         setState,
         serverResponse,
+        setServerResponse,
         setEmail,
         setPassword,
         createNewUser,
@@ -246,6 +270,7 @@ export default function StateManager({ children }) {
         setPhone,
         orders,
         setOrders,
+        updateAccount,
       }}
     >
       {children}

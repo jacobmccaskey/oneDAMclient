@@ -4,18 +4,23 @@ import { User } from "../../Context";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
-import Input from "@material-ui/core/Input";
 import TextField from "@material-ui/core/TextField";
+import Input from "@material-ui/core/Input";
+import { useAlert } from "react-alert";
 
 //function to cut back on amount of code written in Account Component
 function InputForm(props) {
   const style = useStyles();
   const { hook, toEdit, setHook, label } = props;
+
   return (
     <TextField
-      value={hook}
+      id={hook}
+      defaultValue={hook}
+      // disableUnderline
+      value={hook || ""}
       disabled={!toEdit}
-      disableUnderline
+      variant="outlined"
       label={label}
       className={!toEdit ? style.inputReadOnly : style.inputCanEdit}
       onChange={(e) => setHook(e.target.value)}
@@ -26,10 +31,28 @@ function InputForm(props) {
 export default function AccountInfoForm(props) {
   const style = useStyles();
   const context = useContext(User);
+  const alert = useAlert();
 
-  const editAccount = () => {
+  const pushUpdateToServer = async () => {
+    const data = {
+      address: address,
+      addressTwo: addressTwo,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phone: phone,
+      city: city,
+      state: state,
+      county: county,
+      postalCode: postalCode,
+    };
+    const update = await updateAccount(data);
+    serverResponse === 200
+      ? alert.show("Account updated successfully")
+      : alert.show("Something went wrong with your request, please try again");
+
+    setServerResponse(200);
     setToEdit(false);
-    console.log("works");
   };
 
   const { toEdit, setToEdit } = props;
@@ -56,6 +79,9 @@ export default function AccountInfoForm(props) {
     postalCode,
     setPostalCode,
     logoutAccount,
+    updateAccount,
+    setServerResponse,
+    serverResponse,
   } = context;
 
   return (
@@ -110,7 +136,7 @@ export default function AccountInfoForm(props) {
         <Typography
           variant="h6"
           className={style.smallHeader}
-          style={{ textAlign: "center" }}
+          style={{ textAlign: "center", marginBottom: "1rem" }}
         >
           Shipping Address
         </Typography>
@@ -153,7 +179,9 @@ export default function AccountInfoForm(props) {
         <Container>
           <Button
             className={style.accountBtn}
-            onClick={() => (toEdit === false ? setToEdit(true) : editAccount())}
+            onClick={() =>
+              toEdit === false ? setToEdit(true) : pushUpdateToServer()
+            }
           >
             {toEdit === false ? "Edit" : "Save"}
           </Button>
