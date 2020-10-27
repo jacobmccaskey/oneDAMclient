@@ -11,7 +11,7 @@ export default function FavButton(props) {
 
   const toggleFav = (item) => {
     const ID = item._id;
-    const value = favorites.find((fav) => fav.item._id === ID);
+    const value = favorites.find((fav) => fav._id === ID);
     if (value === undefined && picked === false) {
       setPick(true);
       addFav(item);
@@ -24,8 +24,8 @@ export default function FavButton(props) {
 
   useEffect(() => {
     const ID = item._id;
-    const checkForFav = favorites.find((fav) => fav.item._id === ID);
-    if (checkForFav !== undefined && checkForFav.item._id === ID) {
+    const checkForFav = favorites.find((fav) => fav._id === ID);
+    if (checkForFav !== undefined && checkForFav._id === ID) {
       setPick(true);
     }
   }, [favorites, item._id]);

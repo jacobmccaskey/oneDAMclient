@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import authenticate, { authCheck } from "./Auth/Auth";
-// import PropTypes from "prop-types";
 
 export const User = React.createContext();
 
@@ -136,18 +135,38 @@ export default function StateManager({ children }) {
         },
       }).then((response) => console.log(response));
     }
-    // console.log(item);
   };
 
   const addFav = (item) => {
+    //stage for sending to server
+    const favArray = [...favorites, item];
+    //persist to state on frontend first
     setfavorites((prevState) => [...prevState, { item }]);
-    localStorage.setItem("favorites", JSON.stringify([...favorites, { item }]));
+    //send request to server if authentication token exists
+    if (token !== null) {
+      axios({
+        method: "post",
+        url: process.env.REACT_APP_UPDATEFAVORITES,
+        headers: { "x-access-token": token },
+        data: {
+          items: favArray,
+        },
+      }).then((res) => console.log(res));
+    }
   };
   const deleteFav = (item) => {
-    let filteredArray = favorites.filter(
-      (index) => index.item._id !== item._id
-    );
+    let filteredArray = favorites.filter((index) => index._id !== item._id);
     setfavorites(filteredArray);
+    if (token !== null) {
+      axios({
+        method: "post",
+        url: process.env.REACT_APP_UPDATEFAVORITES,
+        headers: { "x-access-token": token },
+        data: {
+          items: filteredArray,
+        },
+      }).then((res) => console.log(res));
+    }
   };
 
   const createNewUser = () => {

@@ -1,6 +1,4 @@
 import axios from "axios";
-import { useContext } from "react";
-import { User } from "../Context";
 
 //for sending x-www-urlencoded data
 const encodeFormData = (data) => {

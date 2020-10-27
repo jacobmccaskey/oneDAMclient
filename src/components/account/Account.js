@@ -5,6 +5,8 @@ import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import AccountInfoForm from "./AccountInfoForm";
+import RecentOrders from "./RecentOrders";
+import Favorites from "./Favorites";
 import { useStyles } from "./styles";
 
 export default function Account() {
@@ -13,7 +15,6 @@ export default function Account() {
   const [toEdit, setToEdit] = useState(false);
   const [showForm, setShowForm] = useState({
     nameMenu: true,
-    shippingMenu: false,
     recentOrders: false,
     favorites: false,
     contactUs: false,
@@ -22,17 +23,6 @@ export default function Account() {
   const openNameForm = () => {
     setShowForm({
       nameMenu: true,
-      shippingMenu: false,
-      recentOrders: false,
-      favorites: false,
-      contactUs: false,
-    });
-  };
-
-  const openShippingForm = () => {
-    setShowForm({
-      nameMenu: false,
-      shippingMenu: true,
       recentOrders: false,
       favorites: false,
       contactUs: false,
@@ -42,7 +32,6 @@ export default function Account() {
   const openOrdersPage = () => {
     setShowForm({
       nameMenu: false,
-      shippingMenu: false,
       recentOrders: true,
       favorites: false,
       contactUs: false,
@@ -52,7 +41,6 @@ export default function Account() {
   const openFavoritesPage = () => {
     setShowForm({
       nameMenu: false,
-      shippingMenu: false,
       recentOrders: false,
       favorites: true,
       contactUs: false,
@@ -62,14 +50,13 @@ export default function Account() {
   const openContactPage = () => {
     setShowForm({
       nameMenu: false,
-      shippingMenu: false,
       recentOrders: false,
       favorites: false,
       contactUs: true,
     });
   };
 
-  const { favorites, deviceType, deleteFav, auth } = context;
+  const { favorites, deviceType, deleteFav, auth, orders } = context;
   return (
     <div>
       <div className={style.root}>
@@ -81,9 +68,7 @@ export default function Account() {
             <Button className={style.menuBtn} onClick={openNameForm}>
               Personal Information
             </Button>
-            <Button className={style.menuBtn} onClick={openShippingForm}>
-              Shipping Address
-            </Button>
+
             <Button className={style.menuBtn} onClick={openOrdersPage}>
               Recent Orders
             </Button>
@@ -108,16 +93,6 @@ export default function Account() {
             <AccountInfoForm toEdit={toEdit} setToEdit={setToEdit} />
           </Container>
 
-          {/* shipping address form */}
-          <Container
-            style={
-              showForm.shippingMenu === false
-                ? { display: "none" }
-                : { display: "block" }
-            }
-          >
-            <Typography>shipping</Typography>
-          </Container>
           {/* recent orders form */}
           <Container
             style={
@@ -126,7 +101,7 @@ export default function Account() {
                 : { display: "block" }
             }
           >
-            <Typography>orders</Typography>
+            <RecentOrders orders={orders} />
           </Container>
           {/* favorites container */}
           <Container
@@ -136,7 +111,7 @@ export default function Account() {
                 : { display: "block" }
             }
           >
-            <Typography>fav's</Typography>
+            <Favorites favorites={favorites} />
           </Container>
           {/* contact form */}
           <Container

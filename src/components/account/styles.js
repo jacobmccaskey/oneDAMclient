@@ -67,4 +67,12 @@ export const useStyles = makeStyles((theme) => ({
       color: "black",
     },
   },
+  emptyOrderPage: {
+    textAlign: "center",
+    verticalAlign: "center",
+    height: "30rem",
+  },
+  emptyOrderTxt: {
+    paddingTop: "5rem",
+  },
 }));

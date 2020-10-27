@@ -5,7 +5,6 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Input from "@material-ui/core/Input";
 import { useAlert } from "react-alert";
 
 //function to cut back on amount of code written in Account Component
@@ -15,9 +14,7 @@ function InputForm(props) {
 
   return (
     <TextField
-      id={hook}
-      defaultValue={hook}
-      // disableUnderline
+      type="text"
       value={hook || ""}
       disabled={!toEdit}
       variant="outlined"
@@ -53,6 +50,7 @@ export default function AccountInfoForm(props) {
 
     setServerResponse(200);
     setToEdit(false);
+    return update;
   };
 
   const { toEdit, setToEdit } = props;
