@@ -121,6 +121,7 @@ export default function authenticate(
         case 404:
           setAuth(false);
           setServerResponse(404);
+          setPassword("");
           break;
         case 401:
           setAuth(false);

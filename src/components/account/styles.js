@@ -75,4 +75,41 @@ export const useStyles = makeStyles((theme) => ({
   emptyOrderTxt: {
     paddingTop: "5rem",
   },
+  favContainer: {
+    display: "flex",
+  },
+  favImg: {
+    flex: 1,
+    "& img": {
+      height: "150px",
+      width: "auto",
+      transition: "0.3s",
+      "&:hover": {
+        height: "180px",
+        width: "auto",
+      },
+    },
+  },
+  favDetails: {
+    flex: 3,
+  },
+  favViewBtn: {
+    textTransform: "none",
+    backgroundColor: "#8FBC8B",
+    color: "black",
+    marginRight: "1rem",
+  },
+  deleteFavBtn: {
+    backgroundColor: "#7CB9E8",
+    color: "white",
+  },
+  favoritesViewport: {
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      // minHeight: "35rem",
+    },
+    [theme.breakpoints.down("md")]: {
+      // minHeight: "35rem",
+    },
+  },
 }));

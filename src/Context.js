@@ -9,7 +9,7 @@ export default function StateManager({ children }) {
   const [favorites, setfavorites] = useState([]);
   const [cart, setCart] = useState([]);
   const [auth, setAuth] = useState(false);
-  const [email, setEmail] = useState(" ");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [deviceType, setDevice] = useState("desktop");
   const [serverResponse, setServerResponse] = useState("");
@@ -73,7 +73,6 @@ export default function StateManager({ children }) {
       setAuth,
       setfavorites,
       setCart,
-      setEmail,
       setPassword,
       setServerResponse,
       setToken,
@@ -92,6 +91,15 @@ export default function StateManager({ children }) {
 
   const logoutAccount = () => {
     document.cookie = "token=;max-age=0";
+    setEmail("");
+    setPassword("");
+    setAddress("");
+    setAddressTwo("");
+    setCity(null);
+    setState(null);
+    setCounty(null);
+    setPhone(null);
+    setPostalCode(null);
     setAuth(null);
     setToken(null);
     setAuth(false);
@@ -141,7 +149,7 @@ export default function StateManager({ children }) {
     //stage for sending to server
     const favArray = [...favorites, item];
     //persist to state on frontend first
-    setfavorites((prevState) => [...prevState, { item }]);
+    // setfavorites((prevState) => [...prevState, { item }]);
     //send request to server if authentication token exists
     if (token !== null) {
       axios({
@@ -151,12 +159,12 @@ export default function StateManager({ children }) {
         data: {
           items: favArray,
         },
-      }).then((res) => console.log(res));
+      }).then((res) => setfavorites(res.data));
     }
   };
   const deleteFav = (item) => {
     let filteredArray = favorites.filter((index) => index._id !== item._id);
-    setfavorites(filteredArray);
+    // setfavorites(filteredArray);
     if (token !== null) {
       axios({
         method: "post",
@@ -165,14 +173,14 @@ export default function StateManager({ children }) {
         data: {
           items: filteredArray,
         },
-      }).then((res) => console.log(res));
+      }).then((res) => setfavorites(res.data));
     }
   };
 
   const createNewUser = () => {
     axios({
       method: "post",
-      url: "http://localhost:4545/api/auth/register",
+      url: process.env.REACT_APP_NEWUSER,
       data: {
         firstName: firstName,
         lastName: lastName,

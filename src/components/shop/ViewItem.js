@@ -196,6 +196,7 @@ export default function ViewItem() {
                 <img src={image.Location} alt={image.key} key={image.key} />
               ))}
             </Carousel>
+            <Typography>In Stock{inStock === true ? "yes" : "no"}</Typography>
           </div>
         </div>
         <div className={classes.divInfo}>

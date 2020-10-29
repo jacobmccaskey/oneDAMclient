@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import AccountInfoForm from "./AccountInfoForm";
 import RecentOrders from "./RecentOrders";
 import Favorites from "./Favorites";
+import { Link } from "react-router-dom";
 import { useStyles } from "./styles";
 
 export default function Account() {
@@ -75,13 +76,15 @@ export default function Account() {
             <Button className={style.menuBtn} onClick={openFavoritesPage}>
               Favorites
             </Button>
-            <Button className={style.menuBtn} onClick={openContactPage}>
-              Contact Us
-            </Button>
+            <Link to="/contact" style={{ textDecoration: "none" }}>
+              <Button className={style.menuBtn} onClick={openContactPage}>
+                Contact Us
+              </Button>
+            </Link>
           </Container>
         </Paper>
 
-        <Paper className={style.paperRight}>
+        <Container className={style.paperRight}>
           {/* Personal info form */}
           <Container
             style={
@@ -105,16 +108,17 @@ export default function Account() {
           </Container>
           {/* favorites container */}
           <Container
+            className={style.favoritesViewport}
             style={
               showForm.favorites === false
                 ? { display: "none" }
                 : { display: "block" }
             }
           >
-            <Favorites favorites={favorites} />
+            <Favorites />
           </Container>
           {/* contact form */}
-          <Container
+          {/* <Container
             style={
               showForm.contactUs === false
                 ? { display: "none" }
@@ -122,8 +126,8 @@ export default function Account() {
             }
           >
             <Typography>contact us</Typography>
-          </Container>
-        </Paper>
+          </Container> */}
+        </Container>
       </div>
     </div>
   );

@@ -8,9 +8,12 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "12rem",
     backgroundColor: "rgb(40,40,40)",
-    display: "block",
+    // display: "block",
+    bottom: 0,
+    position: "absolute",
   },
   container: {
+    position: "relative",
     marginTop: "1rem",
     display: "inline-block",
     textAlign: "center",

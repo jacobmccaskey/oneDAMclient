@@ -21,50 +21,60 @@ const Checkout = React.lazy(() => import("./components/checkout/Main"));
 function App() {
   return (
     <Router>
-      <ErrorModal>
-        <StateManager>
-          <div className="App">
-            <Navbar />
-            <Switch>
-              <Route exact path="/" component={Home} />
+      <StateManager>
+        <ErrorModal>
+          <div
+            className="App"
+            style={{
+              position: "relative",
+              minHeight: "100vh",
+            }}
+          >
+            {/* wrapper for footer, see footer styles section for css */}
+            <div style={{ paddingBottom: "12rem", textAlign: "center" }}>
+              {/* ErrorModal provides Modal for any page, use serverResponse to trigger what you want to say. set hooks for each message in respective component and trigger with alert.show() */}
 
-              <Route path="/shop" component={Shop} />
+              <Navbar />
+              <Switch>
+                <Route exact path="/" component={Home} />
 
-              <Route path="/misson" component={Mission} />
+                <Route path="/shop" component={Shop} />
 
-              <Route path="/members" component={Members} />
+                <Route path="/misson" component={Mission} />
 
-              <Route path="/account" component={Account} />
+                <Route path="/members" component={Members} />
 
-              <Route path="/contact" component={Contact} />
+                <Route path="/account" component={Account} />
 
-              <Route path="/signup" component={SignUp} />
+                <Route path="/contact" component={Contact} />
 
-              <Route path="/signin" component={SignIn} />
+                <Route path="/signup" component={SignUp} />
 
-              <Route
-                path="/checkout"
-                render={() => (
-                  <Suspense fallback={<div>Loading...</div>}>
-                    {/* <ErrorModal> */}
-                    <Checkout />
-                    {/* </ErrorModal> */}
-                  </Suspense>
-                )}
-              />
-              <Route
-                path="/paymentsuccess"
-                render={() => (
-                  <Suspense fallback={<div>Loading...</div>}>
-                    <PaymentSuccess />
-                  </Suspense>
-                )}
-              />
-            </Switch>
-            <Footer />
+                <Route path="/signin" component={SignIn} />
+
+                <Route
+                  path="/checkout"
+                  render={() => (
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <Checkout />
+                    </Suspense>
+                  )}
+                />
+                <Route
+                  path="/paymentsuccess"
+                  render={() => (
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <PaymentSuccess />
+                    </Suspense>
+                  )}
+                />
+              </Switch>
+
+              <Footer />
+            </div>
           </div>
-        </StateManager>
-      </ErrorModal>
+        </ErrorModal>
+      </StateManager>
     </Router>
   );
 }
