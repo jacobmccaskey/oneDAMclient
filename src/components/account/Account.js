@@ -57,68 +57,77 @@ export default function Account() {
     });
   };
 
-  const { favorites, deviceType, deleteFav, auth, orders } = context;
+  const { auth, orders } = context;
   return (
     <div>
-      <div className={style.root}>
-        <Paper className={style.paperLeft}>
-          <Container className={style.accountSettingsDiv}>
-            <Typography variant="h6" style={{ textDecoration: "underline" }}>
-              Account Settings
-            </Typography>
-            <Button className={style.menuBtn} onClick={openNameForm}>
-              Personal Information
-            </Button>
-
-            <Button className={style.menuBtn} onClick={openOrdersPage}>
-              Recent Orders
-            </Button>
-            <Button className={style.menuBtn} onClick={openFavoritesPage}>
-              Favorites
-            </Button>
-            <Link to="/contact" style={{ textDecoration: "none" }}>
-              <Button className={style.menuBtn} onClick={openContactPage}>
-                Contact Us
+      {auth === false ? (
+        <>
+          <Typography variant="h4" style={{ marginTop: "2rem" }}>
+            It looks like you are not logged in. Would you like to{" "}
+            <Link to="/signin">login</Link> or{" "}
+            <Link to="signup">create an account</Link>
+          </Typography>
+        </>
+      ) : (
+        <div className={style.root}>
+          <Paper className={style.paperLeft}>
+            <Container className={style.accountSettingsDiv}>
+              <Typography variant="h6" style={{ textDecoration: "underline" }}>
+                Account Settings
+              </Typography>
+              <Button className={style.menuBtn} onClick={openNameForm}>
+                Personal Information
               </Button>
-            </Link>
-          </Container>
-        </Paper>
 
-        <Container className={style.paperRight}>
-          {/* Personal info form */}
-          <Container
-            style={
-              showForm.nameMenu === false
-                ? { display: "none" }
-                : { display: "block" }
-            }
-          >
-            <AccountInfoForm toEdit={toEdit} setToEdit={setToEdit} />
-          </Container>
+              <Button className={style.menuBtn} onClick={openOrdersPage}>
+                Recent Orders
+              </Button>
+              <Button className={style.menuBtn} onClick={openFavoritesPage}>
+                Favorites
+              </Button>
+              <Link to="/contact" style={{ textDecoration: "none" }}>
+                <Button className={style.menuBtn} onClick={openContactPage}>
+                  Contact Us
+                </Button>
+              </Link>
+            </Container>
+          </Paper>
 
-          {/* recent orders form */}
-          <Container
-            style={
-              showForm.recentOrders === false
-                ? { display: "none" }
-                : { display: "block" }
-            }
-          >
-            <RecentOrders orders={orders} />
-          </Container>
-          {/* favorites container */}
-          <Container
-            className={style.favoritesViewport}
-            style={
-              showForm.favorites === false
-                ? { display: "none" }
-                : { display: "block" }
-            }
-          >
-            <Favorites />
-          </Container>
-          {/* contact form */}
-          {/* <Container
+          <Container className={style.paperRight}>
+            {/* Personal info form */}
+            <Container
+              style={
+                showForm.nameMenu === false
+                  ? { display: "none" }
+                  : { display: "block" }
+              }
+            >
+              <AccountInfoForm toEdit={toEdit} setToEdit={setToEdit} />
+            </Container>
+
+            {/* recent orders form */}
+            <Container
+              style={
+                showForm.recentOrders === false
+                  ? { display: "none" }
+                  : { display: "block" }
+              }
+            >
+              <RecentOrders orders={orders} />
+            </Container>
+            {/* favorites container */}
+            <Container
+              className={style.favoritesViewport}
+              style={
+                showForm.favorites === false
+                  ? { display: "none" }
+                  : { display: "block" }
+              }
+            >
+              <Favorites />
+            </Container>
+            {/* contact form */}
+            {/* <Container
             style={
               showForm.contactUs === false
                 ? { display: "none" }
@@ -127,8 +136,9 @@ export default function Account() {
           >
             <Typography>contact us</Typography>
           </Container> */}
-        </Container>
-      </div>
+          </Container>
+        </div>
+      )}
     </div>
   );
 }

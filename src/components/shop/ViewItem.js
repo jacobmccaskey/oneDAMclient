@@ -58,8 +58,13 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 auto",
   },
   cartButton: {
-    backgroundColor: "rgb(148,0,211)",
+    // backgroundColor: "rgb(148,0,211)",
+    backgroundColor: "rgb(96, 127, 128)",
+    width: "30%",
     marginTop: "1rem",
+    [theme.breakpoints.down("sm")]: {
+      width: "auto",
+    },
   },
   btnTransform: {
     backgroundColor: "rgb(148,0,211)",
@@ -74,7 +79,8 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    winWidth: 120,
+    winWidth: "100%",
+    display: "inline-block",
   },
   modal: {
     top: 0,
@@ -100,7 +106,18 @@ const useStyles = makeStyles((theme) => ({
   breadcrumbs: {
     color: "grey",
     textDecoration: "none",
-    fontSize: "18px",
+    fontSize: "15px",
+  },
+  counter: {
+    borderRadius: "5px",
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
+  inputLabel: {
+    minWidth: "100%",
+  },
+  selectLabel: {
+    width: "100px",
   },
 }));
 
@@ -112,11 +129,13 @@ export default function ViewItem() {
   const [images, setImages] = useState([]);
   const [count, setCount] = useState(0);
   const [sizes, setSizes] = useState([]);
+  const [colors, setColors] = useState([]);
 
   const [addItem, setaddItem] = useState(false);
 
   const [messageUser, setMessageUser] = useState("");
   const [sizePick, setSizePick] = useState("");
+  const [color, setColor] = useState("");
   const [showModalMessage, setShowModalMessage] = useState(false);
   const [inStock, setInStock] = useState(true);
 
@@ -138,6 +157,7 @@ export default function ViewItem() {
         _id: item._id,
         count: count,
         size: sizePick,
+        color: color,
       });
     }
     if (addItem === true) {
@@ -156,14 +176,15 @@ export default function ViewItem() {
     //add vendor, sizes & in-stock bool
     axios.get(`${process.env.REACT_APP_GETITEM}/${ID}`).then((res) => {
       const { data } = res;
+      console.log(data);
       setItem(data);
       setImages(data.images);
       setSizes(data.sizes);
+      setColors(data.colors);
       if (data.quantity <= 0) {
         setInStock(false);
       }
     });
-    // console.log(context.cart);
   }, [ID, context.cart]);
 
   useEffect(() => {
@@ -196,28 +217,39 @@ export default function ViewItem() {
                 <img src={image.Location} alt={image.key} key={image.key} />
               ))}
             </Carousel>
-            <Typography>In Stock{inStock === true ? "yes" : "no"}</Typography>
+            <Typography>
+              {inStock === true ? "In Stock" : "Out of Stock"}
+            </Typography>
           </div>
         </div>
         <div className={classes.divInfo}>
           <h2>{item.name}</h2>
-          <span style={{ fontSize: "25px", textDecoration: "undeline" }}>
+          <Typography>${item.price}</Typography>
+          {/* <span style={{ fontSize: "12px", textDecoration: "underline" }}>
             {item.vendor}
+          </span> */}
+          <span style={{ fontSize: "12px", textDecoration: "underline" }}>
+            {item.gender}
           </span>
           <br />
-          <RemoveIcon onClick={() => setCount((prevState) => prevState - 1)} />
-          <Typography component="body2" style={{ margin: "0.5rem" }}>
-            {count}
-          </Typography>
-          <AddIcon onClick={() => setCount((prevState) => prevState + 1)} />
+          <div className={classes.counter}>
+            <RemoveIcon
+              onClick={() => setCount((prevState) => prevState - 1)}
+            />
+            <Typography component="body2" style={{ margin: "0.5rem" }}>
+              {count}
+            </Typography>
+            <AddIcon onClick={() => setCount((prevState) => prevState + 1)} />
+          </div>
           <br />
           <div style={{ display: "block" }}>
             <FormControl className={classes.formControl}>
-              <InputLabel style={{ textAlign: "left" }} id="size">
+              <InputLabel id="size" className={classes.inputLabel}>
                 Size
               </InputLabel>
               <Select
                 labelId="size"
+                className={classes.selectLabel}
                 id="size"
                 displayEmpty
                 value={sizePick}
@@ -227,6 +259,27 @@ export default function ViewItem() {
                 {sizes.map((item) => (
                   <MenuItem value={item.size} key={item.size}>
                     {item.size}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            {/* selector for color */}
+            <FormControl className={classes.formControl}>
+              <InputLabel id="size" className={classes.inputLabel}>
+                Color
+              </InputLabel>
+              <Select
+                labelId="color"
+                className={classes.selectLabel}
+                id="color"
+                displayEmpty
+                value={color}
+                style={{ textAlign: "right" }}
+                onChange={(e) => setColor(e.target.value)}
+              >
+                {colors.map((item) => (
+                  <MenuItem value={item.color} key={item.color}>
+                    {item.color}
                   </MenuItem>
                 ))}
               </Select>
@@ -245,6 +298,9 @@ export default function ViewItem() {
           </div>
           <p style={{ color: "grey" }}>
             location: <span>United States</span>
+          </p>
+          <p style={{ color: "grey" }}>
+            vendor: <span>{item.vendor}</span>
           </p>
         </div>
       </div>
