@@ -176,7 +176,6 @@ export default function ViewItem() {
     //add vendor, sizes & in-stock bool
     axios.get(`${process.env.REACT_APP_GETITEM}/${ID}`).then((res) => {
       const { data } = res;
-      console.log(data);
       setItem(data);
       setImages(data.images);
       setSizes(data.sizes);

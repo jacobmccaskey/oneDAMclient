@@ -25,6 +25,7 @@ function getCookie(name) {
   return null;
 }
 
+//checks if valid token exist to validate user and fetch information from server
 export function authCheck(
   setAuth,
   setCart,
@@ -41,9 +42,12 @@ export function authCheck(
   setCity,
   setOrders,
   setState,
-  setToken
+  setToken,
+  setGuest,
+  setGuestId
 ) {
   const token = getCookie("token");
+
   if (token !== null) {
     axios
       .get(process.env.REACT_APP_USER, {
@@ -70,6 +74,8 @@ export function authCheck(
           setCity(res.data.city);
           setOrders(res.data.orders);
           setState(res.data.state);
+          setGuest(res.data.guest_bool);
+          setGuestId(res.data.guestId);
           setToken(token);
         }
       });
@@ -87,6 +93,7 @@ export default function authenticate(
   setServerResponse,
   setToken,
   setGuest,
+  setGuestId,
   setAddress,
   setAddressTwo,
   setEmail,
@@ -122,10 +129,13 @@ export default function authenticate(
           setAuth(false);
           setServerResponse(404);
           setPassword("");
+          setGuest(true);
           break;
         case 401:
           setAuth(false);
           setServerResponse(401);
+          setGuest(true);
+          setGuestId(data.guestId || null);
           break;
         case 200:
           setAuth(data.auth);
@@ -145,6 +155,8 @@ export default function authenticate(
           setPostalCode(data.postalCode);
           setOrders(data.orders);
           setState(data.state);
+          setGuest(false);
+          setGuestId(null);
           document.cookie = `token=${data.token};expires=${expiry}`;
           break;
         default:

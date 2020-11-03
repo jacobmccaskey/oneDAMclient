@@ -5,6 +5,7 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { useAlert } from "react-alert";
@@ -100,30 +101,71 @@ export default function Checkout() {
   const styles = useStyles();
   const context = useContext(User);
   const [subtotal, setSubtotal] = useState(0);
-  const { cart } = context;
+  const {
+    cart,
+    auth,
+    token,
+    guest,
+    guestId,
+    postalCode,
+    address,
+    addressTwo,
+    city,
+    state,
+    county,
+    email,
+    firstName,
+    lastName,
+  } = context;
   //hook for showing alertModal. imported from react-alert
   const alert = useAlert();
 
   const handleClick = async (event) => {
-    const stripe = await stripePromise;
-    //replace with .env variable
-    const response = await fetch(
-      "http://localhost:4545/orders/checkout-session",
-      {
-        method: "POST",
-      }
+    let itemIDs = [];
+    await cart.forEach((item) =>
+      itemIDs.push({
+        id: item._id,
+        count: item.count,
+        size: item.size,
+        color: item.color,
+      })
     );
+    const data = {
+      order: itemIDs,
+      user_token: token,
+      guest_bool: guest,
+      guestId: guestId || "null",
+      country: "US",
+      totalItems: itemIDs.length,
+      name: `${firstName} ${lastName}`,
+      email: email,
+      shipping: {
+        address: address,
+        addressTwo: addressTwo || "",
+        postalCode: postalCode,
+        city: city,
+        state: state,
+        county: county,
+        country: "US",
+      },
+    };
+    const stripe = await stripePromise;
+    const response = await fetch(process.env.REACT_APP_CHECKOUT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
     const session = await response.json();
 
-    console.log(session);
-    // const result = await stripe.redirectToCheckout({
-    //   sessionId: session.id,
-    // });
-    // if (result.error) {
-    //   alert.show(
-    //     "whoops!! :( Looks like there was a problem with your request. Please try again in a moment.."
-    //   );
-    // }
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+    if (result.error) {
+      alert.show(
+        "whoops!! :( Looks like there was a problem with your request. Please try again in a moment.."
+      );
+    }
   };
 
   useEffect(() => {
@@ -147,9 +189,6 @@ export default function Checkout() {
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <div className={styles.shoppingCartHeader}>
-            <h1>Shopping Cart</h1>
-          </div>
           <Container>
             <Container className={styles.cartContainer}>
               <h3>
@@ -215,7 +254,9 @@ export default function Checkout() {
               <Typography>${subtotal}</Typography>
               <Typography>(plus tax)</Typography>
               <Button className={styles.checkoutBtn} onClick={handleClick}>
-                <Typography>go to checkout</Typography>
+                <Typography>
+                  {auth === true ? "go to checkout" : "checkout as guest"}
+                </Typography>
               </Button>
             </div>
           </Container>

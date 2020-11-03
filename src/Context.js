@@ -77,6 +77,7 @@ export default function StateManager({ children }) {
       setServerResponse,
       setToken,
       setGuest,
+      setGuestId,
       setAddress,
       setAddressTwo,
       setEmail,
@@ -238,7 +239,9 @@ export default function StateManager({ children }) {
       setCity,
       setOrders,
       setState,
-      setToken
+      setToken,
+      setGuest,
+      setGuestId
     );
   }, []);
   useEffect(() => {
