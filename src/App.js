@@ -12,7 +12,7 @@ import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import StateManager from "./Context";
 import Footer from "./components/Footer";
-import ErrorModal from "./components/errorModal";
+import ModalProvider from "./components/ModalProvider";
 const PaymentSuccess = React.lazy(() =>
   import("./components/checkout/PaymentSuccess")
 );
@@ -21,8 +21,8 @@ const Checkout = React.lazy(() => import("./components/checkout/Main"));
 function App() {
   return (
     <Router>
-      <StateManager>
-        <ErrorModal>
+      <ModalProvider>
+        <StateManager>
           <div
             className="App"
             style={{
@@ -44,7 +44,7 @@ function App() {
 
                 <Route path="/members" component={Members} />
 
-                <Route path="/account" component={Account} />
+                <Route path="/account/:option" component={Account} />
 
                 <Route path="/contact" component={Contact} />
 
@@ -73,8 +73,8 @@ function App() {
               <Footer />
             </div>
           </div>
-        </ErrorModal>
-      </StateManager>
+        </StateManager>
+      </ModalProvider>
     </Router>
   );
 }

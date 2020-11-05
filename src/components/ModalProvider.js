@@ -6,7 +6,7 @@ const options = {
   position: positions.MIDDLE,
 };
 
-export default function ErrorModal({ children }) {
+export default function ModalProvider({ children }) {
   return (
     <Provider template={AlertMUITemplate} {...options}>
       {children}

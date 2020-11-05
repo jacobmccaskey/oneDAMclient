@@ -74,8 +74,6 @@ export default function SignUp() {
     if (email !== undefined && password !== undefined) {
       context.createNewUser();
       setRedirect(true);
-    } else {
-      console.log(email, password);
     }
   };
 
@@ -84,8 +82,13 @@ export default function SignUp() {
   };
 
   useEffect(() => {
-    const { password } = context;
-    passwordTwo === password ? setDisableBtn(false) : setDisableBtn(true);
+    const { password, firstName, lastName } = context;
+    passwordTwo === password &&
+    firstName.length !== 0 &&
+    lastName.length !== 0 &&
+    password.length > 5
+      ? setDisableBtn(false)
+      : setDisableBtn(true);
   }, [context, passwordTwo]);
 
   return (

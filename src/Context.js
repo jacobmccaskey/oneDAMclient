@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import authenticate, { authCheck } from "./Auth/Auth";
+import { useAlert } from "react-alert";
 
 export const User = React.createContext();
 
@@ -29,6 +30,9 @@ export default function StateManager({ children }) {
   const [guest, setGuest] = useState(true);
   const [guestId, setGuestId] = useState(null);
   const [orders, setOrders] = useState();
+  const [badEmail, setBadEmail] = useState(false);
+  const [badPassword, setBadPassword] = useState(false);
+  const [missingInfo, setMissingInfo] = useState(false);
 
   //fetches location from third party api, limited to 45 requests a minute
   const getLocation = () => {
@@ -65,8 +69,12 @@ export default function StateManager({ children }) {
   const passwordInput = (value) => {
     setPassword(value);
   };
+  //for activating modals on whole website // alert.show()
+  const alert = useAlert();
 
   const userAuth = () => {
+    setBadPassword(false);
+    setBadEmail(false);
     authenticate(
       email,
       password,
@@ -86,7 +94,10 @@ export default function StateManager({ children }) {
       setCity,
       setPostalCode,
       setOrders,
-      setState
+      setState,
+      alert,
+      setBadEmail,
+      setBadPassword
     );
   };
 
@@ -179,13 +190,16 @@ export default function StateManager({ children }) {
   };
 
   const createNewUser = () => {
+    const userFirstName = firstName.trim();
+    const userLastName = lastName.trim();
+    const userEmail = email.trim();
     axios({
       method: "post",
       url: process.env.REACT_APP_NEWUSER,
       data: {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
+        firstName: userFirstName,
+        lastName: userLastName,
+        email: userEmail,
         password: password,
       },
     }).then((res) => {
@@ -213,7 +227,7 @@ export default function StateManager({ children }) {
       },
     }).then((response) => setServerResponse(response.status));
   };
-
+  //fetches current inventory from database, limit to 50 items at a time
   const fetchShop = () => {
     axios
       .get("http://localhost:4545/api/store")
@@ -247,6 +261,12 @@ export default function StateManager({ children }) {
   useEffect(() => {
     if (location === false) getLocation();
   }, [location]);
+
+  useEffect(() => {
+    if (address === "" || !city || !county || !state || !postalCode || !phone) {
+      setMissingInfo(true);
+    } else setMissingInfo(false);
+  }, [address, city, county, phone, postalCode, state]);
 
   return (
     <User.Provider
@@ -301,6 +321,11 @@ export default function StateManager({ children }) {
         orders,
         setOrders,
         updateAccount,
+        setBadEmail,
+        setBadPassword,
+        badPassword,
+        badEmail,
+        missingInfo,
       }}
     >
       {children}

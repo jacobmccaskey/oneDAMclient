@@ -5,7 +5,6 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { useAlert } from "react-alert";
@@ -183,7 +182,13 @@ export default function Checkout() {
               <Link to="/shop">shop some of our products</Link>
               <br />
               <br />
-              Have an account? <Link to="/signin">Sign in</Link>
+              {auth === true ? (
+                ""
+              ) : (
+                <Typography>
+                  Have an account? <Link to="/signin">Sign in</Link>
+                </Typography>
+              )}
             </Typography>
           </Container>
         </React.Fragment>

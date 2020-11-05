@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { User } from "../../Context";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
@@ -7,11 +7,12 @@ import Button from "@material-ui/core/Button";
 import AccountInfoForm from "./AccountInfoForm";
 import RecentOrders from "./RecentOrders";
 import Favorites from "./Favorites";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useStyles } from "./styles";
 
 export default function Account() {
   const style = useStyles();
+  const { option } = useParams();
   const context = useContext(User);
   const [toEdit, setToEdit] = useState(false);
   const [showForm, setShowForm] = useState({
@@ -56,6 +57,18 @@ export default function Account() {
       contactUs: true,
     });
   };
+
+  useEffect(() => {
+    if (option === "personalinformation") {
+      return setToEdit(true);
+    }
+    if (option === "recentOrders") {
+      return openOrdersPage();
+    }
+    if (option === "favorites") {
+      return openFavoritesPage();
+    }
+  }, [option]);
 
   const { auth, orders } = context;
   return (

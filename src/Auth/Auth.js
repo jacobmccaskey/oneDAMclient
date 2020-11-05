@@ -102,7 +102,10 @@ export default function authenticate(
   setCity,
   setPostalCode,
   setOrders,
-  setState
+  setState,
+  alert,
+  setBadEmail,
+  setBadPassword
 ) {
   let body = {
     email: email,
@@ -130,12 +133,15 @@ export default function authenticate(
           setServerResponse(404);
           setPassword("");
           setGuest(true);
+          alert.show("We could not find a user with this email");
+          setBadEmail(true);
           break;
         case 401:
           setAuth(false);
           setServerResponse(401);
           setGuest(true);
-          setGuestId(data.guestId || null);
+          setGuestId(data.guestId);
+          setBadPassword(true);
           break;
         case 200:
           setAuth(data.auth);

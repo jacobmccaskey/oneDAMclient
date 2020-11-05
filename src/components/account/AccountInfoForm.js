@@ -112,7 +112,7 @@ export default function AccountInfoForm(props) {
               Email
             </Typography>
             <InputForm
-              toEdit={toEdit}
+              toEdit={false}
               hook={email}
               setHook={setEmail}
               label="user@email.com"

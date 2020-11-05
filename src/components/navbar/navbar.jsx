@@ -24,6 +24,7 @@ import ShopIcon from "@material-ui/icons/Shop";
 import EcoIcon from "@material-ui/icons/Eco";
 import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 import NaturePeopleIcon from "@material-ui/icons/NaturePeople";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import HomeIcon from "@material-ui/icons/Home";
@@ -89,10 +90,22 @@ export default function Navbar() {
           <Typography variant="h6" className={classes.title}>
             oneDAM
           </Typography>
-          <Geolocator />
+          {/* displays button if there is missing account information */}
+          {context.missingInfo === true ? (
+            <Button
+              as={Link}
+              href="/account/personalinformation"
+              size="small"
+              className={classes.navMissingInfoBtn}
+            >
+              add shipping information?
+            </Button>
+          ) : null}
+          <LocationOnIcon className={classes.navIcon} />
 
+          <Geolocator />
           <Button aria-describedby={id} onClick={popoverHandle}>
-            <AccountCircleIcon style={{ color: "grey" }} />
+            <AccountCircleIcon className={classes.navIcon} />
           </Button>
           <Popover
             id={id}
@@ -113,7 +126,7 @@ export default function Navbar() {
                 <Button>Sign In</Button>
               </Link>
             ) : (
-              <Link to="/account" className={classes.btn}>
+              <Link to="/account/view" className={classes.btn}>
                 <Button>My Account</Button>
               </Link>
             )}
@@ -187,7 +200,7 @@ export default function Navbar() {
             </ListItem>
           </Link>
 
-          <Link to="/account" className={classes.iconText}>
+          <Link to="/account/view" className={classes.iconText}>
             <ListItem button key="account">
               <ListItemIcon style={{ color: "rgb(232,232,232)" }}>
                 <PeopleAltIcon />

@@ -80,7 +80,16 @@ export const useStyles = makeStyles((theme) => ({
     color: "white",
     textDecoration: "none",
   },
+  navIcon: {
+    color: "grey",
+  },
   btn: {
     textDecoration: "none",
+  },
+  navMissingInfoBtn: {
+    textTransform: "none",
+    color: "black",
+    background: "-webkit-linear-gradient(right,pink, blue)",
+    marginRight: theme.spacing(1),
   },
 }));

@@ -76,6 +76,7 @@ export default function SignIn() {
             >
               <TextField
                 onChange={(e) => context.emailInput(e.target.value)}
+                error={context.badEmail}
                 variant="outlined"
                 margin="normal"
                 required
@@ -89,6 +90,7 @@ export default function SignIn() {
               />
               <TextField
                 onChange={(e) => context.passwordInput(e.target.value)}
+                error={context.badPassword}
                 variant="outlined"
                 margin="normal"
                 required
