@@ -31,7 +31,7 @@ function App() {
             }}
           >
             {/* wrapper for footer, see footer styles section for css */}
-            <div style={{ paddingBottom: "12rem", textAlign: "center" }}>
+            <div style={{ paddingBottom: "15rem", textAlign: "center" }}>
               {/* ErrorModal provides Modal for any page, use serverResponse to trigger what you want to say. set hooks for each message in respective component and trigger with alert.show() */}
 
               <Navbar />

@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { makeStyles } from "@material-ui/core/styles";
-
+//coordinates with styles.js in home folder
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
@@ -49,42 +49,6 @@ export default function Blurb(props) {
 
   return (
     <div className={classes.div}>
-      {/* <Container maxWidth="md" style={{ marginTop: "1rem" }}>
-      <AliceCarousel
-          responsive={responsive}
-          autoPlayInterval={4000}
-          autoPlay={props.deviceType === "mobile" ? false : true}
-          mouseTrackingEnabled={true}
-          disableAutoPlayOnAction={true}
-          stagePadding={3}
-        >
-          {props.store.map((item) => (
-            <Card key={item._id}>
-              <CardMedia title={item.name} className={classes.root}>
-                <Image
-                  src={item.imageUrl}
-                  className={classes.image}
-                  alt={item.name}
-                />
-              </CardMedia>
-              <CardContent>
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                  component="span"
-                >
-                  {item.name}
-                  <br />${item.price}
-                </Typography>
-                <br />
-                <Button size="small" color="primary">
-                  add to cart
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </AliceCarousel>
-      </Container> */}
       <Container maxWidth="md" className={classes.container}>
         <Typography variant="h4" className={classes.headerText}>
           What is oneDam

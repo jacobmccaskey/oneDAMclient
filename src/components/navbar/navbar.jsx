@@ -91,7 +91,7 @@ export default function Navbar() {
             oneDAM
           </Typography>
           {/* displays button if there is missing account information */}
-          {context.missingInfo === true ? (
+          {context.missingInfo === true && context.auth === true ? (
             <Button
               as={Link}
               href="/account/personalinformation"
