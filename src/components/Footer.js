@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     position: "relative",
     marginTop: "1rem",
-    display: "inline-block",
+    display: "block",
     textAlign: "center",
     color: "grey",
     flex: "1",
@@ -67,14 +68,28 @@ export default function Footer() {
         <Typography style={{ fontWeight: "bold", marginTop: "1rem" }}>
           oneDAM Project
         </Typography>
-        <Typography>est 2020</Typography>
-        <Typography>
-          <i>created with love. sweat. tears</i>
+        <Typography variant="body2" color="textSecondary" align="center">
+          {"Copyright © "}
+          {/* <Link color="inherit" href="https://onedamproject.co/">
+              oneDamProject
+            </Link>{" "} */}
+          {new Date().getFullYear()}
+          {"."}
         </Typography>
+        <i>created with love. sweat. tears</i>
         <br />
       </div>
       <div className={classes.container}>
         <Typography style={{ fontWeight: "bold" }}>contribute</Typography>
+        <Button className={classes.btn}>
+          <Typography>Donate</Typography>
+        </Button>
+        <Button className={classes.btn}>
+          <Typography>Subscribe</Typography>
+        </Button>
+        <Button className={classes.btn}>
+          <Typography>Become a partner</Typography>
+        </Button>
       </div>
     </Paper>
   );

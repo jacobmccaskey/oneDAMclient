@@ -87,9 +87,15 @@ export default function Navbar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            oneDAM
-          </Typography>
+          <Link
+            style={{ textDecoration: "none" }}
+            className={classes.title}
+            to="/"
+          >
+            <Typography variant="h6" className={classes.title}>
+              oneDAM
+            </Typography>
+          </Link>
           {/* displays button if there is missing account information */}
           {context.missingInfo === true && context.auth === true ? (
             <Button
@@ -191,8 +197,8 @@ export default function Navbar() {
             </ListItem>
           </Link>
 
-          <Link to="/misson" className={classes.iconText}>
-            <ListItem button key="misson">
+          <Link to="/mission" className={classes.iconText}>
+            <ListItem button key="mission">
               <ListItemIcon style={{ color: "rgb(232,232,232)" }}>
                 <EcoIcon />
                 <ListItemText primary="Misson" />

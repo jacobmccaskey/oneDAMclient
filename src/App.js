@@ -2,17 +2,18 @@ import React, { Suspense } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/navbar/navbar";
-import Home from "./components/home/Home";
+import FallBack from "./components/fallbackElement";
 import Shop from "./components/shop/Shop.js";
 import Account from "./components/account/Account";
 import Members from "./components/members/Member";
-import Mission from "./components/mission/Mission";
 import Contact from "./components/contact/Contact";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import StateManager from "./Context";
 import Footer from "./components/Footer";
 import ModalProvider from "./components/ModalProvider";
+const Home = React.lazy(() => import("./components/home/Home"));
+const Mission = React.lazy(() => import("./components/mission/Mission"));
 const PaymentSuccess = React.lazy(() =>
   import("./components/checkout/PaymentSuccess")
 );
@@ -36,11 +37,26 @@ function App() {
 
               <Navbar />
               <Switch>
-                <Route exact path="/" component={Home} />
+                <Route
+                  exact
+                  path="/"
+                  render={() => (
+                    <Suspense fallback={<FallBack />}>
+                      <Home />
+                    </Suspense>
+                  )}
+                />
 
                 <Route path="/shop" component={Shop} />
 
-                <Route path="/misson" component={Mission} />
+                <Route
+                  path="/mission"
+                  render={() => (
+                    <Suspense fallback={<FallBack />}>
+                      <Mission />
+                    </Suspense>
+                  )}
+                />
 
                 <Route path="/members" component={Members} />
 
@@ -55,7 +71,7 @@ function App() {
                 <Route
                   path="/checkout"
                   render={() => (
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense fallback={<FallBack />}>
                       <Checkout />
                     </Suspense>
                   )}

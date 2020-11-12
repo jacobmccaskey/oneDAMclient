@@ -38,7 +38,6 @@ export const useStyles = makeStyles((theme) => ({
     fontFamily: " 'Cinzel', serif",
     fontSize: "30px",
     loading: "lazy",
-
     width: "100%",
     display: "relative",
     height: "400px",
@@ -62,7 +61,7 @@ export const useStyles = makeStyles((theme) => ({
     height: "auto",
     transition: "2s",
     "&:hover": {
-      backgroundColor: "beige",
+      backgroundColor: "#7FDBFF",
     },
   },
   img: {

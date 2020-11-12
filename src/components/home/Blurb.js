@@ -1,6 +1,6 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
-
+import Typewriter from "typewriter-effect";
 import Typography from "@material-ui/core/Typography";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { makeStyles } from "@material-ui/core/styles";
@@ -38,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
   },
+  typeWriter: {
+    color: "gray",
+    fontWeight: "bold",
+  },
 }));
 
 export default function Blurb(props) {
@@ -53,11 +57,17 @@ export default function Blurb(props) {
         <Typography variant="h4" className={classes.headerText}>
           What is oneDam
         </Typography>
+
+        <Typewriter
+          options={{
+            strings: ["ONE DECISION AMONGST MANY"],
+            autoStart: true,
+            loop: true,
+            wrapperClassName: `${classes.typeWriter}`,
+          }}
+        />
+        <br />
         <Typography>
-          <span style={{ color: "gray", fontWeight: "bold" }}>
-            ONE DECISION AMONGST MANY
-          </span>
-          <br />
           Environmentally and Ethically US based apparel{" "}
           <span style={{ color: "purple" }}>co.llaborative</span> designed to
           connect words and ideas to people and a greater good that will outlast
