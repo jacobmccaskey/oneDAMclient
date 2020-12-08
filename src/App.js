@@ -1,7 +1,9 @@
 import React, { Suspense } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Navbar from "./components/navbar/navbar";
+import MobileNavbar from "./components/navbar/MobileNavBar";
+import DefaultNavbar from "./components/navbar/DefaultNavbar";
 import FallBack from "./components/fallbackElement";
 import Shop from "./components/shop/Shop.js";
 import Account from "./components/account/Account";
@@ -18,12 +20,39 @@ const PaymentSuccess = React.lazy(() =>
   import("./components/checkout/PaymentSuccess")
 );
 const Checkout = React.lazy(() => import("./components/checkout/Main"));
+const useStyles = makeStyles((theme) => ({
+  navWrapper: {
+    position: "fixed",
+    top: 0,
+    width: "100%",
+    zIndex: 1000,
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+  },
+  navWrapDesktop: {
+    position: "fixed",
+    top: 0,
+    width: "100%",
+    zIndex: 1000,
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+}));
 
 function App() {
+  const styles = useStyles();
   return (
     <Router>
       <ModalProvider>
         <StateManager>
+          <div className={styles.navWrapper}>
+            <MobileNavbar />
+          </div>
+          <div className={styles.navWrapDesktop}>
+            <DefaultNavbar />
+          </div>
           <div
             className="App"
             style={{
@@ -35,7 +64,6 @@ function App() {
             <div style={{ paddingBottom: "15rem" }}>
               {/* ErrorModal provides Modal for any page, use serverResponse to trigger what you want to say. set hooks for each message in respective component and trigger with alert.show() */}
 
-              <Navbar />
               <Switch>
                 <Route
                   exact

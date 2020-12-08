@@ -12,9 +12,9 @@ export const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    background: "-webkit-linear-gradient(right,pink, blue)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
+    color: "white",
+    fontSize: "40px",
+    fontFamily: "triline",
   },
   navbar: {
     backgroundColor: "rgb(40,40,40)",

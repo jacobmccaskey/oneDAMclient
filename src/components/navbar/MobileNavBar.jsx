@@ -31,7 +31,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import ShoppingCart from "./shoppingCartBtn";
 import { User } from "../../Context";
 
-export default function Navbar() {
+export default function MobileNavbar() {
   const context = useContext(User);
   const classes = useStyles();
   const theme = useTheme();
