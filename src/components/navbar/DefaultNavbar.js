@@ -76,9 +76,12 @@ export default function DefaultNavbar() {
           <Link to="/shop" className={styles.textDecoNone}>
             <Button className={styles.btnText}>store </Button>
           </Link>
-
-          <Button className={styles.btnText}>blueprint</Button>
-          <Button className={styles.btnText}>impact</Button>
+          <Link to="/blueprint" className={styles.textDecoNone}>
+            <Button className={styles.btnText}>blueprint</Button>
+          </Link>
+          <Link to="/impact" style={{ textDecoration: "none" }}>
+            <Button className={styles.btnText}>impact</Button>
+          </Link>
           <Button className={styles.btnText}>motion pictures</Button>
         </div>
         <div className={styles.accountBtnGroup}>

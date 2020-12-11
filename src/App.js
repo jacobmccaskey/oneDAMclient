@@ -13,7 +13,10 @@ import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import StateManager from "./Context";
 import Footer from "./components/Footer";
+import Impact from "./components/Impact";
 import ModalProvider from "./components/ModalProvider";
+import ScrollRestore from "./components/ScrollRestore";
+const Blueprint = React.lazy(() => import("./components/Blueprint/Blueprint"));
 const Home = React.lazy(() => import("./components/home/Home"));
 const Mission = React.lazy(() => import("./components/mission/Mission"));
 const PaymentSuccess = React.lazy(() =>
@@ -47,6 +50,7 @@ function App() {
     <Router>
       <ModalProvider>
         <StateManager>
+          <ScrollRestore />
           <div className={styles.navWrapper}>
             <MobileNavbar />
           </div>
@@ -86,6 +90,15 @@ function App() {
                   )}
                 />
 
+                <Route
+                  path="/blueprint"
+                  render={() => (
+                    <Suspense fallback={<FallBack />}>
+                      <Blueprint />
+                    </Suspense>
+                  )}
+                />
+                <Route path="/impact" render={() => <Impact />} />
                 <Route path="/members" component={Members} />
 
                 <Route path="/account/:option" component={Account} />

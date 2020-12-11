@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
+import ItemCarousel from "./ItemCarousel";
 import { makeStyles } from "@material-ui/core/styles";
 import Fade from "@material-ui/core/Fade";
 import { Link } from "react-router-dom";
@@ -6,13 +7,10 @@ import Container from "@material-ui/core/Container";
 import brickBg from "../../img/brick-bg.jpg";
 import Button from "@material-ui/core/Button";
 import oneDamLogo from "../../img/onedamlogo.jpg";
-import Blurb from "./Blurb";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import { User } from "../../Context";
 import { Typography } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,14 +60,16 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "rgb(243, 242, 220)",
     fontFamily: "one-dam-bold",
     fontSize: "20px",
-    padding: "1rem",
+    padding: "2rem",
+    marginTop: theme.spacing(2),
   },
   blurbContainer: {
     width: "60%",
-    fontSize: "25px",
+    fontSize: "20px",
     textAlign: "center",
     margin: "auto",
-    fontFamily: "one-dam-light",
+    // fontFamily: "one-dam-light",
+    fontFamily: "Roboto, sans sarif",
   },
   shopBtn: {
     marginTop: "1rem",
@@ -81,14 +81,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Home() {
-  const [input, setInput] = useState("");
+  // const [input, setInput] = useState("");
   const context = useContext(User);
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <img src={brickBg} className={classes.backgroundImage} alt="brick wall" />
       <div className={classes.searchBarWrap}>
-        <div className={classes.searchBar}>
+        {/* <div className={classes.searchBar}>
           <TextField
             label="search products"
             onChange={(e) => setInput(e.target.value)}
@@ -97,7 +97,7 @@ export default function Home() {
             color="primary"
             style={{ backgroundColor: "white", width: "30%" }}
           />
-        </div>
+        </div> */}
       </div>
       <Fade in timeout={1000}>
         <Container>
@@ -126,9 +126,12 @@ export default function Home() {
         </Container>
       </Fade>
       <div style={{ marginTop: "2rem" }}>
+        <div style={{ width: "100%", marginBottom: "5rem" }}>
+          <ItemCarousel items={context.store} />
+        </div>
         <Paper
           className={classes.blurb}
-          elevation={2}
+          elevation={3}
           style={{ borderRadius: "0px" }}
         >
           <Typography className={classes.blurbContainer}>
@@ -140,17 +143,14 @@ export default function Home() {
             and we use proceeds to find unique ways to connect and uplift
             people. Take a time check out our Blueprint and the Motion Pictures
             to see some of the work we have done. Don't hesitate to reach out to
-            us on Facebook/Instagram or directly at Matthew@oneDAMproject.co
+            us on Facebook/Instagram or directly at{" "}
+            <a
+              style={{ textDecoration: "none" }}
+              href="mailto:Matthew@oneDAMproject.co"
+            >
+              Matthew@oneDAMproject.co
+            </a>
           </Typography>
-          <Link to="/shop" style={{ textDecoration: "none" }}>
-            <Button>
-              <Typography
-                style={{ fontFamily: "one-dam-bold", fontSize: "25px" }}
-              >
-                Donate
-              </Typography>
-            </Button>
-          </Link>
         </Paper>
       </div>
     </div>
