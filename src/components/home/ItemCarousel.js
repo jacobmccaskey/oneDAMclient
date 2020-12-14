@@ -60,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
 export default function ItemCarousel(props) {
   const items = props.items;
   const styles = useStyles();
-  console.log(items);
   return (
     <div className={styles.root}>
       <Paper className={styles.carWrap} elevation={3}>

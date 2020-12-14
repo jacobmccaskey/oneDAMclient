@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import brickBg from "../../img/brick-bg.jpg";
 import Button from "@material-ui/core/Button";
-import oneDamLogo from "../../img/onedamlogo.jpg";
+import oneDamLogo from "../../img/onedamlogo.png";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import { User } from "../../Context";
@@ -17,6 +17,15 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     minHeight: "100vh",
   },
+  header: {
+    fontFamily: "one-dam-bold",
+    marginBottom: "1rem",
+    marginLeft: "1rem",
+    textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      textAlign: "center",
+    },
+  },
   backgroundImage: {
     position: "fixed",
     height: "100vh",
@@ -26,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: "-1000",
   },
   searchBarWrap: {
-    marginTop: "6rem",
+    marginTop: "5rem",
     marginBottom: "2rem",
   },
 
@@ -34,26 +43,35 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   logo: {
-    borderRadius: "4px",
+    borderRadius: "4px 0px 0px 4px",
     width: "100%",
     height: "100%",
+    marginBottom: "2rem",
   },
   logoWrap: {
     margin: "auto",
-    maxWidth: "50%",
+    maxWidth: "55%",
     textAlign: "center",
     [theme.breakpoints.down("sm")]: {
       maxWidth: "80%",
     },
   },
   paper: {
-    backgroundColor: "rgb(243, 242, 220)",
-    fontFamily: "one-dam-light",
+    fontFamily: "one-dam-bold",
     fontSize: "25px",
     margin: "auto",
     padding: "1rem",
     textAlign: "left",
-    width: "400px",
+    maxWidth: "80%",
+    [theme.breakpoints.down]: {
+      width: "100%",
+    },
+  },
+
+  paperDiv: {
+    paddingBottom: "5rem",
+    paddingTop: "5rem",
+    backgroundColor: "rgb(243, 242, 220)",
   },
 
   blurb: {
@@ -77,6 +95,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "rgb(49, 48, 44)",
     color: "rgb(243, 242, 220)",
     textTransfrom: "none",
+    width: "50%",
+    transition: "1s",
+    "&:hover": {
+      color: "rgb(49, 48, 44)",
+      backgroundColor: "rgb(243, 242, 220)",
+      border: "solid grey",
+    },
   },
 }));
 
@@ -99,32 +124,32 @@ export default function Home() {
           />
         </div> */}
       </div>
+      <Typography variant="h3" className={classes.header}>
+        one decision amongst many
+      </Typography>
       <Fade in timeout={1000}>
         <Container>
-          <Box m={2} className={classes.logoWrap}>
+          <Box className={classes.logoWrap}>
             <img src={oneDamLogo} alt="oneDAM logo" className={classes.logo} />
-            <Typography
-              variant="h3"
-              style={{ fontFamily: "one-dam-bold", marginBottom: "1rem" }}
-            >
-              one decision amongst many
-            </Typography>
           </Box>
-          <Paper elevation={3} className={classes.paper}>
-            Environmentally and Ethically US based apparel co.llaborative
-            designed to connect; words and ideas to people and a greater good.
-          </Paper>
-          <Link to="/shop" style={{ textDecoration: "none" }}>
-            <Button className={classes.shopBtn}>
-              <Typography
-                style={{ fontFamily: "one-dam-bold", fontSize: "25px" }}
-              >
-                view collection
-              </Typography>
-            </Button>
-          </Link>
         </Container>
       </Fade>
+      <Paper elevation={3} className={classes.paperDiv}>
+        <Typography className={classes.paper}>
+          Environmentally and Ethically US based apparel co.llaborative designed
+          to connect; words and ideas to people and a greater good.
+        </Typography>
+        <Link to="/shop" style={{ textDecoration: "none" }}>
+          <Button className={classes.shopBtn}>
+            <Typography
+              style={{ fontFamily: "one-dam-bold", fontSize: "25px" }}
+            >
+              view collection
+            </Typography>
+          </Button>
+        </Link>
+      </Paper>
+
       <div style={{ marginTop: "2rem" }}>
         <div style={{ width: "100%", marginBottom: "5rem" }}>
           <ItemCarousel items={context.store} />
