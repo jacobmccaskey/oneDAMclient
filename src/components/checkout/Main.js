@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     paddingTop: "20%",
     paddingBottom: "80%",
-    backgroundColor: "rgb(240,248,255)",
   },
   thumbnail: {
     width: "120px",
@@ -46,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     display: "block",
     textAlign: "left",
+    marginBottom: theme.spacing(1),
     // display: "inline-block",
     [theme.breakpoints.down("sm")]: {
       width: "100%",
@@ -71,8 +71,9 @@ const useStyles = makeStyles((theme) => ({
   checkOutDiv: {
     float: "right",
     color: "white",
-    top: 0,
-    backgroundColor: "#002244",
+    textAlign: "left",
+    marginLeft: "1rem",
+    backgroundColor: "rgb(27,27,27)",
     marginTop: "5rem",
     width: "35%",
     borderRadius: "5px",
@@ -94,12 +95,33 @@ const useStyles = makeStyles((theme) => ({
       color: "white",
     },
   },
+
+  emptyCartShopBtn: {
+    marginTop: "1rem",
+    padding: "1rem",
+    backgroundColor: "rgb(49, 48, 44)",
+    color: "rgb(243, 242, 220)",
+    textTransfrom: "none",
+    width: "50%",
+    transition: "1s",
+    "&:hover": {
+      color: "rgb(49, 48, 44)",
+      backgroundColor: "white",
+      width: "60%",
+      border: "1px grey",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "80%",
+    },
+  },
 }));
 
 export default function Checkout() {
   const styles = useStyles();
   const context = useContext(User);
   const [subtotal, setSubtotal] = useState(0);
+  const [tax, setTax] = useState(0);
+  const [total, setTotal] = useState(0);
   const {
     cart,
     auth,
@@ -171,34 +193,40 @@ export default function Checkout() {
     let amount = 0;
     cart.forEach((item) => (amount += item.item.price * item.count));
     setSubtotal(amount);
-  }, [cart]);
+
+    setTax(parseFloat(subtotal).toFixed(2) * 0.07);
+    setTotal(subtotal + tax);
+  }, [cart, subtotal, tax]);
   return (
     <div style={{ width: "100%" }}>
       {cart.length === 0 ? (
         <React.Fragment>
           <Container className={styles.emptyCartContainer}>
-            <Typography variant="h5">
-              It looks like your cart is empty. would you like to{" "}
-              <Link to="/shop">shop some of our products</Link>
-              <br />
-              <br />
-              {auth === true ? (
-                ""
-              ) : (
-                <Typography>
-                  Have an account? <Link to="/signin">Sign in</Link>
+            <Link to="/shop" style={{ textDecoration: "none" }}>
+              <Button className={styles.emptyCartShopBtn}>
+                <Typography style={{ fontFamily: "one-dam-bold" }}>
+                  Shop Our Store
                 </Typography>
-              )}
-            </Typography>
+              </Button>
+            </Link>
+            <br />
+            <br />
+            {auth === true ? (
+              ""
+            ) : (
+              <Typography>
+                Have an account? <Link to="/signin">Sign in</Link>
+              </Typography>
+            )}
           </Container>
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <Container>
+          <Container style={{ marginTop: "5rem" }}>
             <Container className={styles.cartContainer}>
-              <h3>
-                {context.firstName}'s Cart ({cart.length} items)
-              </h3>
+              <Typography variant="h4" style={{ fontFamily: "one-dam-bold" }}>
+                Cart
+              </Typography>
               <div className={styles.dynamicDisplay}>
                 {cart.map((index) => (
                   <div key={index.item.name} className={styles.itemContainer}>
@@ -209,7 +237,7 @@ export default function Checkout() {
                           className={styles.thumbnail}
                           alt={index.item.name}
                         />
-                        <p>Price: ${index.item.price}</p>
+                        <p>Price: ${parseFloat(index.item.price).toFixed(2)}</p>
                       </div>
                       <div style={{ flex: 2 }}>
                         <h3>{index.item.name}</h3>
@@ -234,7 +262,14 @@ export default function Checkout() {
               </div>
             </Container>
             <div className={styles.checkOutDiv}>
-              <Typography variant="h5" style={{ textDecoration: "underline" }}>
+              <Typography
+                variant="h5"
+                style={{
+                  textDecoration: "underline",
+                  fontFamily: "one-dam-light",
+                  marginLeft: "1rem",
+                }}
+              >
                 Summary
               </Typography>
               <ul>
@@ -253,11 +288,43 @@ export default function Checkout() {
                   </div>
                 ))}
               </ul>
-              <Typography variant="h5" style={{ textDecoration: "underline" }}>
+              <Typography
+                style={{
+                  textDecoration: "underline",
+                  fontSize: "18px",
+                  fontFamily: "one-dam-light",
+                  marginLeft: "1rem",
+                }}
+              >
                 Subtotal
               </Typography>
-              <Typography>${subtotal}</Typography>
-              <Typography>(plus tax)</Typography>
+              <Typography style={{ marginLeft: "2rem" }}>
+                ${subtotal}
+              </Typography>
+              <Typography
+                style={{
+                  textDecoration: "underline",
+                  fontSize: "18px",
+                  fontFamily: "one-dam-light",
+                  marginLeft: "1rem",
+                }}
+              >
+                tax
+              </Typography>
+              <Typography style={{ marginLeft: "2rem" }}>
+                {tax.toFixed(2)}
+              </Typography>
+              <Typography
+                variant="h5"
+                style={{
+                  textDecoration: "underline",
+                  fontFamily: "one-dam-light",
+                  textAlign: "center",
+                }}
+              >
+                Total
+              </Typography>
+              <Typography style={{ textAlign: "center" }}>{total}</Typography>
               <Button className={styles.checkoutBtn} onClick={handleClick}>
                 <Typography>
                   {auth === true ? "go to checkout" : "checkout as guest"}

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Geolocator from "./geolocator";
-import AccountModal from "./AccountModals/AccountModal";
+// import AccountModal from "./AccountModals/AccountModal";
 import { useStyles } from "./styles";
 import { useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -234,11 +234,6 @@ export default function MobileNavbar() {
           </Link>
         </List>
       </Drawer>
-      <AccountModal
-        accountModal={accountModal}
-        openModal={openModal}
-        closeModal={closeModal}
-      />
     </div>
   );
 }

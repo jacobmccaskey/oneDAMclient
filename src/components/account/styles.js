@@ -4,11 +4,13 @@ export const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    margin: theme.spacing(4),
+    // margin: theme.spacing(4),
+    marginTop: "10rem",
     padding: theme.spacing(2),
     [theme.breakpoints.down("sm")]: {
       display: "block",
-      margin: theme.spacing(2),
+      // margin: theme.spacing(1),
+      marginTop: "3.5rem",
     },
   },
   paperLeft: {
@@ -111,5 +113,12 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("md")]: {
       // minHeight: "35rem",
     },
+  },
+
+  loginBtn: {
+    display: "block",
+    fontSize: "20px",
+    marginBottom: theme.spacing(1),
+    width: "50%",
   },
 }));

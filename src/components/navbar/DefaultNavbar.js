@@ -74,7 +74,7 @@ export default function DefaultNavbar() {
           </Link>
 
           <Link to="/shop" className={styles.textDecoNone}>
-            <Button className={styles.btnText}>store </Button>
+            <Button className={styles.btnText}>shop </Button>
           </Link>
           <Link to="/blueprint" className={styles.textDecoNone}>
             <Button className={styles.btnText}>blueprint</Button>
@@ -82,10 +82,9 @@ export default function DefaultNavbar() {
           <Link to="/impact" style={{ textDecoration: "none" }}>
             <Button className={styles.btnText}>impact</Button>
           </Link>
-          <Button className={styles.btnText}>motion pictures</Button>
         </div>
         <div className={styles.accountBtnGroup}>
-          <Link to="/account/:option" className={styles.textDecoNone}>
+          <Link to="/account/view" className={styles.textDecoNone}>
             <Button className={styles.accountBtn}>
               <AccountBoxIcon />
             </Button>

@@ -10,7 +10,6 @@ import {
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 
@@ -64,36 +63,35 @@ export default function ItemCarousel(props) {
     <div className={styles.root}>
       <Paper className={styles.carWrap} elevation={3}>
         <CarouselProvider
-          naturalSlideWidth={100}
-          naturalSlideHeight={150}
+          naturalSlideWidth={110}
+          naturalSlideHeight={200}
           // isIntrinsicHeight={true}
           totalSlides={items.length}
-          visibleSlides={2}
+          visibleSlides={3}
           infinite={true}
         >
           <Slider>
             {items.map((item) => (
               <Slide index={items.indexOf(item)} key={items.indexOf(item)}>
                 <div className={styles.paper}>
-                  <div className={styles.imgWrap}>
-                    <img
-                      src={item.images[0].Location}
-                      className={styles.img}
-                      alt={item.description}
-                    />
-                  </div>
-                  <Typography className={styles.productName}>
-                    {item.name}
-                  </Typography>
-                  <Typography className={styles.text}>${item.price}</Typography>
                   <Link
                     to={`/shop/${item._id}`}
                     style={{ textDecoration: "none" }}
                   >
-                    <Button>
-                      <Typography className={styles.text}>Buy</Typography>
-                    </Button>
+                    <div className={styles.imgWrap}>
+                      <img
+                        src={item.images[0].Location}
+                        className={styles.img}
+                        alt={item.description}
+                      />
+                    </div>
                   </Link>
+                  <Typography className={styles.productName}>
+                    {item.name}
+                  </Typography>
+                  <Typography className={styles.text}>
+                    ${parseFloat(item.price).toFixed(2)}
+                  </Typography>
                 </div>
               </Slide>
             ))}

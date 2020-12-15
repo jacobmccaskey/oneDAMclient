@@ -21,7 +21,6 @@ export default function Account() {
     favorites: false,
     contactUs: false,
   });
-
   const openNameForm = () => {
     setShowForm({
       nameMenu: true,
@@ -74,13 +73,18 @@ export default function Account() {
   return (
     <div>
       {auth === false ? (
-        <>
-          <Typography variant="h4" style={{ marginTop: "2rem" }}>
-            It looks like you are not logged in. Would you like to{" "}
-            <Link to="/signin">login</Link> or{" "}
-            <Link to="signup">create an account</Link>
-          </Typography>
-        </>
+        <Container style={{ marginTop: "30vh", textAlign: "center" }}>
+          <Link to="/signin" style={{ textDecoration: "none" }}>
+            <Button variant="contained" className={style.loginBtn}>
+              login
+            </Button>
+          </Link>
+          <Link to="/signup" style={{ textDecoration: "none" }}>
+            <Button className={style.loginBtn} variant="contained">
+              Sign Up
+            </Button>
+          </Link>
+        </Container>
       ) : (
         <div className={style.root}>
           <Paper className={style.paperLeft}>
