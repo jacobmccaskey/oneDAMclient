@@ -46,7 +46,7 @@ export function authCheck(
   setGuest,
   setGuestId
 ) {
-  const token = getCookie("token");
+  const token = getCookie("one-dam-token");
 
   if (token !== null) {
     axios
@@ -163,7 +163,7 @@ export default function authenticate(
           setState(data.state);
           setGuest(false);
           setGuestId(null);
-          document.cookie = `token=${data.token};expires=${expiry}`;
+          document.cookie = `one-dam-token=${data.token};expires=${expiry}`;
           break;
         default:
           setAuth(false);

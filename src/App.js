@@ -66,8 +66,6 @@ function App() {
           >
             {/* wrapper for footer, see footer styles section for css */}
             <div style={{ paddingBottom: "15rem" }}>
-              {/* ErrorModal provides Modal for any page, use serverResponse to trigger what you want to say. set hooks for each message in respective component and trigger with alert.show() */}
-
               <Switch>
                 <Route
                   exact

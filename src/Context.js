@@ -102,7 +102,7 @@ export default function StateManager({ children }) {
   };
 
   const logoutAccount = () => {
-    document.cookie = "token=;max-age=0";
+    document.cookie = "one-dam-token=;max-age=0";
     setEmail("");
     setPassword("");
     setAddress("");
@@ -163,6 +163,7 @@ export default function StateManager({ children }) {
     //persist to state on frontend first
     // setfavorites((prevState) => [...prevState, { item }]);
     //send request to server if authentication token exists
+    if (token === null) return setfavorites(favArray);
     if (token !== null) {
       axios({
         method: "post",

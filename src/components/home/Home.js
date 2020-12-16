@@ -99,8 +99,7 @@ const useStyles = makeStyles((theme) => ({
     transition: "1s",
     "&:hover": {
       color: "rgb(49, 48, 44)",
-      backgroundColor: "rgb(243, 242, 220)",
-      border: "solid grey",
+      backgroundColor: "rgb(248,248,248)",
     },
   },
 }));
