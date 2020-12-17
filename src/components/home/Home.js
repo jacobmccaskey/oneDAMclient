@@ -11,6 +11,9 @@ import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import { User } from "../../Context";
 import { Typography } from "@material-ui/core";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import YouTubeIcon from "@material-ui/icons/YouTube";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,29 +68,48 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "80%",
     [theme.breakpoints.down]: {
       width: "100%",
+      fontSize: "20px",
     },
   },
 
   paperDiv: {
-    paddingBottom: "5rem",
-    paddingTop: "5rem",
+    paddingBottom: "2rem",
+    paddingTop: "2rem",
+    width: "100%",
     backgroundColor: "rgb(243, 242, 220)",
+    [theme.breakpoints.up("md")]: {
+      paddingTop: "8rem",
+      paddingBottom: "8rem",
+    },
   },
 
   blurb: {
-    backgroundColor: "rgb(243, 242, 220)",
+    // backgroundColor: "rgb(243, 242, 220)",
+    backgroundColor: "black",
+    color: "white",
     fontFamily: "one-dam-bold",
     fontSize: "20px",
-    padding: "2rem",
+    padding: "8rem",
     marginTop: theme.spacing(2),
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      padding: "2rem",
+      fontSize: "18px",
+    },
   },
+
   blurbContainer: {
     width: "60%",
     fontSize: "20px",
     textAlign: "center",
     margin: "auto",
-    // fontFamily: "one-dam-light",
-    fontFamily: "Roboto, sans sarif",
+    fontFamily: "one-dam-light",
+    // fontFamily: "Noto Sans SC",
+    fontWeight: "400",
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+      textAlign: "left",
+    },
   },
   shopBtn: {
     marginTop: "1rem",
@@ -101,6 +123,14 @@ const useStyles = makeStyles((theme) => ({
       color: "rgb(49, 48, 44)",
       backgroundColor: "rgb(248,248,248)",
     },
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+    },
+  },
+  icon: {
+    height: "30px",
+    width: "auto",
+    margin: theme.spacing(1),
   },
 }));
 
@@ -136,7 +166,7 @@ export default function Home() {
       <Paper elevation={3} className={classes.paperDiv}>
         <Typography className={classes.paper}>
           Environmentally and Ethically US based apparel co.llaborative designed
-          to connect; words and ideas to people and a greater good.
+          to connect words and ideas to people and a greater good.
         </Typography>
         <Link to="/shop" style={{ textDecoration: "none" }}>
           <Button className={classes.shopBtn}>
@@ -175,6 +205,11 @@ export default function Home() {
               Matthew@oneDAMproject.co
             </a>
           </Typography>
+          <div style={{ margin: "auto" }}>
+            <InstagramIcon className={classes.icon} />
+            <FacebookIcon className={classes.icon} />
+            <YouTubeIcon className={classes.icon} />
+          </div>
         </Paper>
       </div>
     </div>

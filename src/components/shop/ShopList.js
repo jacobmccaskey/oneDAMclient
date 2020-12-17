@@ -8,7 +8,6 @@ import Paper from "@material-ui/core/Paper";
 import { User } from "../../Context";
 import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
-import AddIcon from "@material-ui/icons/Add";
 import FavButton from "./FavButton";
 
 export default function ShopList() {
@@ -21,10 +20,10 @@ export default function ShopList() {
       <Container maxWidth="lg" className={classes.gridbox}>
         <Grid container className={classes.root} spacing={2}>
           <Grid item xs={12}>
-            <Grid container justify="center" spacing={2}>
+            <Grid container justify="center" spacing={1}>
               {context.store.map((item) => (
                 <Grid key={item._id} item>
-                  <Paper elevation={3} className={classes.paper}>
+                  <Paper elevation={1} className={classes.paper}>
                     <Link to={`${url}/${item._id}`}>
                       <CardMedia
                         className={classes.media}
@@ -36,30 +35,26 @@ export default function ShopList() {
                     <Typography
                       variant="body1"
                       component="p"
-                      style={{ color: "rgb(75,0,130)", weight: "600" }}
+                      className={classes.text}
                     >
-                      {item.name}
+                      {item.name} | {item.gender}
                     </Typography>
                     <Typography
                       variant="body1"
-                      component="span"
+                      // component="span"
                       color="textSecondary"
+                      className={classes.itemVendor}
                     >
                       {item.vendor}
                     </Typography>
-                    {/* <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {item.description}
-                  </Typography> */}
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
+                      className={classes.itemVendor}
+                      style={{ fontWeight: "500" }}
                     >
-                      {`$${item.price}`}
+                      {`$${parseFloat(item.price).toFixed(2)}`}
                     </Typography>
                     <FavButton
                       favorites={context.favorites}
@@ -67,12 +62,6 @@ export default function ShopList() {
                       addFav={context.addFav}
                       deleteFav={context.deleteFav}
                     />
-
-                    <IconButton>
-                      <Link to={`${url}/${item._id}`} style={{ color: "grey" }}>
-                        <AddIcon />
-                      </Link>
-                    </IconButton>
                   </Paper>
                 </Grid>
               ))}

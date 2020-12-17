@@ -118,6 +118,8 @@ export default function StateManager({ children }) {
     setfavorites([]);
     setCart([]);
     setGuest(true);
+    window.location.reload();
+    return false;
   };
 
   const addCart = (item) => {
@@ -212,7 +214,7 @@ export default function StateManager({ children }) {
       setfavorites(res.data.favorites);
       setToken(res.data.token);
       setServerResponse(res.data.status);
-      document.cookie = `token=${res.data.token}`;
+      document.cookie = `one-dam-token=${res.data.token}`;
     });
   };
 
@@ -230,9 +232,10 @@ export default function StateManager({ children }) {
   };
   //fetches current inventory from database, limit to 50 items at a time
   const fetchShop = () => {
-    axios
-      .get("http://localhost:4545/api/store")
-      .then((response) => setStore(response.data));
+    axios.get("http://localhost:4545/api/store").then((response) => {
+      console.log(response.data);
+      setStore(response.data);
+    });
   };
 
   useEffect(() => {

@@ -123,15 +123,16 @@ export default function Impact() {
                 Natural Disaster Relief, Covid-19, and Equal/Social Justice
                 Initiatives.
                 <br />
-                <br />  Thus far we have invested and donated all $2,174.63 in
-                Revenue we have received towards our communities. All we can say
-                is thank you so much for the love and support. Join in on the
-                fun, by buying made in the USA 100% recycled shirts and do some
-                good while tagging if you fancy us :) #oneDAMproject ☝️🚧
-                #giveoneDAM 🧑🏿‍🎨👨🏼‍🚀👨🏽‍🔧🧑🏻‍🚒👨🏽‍🏭 #theProjectistoproject 🎥 Home Shop
-                Our Blueprint Our Impact 2gether More... back to top Do your
-                little bit of good where you are; it's those little bits of good
-                put together that overwhelm the world. Desmond Tutu
+                <br />
+                  Thus far we have invested and donated all $2,174.63 in Revenue
+                we have received towards our communities. All we can say is
+                thank you so much for the love and support. Join in on the fun,
+                by buying made in the USA 100% recycled shirts and do some good
+                while tagging if you fancy us :) #oneDAMproject ☝️🚧 #giveoneDAM
+                🧑🏿‍🎨👨🏼‍🚀👨🏽‍🔧🧑🏻‍🚒👨🏽‍🏭 #theProjectistoproject 🎥 Home Shop Our
+                Blueprint Our Impact 2gether More... back to top Do your little
+                bit of good where you are; it's those little bits of good put
+                together that overwhelm the world. Desmond Tutu
               </Typography>
             </Paper>
           </Container>
@@ -143,7 +144,7 @@ export default function Impact() {
             <span style={{ color: "#7FDBFF", fontFamily: "one-dam-light" }}>
               Motion
             </span>
-            Pictures
+            <span style={{ fontFamily: "one-dam-light" }}>Pictures</span>
           </Typography>
         </div>
       </Fade>

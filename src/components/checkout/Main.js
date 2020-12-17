@@ -147,7 +147,6 @@ export default function Checkout() {
   const [tax, setTax] = useState(0);
   const [total, setTotal] = useState(0);
   const [showShippingForm, setShowShippingForm] = useState("none");
-  const [addressAlert, setAddressAlert] = useState(false);
   const {
     cart,
     auth,
@@ -172,14 +171,11 @@ export default function Checkout() {
   //hook for showing alertModal. imported from react-alert
   const alert = useAlert();
 
-  const addressError = () => {
-    alert.show("please fill out a shipping address");
-  };
-
   const handleClick = async (event) => {
     if (!address || !addressTwo || !city || !state || !postalCode) {
-      return setAddressAlert(true);
+      return alert.show("Please fill out a shipping address");
     }
+
     let itemIDs = [];
     await cart.forEach((item) =>
       itemIDs.push({

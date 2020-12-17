@@ -1,7 +1,6 @@
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import ViewItem from "./ViewItem";
-// import { User } from "../../Context";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import ShopList from "./ShopList";
 

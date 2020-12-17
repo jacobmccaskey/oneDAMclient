@@ -21,6 +21,7 @@
   src: url("./fonts/pumpBold.otf");
 }
 
-.one-dam-body {
-  font-family: "Nunito", sans-serif;
+@font-face {
+  font-family: "one-dam-pro";
+  src: url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
 }

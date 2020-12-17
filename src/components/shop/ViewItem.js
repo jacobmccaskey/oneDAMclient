@@ -18,10 +18,13 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Modal from "@material-ui/core/Modal";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import HomeIcon from "@material-ui/icons/Home";
+import CheckIcon from "@material-ui/icons/Check";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
   box: {
     marginTop: "2rem",
+    marginBottom: "4rem",
     maxWidth: "100%",
     [theme.breakpoints.down("sm")]: {
       display: "relative",
@@ -63,7 +66,8 @@ const useStyles = makeStyles((theme) => ({
     width: "30%",
     marginTop: "1rem",
     [theme.breakpoints.down("sm")]: {
-      width: "auto",
+      width: "50%",
+      margin: "auto",
     },
   },
   btnTransform: {
@@ -119,6 +123,16 @@ const useStyles = makeStyles((theme) => ({
   selectLabel: {
     width: "100px",
   },
+  checkoutButton: {
+    display: "block",
+    backgroundColor: "rgb(152, 118, 84)",
+    width: "30%",
+    marginTop: "1rem",
+    [theme.breakpoints.down("sm")]: {
+      width: "50%",
+      margin: "auto",
+    },
+  },
 }));
 
 export default function ViewItem() {
@@ -149,28 +163,36 @@ export default function ViewItem() {
   };
 
   //either adds to cart or removes based on button events
+  const removeItemFromCart = (item) => {
+    setaddItem(false);
+    context.deleteCart(item);
+  };
+
   const handleItemAndCart = (item) => {
-    if (addItem === false && count !== 0 && sizePick !== "") {
-      setaddItem(true);
-      context.addCart({
-        item: item,
-        _id: item._id,
-        count: count,
-        size: sizePick,
-        color: color,
-      });
+    if (count === 0 || sizePick === "") {
+      setMessageUser(
+        "looks like something went wrong :/ please make sure you have picked your size and how many you would like to buy. Thanks! "
+      );
+      return showModal();
     }
-    if (addItem === true) {
-      setaddItem(false);
-      context.deleteCart(item);
-    }
+
+    setaddItem(true);
+    context.addCart({
+      item: item,
+      _id: item._id,
+      count: count,
+      size: sizePick,
+      color: color,
+    });
+
     if ((count === 0 || sizePick === "") && addItem === false) {
       setMessageUser(
         "looks like something went wrong :/ please make sure you have picked your size and how many you would like to buy. Thanks! "
       );
       showModal();
-    } else return null;
+    }
   };
+
   //loads at render to fetch product and determine if already exists in user cart
   useEffect(() => {
     //add vendor, sizes & in-stock bool
@@ -216,17 +238,27 @@ export default function ViewItem() {
                 <img src={image.Location} alt={image.key} key={image.key} />
               ))}
             </Carousel>
-            <Typography>
+            <Typography
+              style={
+                addItem === true ? { display: "none" } : { display: "block" }
+              }
+            >
               {inStock === true ? "In Stock" : "Out of Stock"}
+            </Typography>
+            <Typography
+              style={
+                addItem === true ? { display: "block" } : { display: "none" }
+              }
+            >
+              <CheckIcon />
+              item added to cart
             </Typography>
           </div>
         </div>
         <div className={classes.divInfo}>
           <h2>{item.name}</h2>
-          <Typography>${item.price}</Typography>
-          {/* <span style={{ fontSize: "12px", textDecoration: "underline" }}>
-            {item.vendor}
-          </span> */}
+          <Typography>${parseFloat(item.price).toFixed(2)}</Typography>
+
           <span style={{ fontSize: "12px", textDecoration: "underline" }}>
             {item.gender}
           </span>
@@ -288,9 +320,26 @@ export default function ViewItem() {
           <Button
             className={classes.cartButton}
             onClick={() => handleItemAndCart(item)}
+            disabled={addItem}
           >
-            {addItem === true ? "remove from cart" : "add to cart"}
+            add to cart
           </Button>
+          <Box m={1} />
+          <Button
+            style={
+              addItem === true ? { display: "block" } : { display: "none" }
+            }
+            className={classes.cartButton}
+            onClick={() => removeItemFromCart(item)}
+          >
+            Remove From Cart
+          </Button>
+          <Box m={1} />
+          <Link to="/checkout" style={{ textDecoration: "none" }}>
+            <Button className={classes.checkoutButton}>
+              <Typography>Checkout</Typography>
+            </Button>
+          </Link>
           <br />
           <div className={classes.description}>
             <p>{item.description}</p>
