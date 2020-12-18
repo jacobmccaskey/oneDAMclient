@@ -7,7 +7,6 @@ import { Link, useRouteMatch } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import { User } from "../../Context";
 import CardMedia from "@material-ui/core/CardMedia";
-import IconButton from "@material-ui/core/IconButton";
 import FavButton from "./FavButton";
 
 export default function ShopList() {

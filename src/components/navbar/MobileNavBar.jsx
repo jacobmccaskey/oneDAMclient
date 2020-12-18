@@ -1,7 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import Geolocator from "./geolocator";
-// import AccountModal from "./AccountModals/AccountModal";
 import { useStyles } from "./styles";
 import { useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -22,7 +20,6 @@ import Drawer from "@material-ui/core/Drawer";
 import Popover from "@material-ui/core/Popover";
 import ShopIcon from "@material-ui/icons/Shop";
 import EcoIcon from "@material-ui/icons/Eco";
-import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import NaturePeopleIcon from "@material-ui/icons/NaturePeople";
@@ -30,13 +27,13 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import HomeIcon from "@material-ui/icons/Home";
 import ShoppingCart from "./shoppingCartBtn";
 import { User } from "../../Context";
+// const TreeLogo = require("../../img/TreeLogo.jpg");
 
 export default function MobileNavbar() {
   const context = useContext(User);
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [accountModal, modalShow] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openPopover = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
@@ -52,13 +49,6 @@ export default function MobileNavbar() {
   const logout = () => {
     context.logoutAccount();
     popoverClose();
-  };
-
-  const openModal = () => {
-    modalShow(true);
-  };
-  const closeModal = () => {
-    modalShow(false);
   };
 
   const handleDrawerOpen = () => {
@@ -92,24 +82,26 @@ export default function MobileNavbar() {
             className={classes.title}
             to="/"
           >
-            <Typography variant="h6" className={classes.title}>
+            <Typography
+              variant="h6"
+              className={classes.title}
+              style={{ fontFamily: "triline" }}
+            >
               oneDAM
             </Typography>
           </Link>
           {/* displays button if there is missing account information */}
-          {context.missingInfo === true && context.auth === true ? (
-            <Button
-              as={Link}
-              href="/account/personalinformation"
-              size="small"
-              className={classes.navMissingInfoBtn}
-            >
-              add shipping information?
-            </Button>
-          ) : null}
+          <div
+            style={
+              context.auth === true
+                ? { display: "relative" }
+                : { display: "none" }
+            }
+          >
+            {context.firstName}
+          </div>
           <LocationOnIcon className={classes.navIcon} />
 
-          <Geolocator />
           <Button aria-describedby={id} onClick={popoverHandle}>
             <AccountCircleIcon className={classes.navIcon} />
           </Button>
@@ -132,7 +124,11 @@ export default function MobileNavbar() {
                 <Button>Sign In</Button>
               </Link>
             ) : (
-              <Link to="/account/view" className={classes.btn}>
+              <Link
+                to="/account/view"
+                className={classes.btn}
+                onClick={popoverClose}
+              >
                 <Button>My Account</Button>
               </Link>
             )}
@@ -160,9 +156,7 @@ export default function MobileNavbar() {
         variant="persistent"
         anchor="left"
         open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
+        className={classes.drawerPaper}
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
@@ -174,65 +168,91 @@ export default function MobileNavbar() {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          <Link to="/" className={classes.iconText}>
-            <ListItem button key="Home">
-              <ListItemIcon
-                style={{
-                  color: "rgb(232,232,232)",
-                }}
-              >
-                <HomeIcon />
-                <ListItemText primary="Home" />
-              </ListItemIcon>
-            </ListItem>
-          </Link>
+        <div className={classes.drawerBg}>
+          <List>
+            <Link
+              to="/"
+              className={classes.iconText}
+              onClick={handleDrawerClose}
+            >
+              <ListItem button key="Home">
+                <ListItemIcon>
+                  <HomeIcon className={classes.iconText} />
+                  <ListItemText primary="Home" className={classes.iconText} />
+                </ListItemIcon>
+              </ListItem>
+            </Link>
 
-          <Link to="/shop" className={classes.iconText}>
-            <ListItem button key="Shop">
-              <ListItemIcon style={{ color: "rgb(232,232,232)" }}>
-                <ShopIcon />
-                <ListItemText primary="Shop" />
-              </ListItemIcon>
-            </ListItem>
-          </Link>
+            <Link
+              to="/shop"
+              className={classes.iconText}
+              onClick={handleDrawerClose}
+            >
+              <ListItem button key="Shop">
+                <ListItemIcon>
+                  <ShopIcon className={classes.iconText} />
+                  <ListItemText primary="Shop" className={classes.iconText} />
+                </ListItemIcon>
+              </ListItem>
+            </Link>
 
-          <Link to="/mission" className={classes.iconText}>
-            <ListItem button key="mission">
-              <ListItemIcon style={{ color: "rgb(232,232,232)" }}>
-                <EcoIcon />
-                <ListItemText primary="Misson" />
-              </ListItemIcon>
-            </ListItem>
-          </Link>
+            <Link
+              to="/blueprint"
+              className={classes.iconText}
+              onClick={handleDrawerClose}
+            >
+              <ListItem button key="blueprint">
+                <ListItemIcon>
+                  <EcoIcon className={classes.iconText} />
+                  <ListItemText
+                    primary="BluePrint"
+                    className={classes.iconText}
+                  />
+                </ListItemIcon>
+              </ListItem>
+            </Link>
+            <Link
+              to="/impact"
+              className={classes.iconText}
+              onClick={handleDrawerClose}
+            >
+              <ListItem button key="Impact">
+                <ListItemIcon>
+                  <NaturePeopleIcon className={classes.iconText} />
+                  <ListItemText primary="Impact" className={classes.iconText} />
+                </ListItemIcon>
+              </ListItem>
+            </Link>
 
-          <Link to="/account/view" className={classes.iconText}>
-            <ListItem button key="account">
-              <ListItemIcon style={{ color: "rgb(232,232,232)" }}>
-                <PeopleAltIcon />
-                <ListItemText primary="Account" />
-              </ListItemIcon>
-            </ListItem>
-          </Link>
+            <Link
+              to="/account/view"
+              className={classes.iconText}
+              onClick={handleDrawerClose}
+            >
+              <ListItem button key="account">
+                <ListItemIcon>
+                  <PeopleAltIcon className={classes.iconText} />
+                  <ListItemText
+                    primary="Account"
+                    className={classes.iconText}
+                  />
+                </ListItemIcon>
+              </ListItem>
+            </Link>
 
-          <Link to="/members" className={classes.iconText}>
-            <ListItem button key="Members">
-              <ListItemIcon style={{ color: "rgb(232,232,232)" }}>
-                <NaturePeopleIcon />
-                <ListItemText primary="Members" />
-              </ListItemIcon>
-            </ListItem>
-          </Link>
-
-          <Link to="/contact" className={classes.iconText}>
+            {/* <Link to="/contact" className={classes.iconText}>
             <ListItem button key="Contact">
-              <ListItemIcon style={{ color: "rgb(232,232,232)" }}>
+              <ListItemIcon >
                 <PermContactCalendarIcon />
                 <ListItemText primary="Contact Us" />
               </ListItemIcon>
             </ListItem>
-          </Link>
-        </List>
+          </Link> */}
+          </List>
+        </div>
+        {/* <div style={{ width: "100%" }}>
+          <img src={TreeLogo} alt="tree logo" style={{ width: "100%" }} />
+        </div> */}
       </Drawer>
     </div>
   );

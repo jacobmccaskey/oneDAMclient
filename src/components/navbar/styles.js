@@ -5,7 +5,10 @@ const drawerWidth = 240;
 
 export const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    // flexGrow: 1,
+    display: "fixed",
+    top: 0,
+    width: "100%",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -55,6 +58,7 @@ export const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     padding: theme.spacing(0, 1),
+    backgroundColor: "black",
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
@@ -77,8 +81,10 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   iconText: {
-    color: "white",
+    color: "grey",
     textDecoration: "none",
+    fontFamily: "one-dam-light",
+    fontSize: "22px",
   },
   navIcon: {
     color: "grey",
@@ -91,5 +97,12 @@ export const useStyles = makeStyles((theme) => ({
     color: "black",
     background: "-webkit-linear-gradient(right,pink, blue)",
     marginRight: theme.spacing(1),
+  },
+
+  drawerBg: {
+    backgroundColor: "black",
+    color: "white",
+    width: "100%",
+    height: "100%",
   },
 }));

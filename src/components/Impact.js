@@ -20,10 +20,20 @@ const useStyles = makeStyles((theme) => ({
     width: "50%",
     right: 0,
     zIndex: "-1000",
+    [theme.breakpoints.down("sm")]: {
+      top: "2rem",
+      width: "100%",
+      margin: "auto",
+    },
   },
   quoteDiv: {
     float: "left",
     marginLeft: "20%",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      display: "block",
+      marginLeft: 0,
+    },
   },
 
   impactBody: {
@@ -42,6 +52,11 @@ const useStyles = makeStyles((theme) => ({
     padding: "2rem",
     marginTop: theme.spacing(3),
     backgroundColor: "#111111",
+    [theme.breakpoints.down("sm")]: {
+      padding: "5%",
+      height: "10rem",
+    },
+    // width: "100%",
   },
   cover: {
     width: "100%",
@@ -61,6 +76,25 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
     },
   },
+
+  quoteBlock: {
+    fontFamily: 'Nunito", sans-serif',
+    textAlign: "left",
+    fontSize: "25px",
+  },
+
+  mainBlock: {
+    textAlign: "center",
+    marginTop: "8rem",
+    marginRight: "10rem",
+    marginBottom: "8rem",
+    display: "relative",
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+      marginRight: 0,
+      marginTop: "15rem",
+    },
+  },
 }));
 
 export default function Impact() {
@@ -75,22 +109,9 @@ export default function Impact() {
             className={styles.backgroundImage}
           />
         </Fade>
-        <div
-          style={{
-            textAlign: "center",
-            marginTop: "8rem",
-            marginRight: "10rem",
-            marginBottom: "10rem",
-          }}
-        >
+        <div className={styles.mainBlock}>
           <Container maxWidth="sm" className={styles.quoteDiv}>
-            <Typography
-              style={{
-                fontFamily: 'Nunito", sans-serif',
-                textAlign: "left",
-                fontSize: "25px",
-              }}
-            >
+            <Typography className={styles.quoteBlock}>
               <i>
                 Do your little bit of good where you are; it's those little bits
                 of good put together that overwhelm the world.
@@ -104,7 +125,7 @@ export default function Impact() {
                 Since the 1st of 2020, as a result of your support and love we
                 have been to able to accomplish so much… * Help 5 people off of
                 the streets and into shelters/permanent housing 3 of which we
-                helped get jobs in Tampa and Houston 
+                helped get jobs in Tampa and Houston
                 <br />
                 <br />
                 * Made and handed out over 600 meals through 'oneDAM meal' in
@@ -116,7 +137,7 @@ export default function Impact() {
                 <br />
                 <br />
                 * Volunteered with Feeding Tampa Bay, HOPE Inc, coached
-                Wrestling at Plant High in Tampa 
+                Wrestling at Plant High in Tampa
                 <br />
                 <br />
                 * Raised money to help Humanitarian efforts within the realm of;
@@ -124,7 +145,7 @@ export default function Impact() {
                 Initiatives.
                 <br />
                 <br />
-                  Thus far we have invested and donated all $2,174.63 in Revenue
+                Thus far we have invested and donated all $2,174.63 in Revenue
                 we have received towards our communities. All we can say is
                 thank you so much for the love and support. Join in on the fun,
                 by buying made in the USA 100% recycled shirts and do some good
@@ -153,50 +174,58 @@ export default function Impact() {
           <Container maxWidth="lg">
             <div className={styles.flexContainer}>
               <div className={styles.flexItem}>
-                <iframe
-                  width="560"
-                  title="onedam1"
-                  height="315"
-                  src="https://www.youtube.com/embed/W5OYrwMvwBQ"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                <div className="videoWrapper">
+                  <iframe
+                    width="560"
+                    title="onedam1"
+                    height="315"
+                    src="https://www.youtube.com/embed/W5OYrwMvwBQ"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
               </div>
               <div className={styles.flexItem}>
-                <iframe
-                  title="onedam2"
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/08csO40I9vo"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                <div className="videoWrapper">
+                  <iframe
+                    title="onedam2"
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/08csO40I9vo"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
               </div>
             </div>
             <div className={styles.flexContainer}>
               <div className={styles.flexItem}>
-                <iframe
-                  width="560"
-                  title="onedam1"
-                  height="315"
-                  src="https://www.youtube.com/embed/LnrMwQ2KV-A"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                <div className="videoWrapper">
+                  <iframe
+                    width="560"
+                    title="onedam1"
+                    height="315"
+                    src="https://www.youtube.com/embed/LnrMwQ2KV-A"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
               </div>
               <div className={styles.flexItem}>
-                <iframe
-                  title="onedam2"
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/g1owRuCEGk8"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                <div className="videoWrapper">
+                  <iframe
+                    title="onedam2"
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/g1owRuCEGk8"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
               </div>
             </div>
           </Container>

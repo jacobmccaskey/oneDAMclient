@@ -180,7 +180,7 @@ export default function Home() {
       </Paper>
 
       <div style={{ marginTop: "2rem" }}>
-        <div style={{ width: "100%", marginBottom: "5rem" }}>
+        <div style={{ width: "100%", marginBottom: "1rem" }}>
           <ItemCarousel items={context.store} />
         </div>
         <Paper
