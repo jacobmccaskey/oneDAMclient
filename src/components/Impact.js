@@ -11,7 +11,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     minHeight: "100vh",
-    marginBottom: "10rem",
+    marginBottom: "2rem",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   backgroundImage: {
     position: "fixed",
@@ -22,8 +25,10 @@ const useStyles = makeStyles((theme) => ({
     zIndex: "-1000",
     [theme.breakpoints.down("sm")]: {
       top: "2rem",
-      width: "100%",
-      margin: "auto",
+      width: "90%",
+      height: "auto",
+      right: 0,
+      left: 0,
     },
   },
   quoteDiv: {
@@ -32,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       width: "100%",
       display: "block",
-      marginLeft: 0,
+      marginLeft: "0%",
     },
   },
 
@@ -40,7 +45,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
     padding: "1rem",
     textAlign: "left",
-    marginBottom: theme.spacing(3),
+    // marginBottom: theme.spacing(3),
+    [theme.breakpoints.down("sm")]: {
+      // paddingDown: "30rem",
+      // width: "100%",
+    },
   },
   mpHeader: {
     textAlign: "right",
@@ -49,18 +58,25 @@ const useStyles = makeStyles((theme) => ({
   motionPicturesContainer: {
     color: "white",
     position: "relative",
-    padding: "2rem",
+    padding: "4rem",
     marginTop: theme.spacing(3),
+    maxHeight: "6rem",
     backgroundColor: "#111111",
     [theme.breakpoints.down("sm")]: {
-      padding: "5%",
-      height: "10rem",
+      height: "auto",
+      width: "100%",
+      marginTop: "25rem",
     },
     // width: "100%",
   },
   cover: {
     width: "100%",
     backgroundColor: "#FFFFFF",
+    position: "relative",
+    height: "auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   flexContainer: {
     display: "flex",
@@ -90,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "8rem",
     display: "relative",
     [theme.breakpoints.down("sm")]: {
-      width: "90%",
+      width: "100%",
       marginRight: 0,
       marginTop: "15rem",
     },
@@ -150,10 +166,9 @@ export default function Impact() {
                 thank you so much for the love and support. Join in on the fun,
                 by buying made in the USA 100% recycled shirts and do some good
                 while tagging if you fancy us :) #oneDAMproject ☝️🚧 #giveoneDAM
-                🧑🏿‍🎨👨🏼‍🚀👨🏽‍🔧🧑🏻‍🚒👨🏽‍🏭 #theProjectistoproject 🎥 Home Shop Our
-                Blueprint Our Impact 2gether More... back to top Do your little
-                bit of good where you are; it's those little bits of good put
-                together that overwhelm the world. Desmond Tutu
+                🧑🏿‍🎨👨🏼‍🚀👨🏽‍🔧🧑🏻‍🚒👨🏽‍🏭 #theProjectistoproject 🎥 Do your little bit of
+                good where you are; it's those little bits of good put together
+                that overwhelm the world. -Desmond Tutu
               </Typography>
             </Paper>
           </Container>
@@ -231,6 +246,7 @@ export default function Impact() {
           </Container>
         </div>
       </Fade>
+      {/* </div> */}
     </React.Fragment>
   );
 }

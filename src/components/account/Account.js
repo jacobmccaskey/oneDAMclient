@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
 import AccountInfoForm from "./AccountInfoForm";
 import RecentOrders from "./RecentOrders";
 import Favorites from "./Favorites";
@@ -73,18 +74,21 @@ export default function Account() {
   return (
     <div>
       {auth === false ? (
-        <Container style={{ marginTop: "30vh", textAlign: "center" }}>
-          <Link to="/signin" style={{ textDecoration: "none" }}>
-            <Button variant="contained" className={style.loginBtn}>
-              login
-            </Button>
-          </Link>
-          <Link to="/signup" style={{ textDecoration: "none" }}>
-            <Button className={style.loginBtn} variant="contained">
-              Sign Up
-            </Button>
-          </Link>
-        </Container>
+        <div style={{ marginTop: "30vh", textAlign: "center", width: "100%" }}>
+          <Container style={{ margin: "auto" }}>
+            <Link to="/signin" style={{ textDecoration: "none" }}>
+              <Button variant="contained" className={style.loginBtn}>
+                login
+              </Button>
+            </Link>
+            <Box m={1} />
+            <Link to="/signup" style={{ textDecoration: "none" }}>
+              <Button className={style.loginBtn} variant="contained">
+                Sign Up
+              </Button>
+            </Link>
+          </Container>
+        </div>
       ) : (
         <div className={style.root}>
           <Paper className={style.paperLeft}>

@@ -8,7 +8,7 @@ export default function ShoppingCart() {
 
   return (
     <div>
-      <Button style={{ color: "grey" }}>
+      <Button>
         <ShoppingCartIcon />
         <span style={{ fontSize: "15px", fontFamily: "Roboto" }}>
           {cart.length}

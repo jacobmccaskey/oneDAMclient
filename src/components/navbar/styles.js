@@ -12,15 +12,16 @@ export const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    color: "black",
   },
   title: {
     flexGrow: 1,
-    color: "white",
+    color: "black",
     fontSize: "40px",
     fontFamily: "triline",
   },
   navbar: {
-    backgroundColor: "rgb(40,40,40)",
+    backgroundColor: "rgb(152, 118, 84)",
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
@@ -42,17 +43,16 @@ export const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    fontFamily: "one-dam-light",
+    color: "grey",
   },
   drawerPaper: {
     width: drawerWidth,
     backgroundColor: "rgb(40,40,40)",
-    // backgroundImage: `url(${drawerBg})`,
-    // backgroundSize: "cover",
-    // backgroundRepeat: "no-repeat",
     loading: "lazy",
     // filter: "brightness(20%)",
     textDecoration: "none",
-    color: "white",
+    fontFamily: "one-dam-light",
   },
   drawerHeader: {
     display: "flex",
@@ -87,10 +87,11 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: "22px",
   },
   navIcon: {
-    color: "grey",
+    color: "black",
   },
   btn: {
     textDecoration: "none",
+    color: "black",
   },
   navMissingInfoBtn: {
     textTransform: "none",
@@ -100,9 +101,12 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   drawerBg: {
+    // backgroundColor: "rgb(40, 40, 40)",
     backgroundColor: "black",
-    color: "white",
+
+    color: "black",
     width: "100%",
     height: "100%",
+    fontFamily: "one-dam-light",
   },
 }));

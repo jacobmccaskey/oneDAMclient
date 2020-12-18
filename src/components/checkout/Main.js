@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
   itemContainer: {
     borderRadius: "2px",
-    boxShadow: "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
+    boxShadow: "0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23)",
     backgroundColor: "white",
     width: "100%",
     display: "block",
@@ -68,12 +68,11 @@ const useStyles = makeStyles((theme) => ({
 
   checkOutDiv: {
     // float: "right",
-    color: "white",
+    color: "black",
     textAlign: "left",
     margin: "auto",
-    backgroundColor: "rgb(27,27,27)",
     width: "50%",
-    borderRadius: "5px",
+    borderRadius: "1px",
     [theme.breakpoints.down("sm")]: {
       width: "100%",
       marginTop: "0%",
@@ -96,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     backgroundColor: "lightgrey",
     color: "black",
-    borderRadius: "0px 0px 5px 5px",
+    borderRadius: "0px 0px 1px 1px",
     // marginTop: "1rem",
     "&:hover": {
       backgroundColor: "#6F00FF",
@@ -293,7 +292,7 @@ export default function Checkout() {
               ))}
             </div>
             <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-              <Paper elevation={3} className={styles.checkOutDiv}>
+              <Paper elevation={1} className={styles.checkOutDiv}>
                 <Typography
                   variant="h5"
                   style={{
@@ -344,7 +343,7 @@ export default function Checkout() {
                   tax
                 </Typography>
                 <Typography style={{ marginLeft: "2rem" }}>
-                  {tax.toFixed(2)}
+                  {parseFloat(tax).toFixed(2)}
                 </Typography>
                 <Typography
                   variant="h5"
@@ -356,7 +355,9 @@ export default function Checkout() {
                 >
                   Total
                 </Typography>
-                <Typography style={{ textAlign: "center" }}>{total}</Typography>
+                <Typography style={{ textAlign: "center" }}>
+                  {parseFloat(total).toFixed}
+                </Typography>
                 <Button
                   className={styles.shippingBtn}
                   onClick={() => setShowShippingForm("block")}

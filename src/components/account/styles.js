@@ -118,7 +118,8 @@ export const useStyles = makeStyles((theme) => ({
   loginBtn: {
     display: "block",
     fontSize: "20px",
-    marginBottom: theme.spacing(1),
+    // marginBottom: theme.spacing(1),
     width: "50%",
+    margin: "auto",
   },
 }));

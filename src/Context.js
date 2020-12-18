@@ -206,7 +206,6 @@ export default function StateManager({ children }) {
         password: password,
       },
     }).then((res) => {
-      // console.log(res.data);
       setAuth(res.data.auth);
       setEmail(res.data.email);
       setAddress(res.data.address);

@@ -21,7 +21,6 @@ import Popover from "@material-ui/core/Popover";
 import ShopIcon from "@material-ui/icons/Shop";
 import EcoIcon from "@material-ui/icons/Eco";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 import NaturePeopleIcon from "@material-ui/icons/NaturePeople";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import HomeIcon from "@material-ui/icons/Home";
@@ -65,7 +64,7 @@ export default function MobileNavbar() {
       <AppBar
         position="sticky"
         className={classes.navbar}
-        style={{ backgroundColor: "rgb(40,40,40)" }}
+        style={{ backgroundColor: "rgb(152, 118, 84)" }}
       >
         <Toolbar>
           <IconButton
@@ -75,7 +74,7 @@ export default function MobileNavbar() {
             color="inherit"
             aria-label="menu"
           >
-            <MenuIcon />
+            <MenuIcon style={{ color: "black" }} />
           </IconButton>
           <Link
             style={{ textDecoration: "none" }}
@@ -100,7 +99,7 @@ export default function MobileNavbar() {
           >
             {context.firstName}
           </div>
-          <LocationOnIcon className={classes.navIcon} />
+          {/* <LocationOnIcon className={classes.navIcon} /> */}
 
           <Button aria-describedby={id} onClick={popoverHandle}>
             <AccountCircleIcon className={classes.navIcon} />
@@ -147,8 +146,11 @@ export default function MobileNavbar() {
               <Button onClick={logout}>logout</Button>
             )}
           </Popover>
-          <Link to="/checkout" className={classes.btn}>
-            <ShoppingCart />
+          <Link
+            to="/checkout"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <ShoppingCart style={{ backgroundColor: "black" }} />
           </Link>
         </Toolbar>
       </AppBar>
@@ -156,9 +158,13 @@ export default function MobileNavbar() {
         variant="persistent"
         anchor="left"
         open={open}
-        className={classes.drawerPaper}
+        className={classes.drawer}
+        classes={{ paper: classes.drawerPaper }}
       >
         <div className={classes.drawerHeader}>
+          <Typography style={{ fontFamily: "one-dam-light", color: "grey" }}>
+            Menu
+          </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon style={{ color: "rgb(232,232,232)" }} />
