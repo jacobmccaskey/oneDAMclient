@@ -23,7 +23,7 @@ import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
   box: {
-    marginTop: "2rem",
+    marginTop: "4rem",
     marginBottom: "4rem",
     maxWidth: "100%",
     [theme.breakpoints.down("sm")]: {
@@ -193,6 +193,17 @@ export default function ViewItem() {
     }
   };
 
+  const handleSizePickAndShowColors = (target) => {
+    setSizePick(target);
+    let colorsForSize = [];
+    for (const index of item.sizes) {
+      if (index.size === target) {
+        index.variant.forEach((item) => colorsForSize.push(item.color));
+        console.log(colorsForSize);
+        setColors(colorsForSize);
+      }
+    }
+  };
   //loads at render to fetch product and determine if already exists in user cart
   useEffect(() => {
     //add vendor, sizes & in-stock bool
@@ -201,7 +212,7 @@ export default function ViewItem() {
       setItem(data);
       setImages(data.images);
       setSizes(data.sizes);
-      setColors(data.colors);
+      // setColors(data.colors);
       if (data.quantity <= 0) {
         setInStock(false);
       }
@@ -285,7 +296,7 @@ export default function ViewItem() {
                 displayEmpty
                 value={sizePick}
                 style={{ textAlign: "right" }}
-                onChange={(e) => setSizePick(e.target.value)}
+                onChange={(e) => handleSizePickAndShowColors(e.target.value)}
               >
                 {sizes.map((item) => (
                   <MenuItem value={item.size} key={item.size}>
@@ -308,9 +319,9 @@ export default function ViewItem() {
                 style={{ textAlign: "right" }}
                 onChange={(e) => setColor(e.target.value)}
               >
-                {colors.map((item) => (
-                  <MenuItem value={item.color} key={item.color}>
-                    {item.color}
+                {colors.map((color) => (
+                  <MenuItem value={color} key={color}>
+                    {color}
                   </MenuItem>
                 ))}
               </Select>
