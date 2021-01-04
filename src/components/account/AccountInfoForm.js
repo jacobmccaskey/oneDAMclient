@@ -94,13 +94,13 @@ export default function AccountInfoForm(props) {
             toEdit={toEdit}
             hook={firstName}
             setHook={setFirstName}
-            label="first"
+            label="first name"
           />
           <InputForm
             toEdit={toEdit}
             hook={lastName}
             setHook={setLastName}
-            label="last"
+            label="last name"
           />
         </div>
         <div style={{ display: "block" }}>
@@ -128,7 +128,7 @@ export default function AccountInfoForm(props) {
             toEdit={toEdit}
             hook={phone}
             setHook={setPhone}
-            label="xxx-xxx-xxx"
+            label="phone number"
           />
         </div>
         <Typography
@@ -160,13 +160,13 @@ export default function AccountInfoForm(props) {
           setHook={setState}
           label="state"
         />
-        <Typography>County</Typography>
+        {/* <Typography>County</Typography>
         <InputForm
           toEdit={toEdit}
           hook={county}
           setHook={setCounty}
           label="county"
-        />
+        /> */}
         <Typography>Postal Code</Typography>
         <InputForm
           toEdit={toEdit}

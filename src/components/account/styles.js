@@ -122,4 +122,14 @@ export const useStyles = makeStyles((theme) => ({
     width: "50%",
     margin: "auto",
   },
+  ordersWrap: {
+    textAlign: "left",
+  },
+  paperOrder: {
+    margin: theme.spacing(1),
+  },
+  orderText: {
+    marginLeft: theme.spacing(1),
+    fontWeight: "600",
+  },
 }));

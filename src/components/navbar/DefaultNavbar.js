@@ -3,7 +3,9 @@ import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+// import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import ShoppingCart from "./shoppingCartBtn";
+
 // import ShoppingCart from "./shoppingCartBtn";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import { Link } from "react-router-dom";
@@ -93,7 +95,7 @@ export default function DefaultNavbar() {
 
           <Link to="/checkout" className={styles.textDecoNone}>
             <Button className={styles.accountBtn}>
-              <ShoppingCartIcon />
+              <ShoppingCart />
             </Button>
             {/* <ShoppingCart style={{ display: "inline" }} /> */}
           </Link>

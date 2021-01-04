@@ -55,12 +55,15 @@ export default function ShopList() {
                     >
                       {`$${parseFloat(item.price).toFixed(2)}`}
                     </Typography>
-                    <FavButton
-                      favorites={context.favorites}
-                      item={item}
-                      addFav={context.addFav}
-                      deleteFav={context.deleteFav}
-                    />
+                    <div style={{ width: "100%", textAlign: "left" }}>
+                      <FavButton
+                        favorites={context.favorites}
+                        style={{ textAlign: "left" }}
+                        item={item}
+                        addFav={context.addFav}
+                        deleteFav={context.deleteFav}
+                      />
+                    </div>
                   </Paper>
                 </Grid>
               ))}

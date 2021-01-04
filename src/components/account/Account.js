@@ -70,7 +70,7 @@ export default function Account() {
     }
   }, [option]);
 
-  const { auth, orders } = context;
+  const { auth } = context;
   return (
     <div>
       {auth === false ? (
@@ -134,7 +134,7 @@ export default function Account() {
                   : { display: "block" }
               }
             >
-              <RecentOrders orders={orders} />
+              <RecentOrders />
             </Container>
             {/* favorites container */}
             <Container

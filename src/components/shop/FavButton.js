@@ -31,7 +31,7 @@ export default function FavButton(props) {
   }, [favorites, item._id]);
 
   return (
-    <div style={{ display: "inline-block" }}>
+    <div style={{ display: "inline-block", textAlign: "left" }}>
       <IconButton onClick={() => toggleFav(item)}>
         {picked !== true ? <FavoriteBorderIcon /> : <FavoriteOutlinedIcon />}
       </IconButton>

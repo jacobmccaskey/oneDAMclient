@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   niceColors: {
@@ -24,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   root: {
+    paddingTop: "5rem",
     margin: theme.spacing(3),
     width: "60%",
     display: "relative",
@@ -34,12 +36,23 @@ const useStyles = makeStyles((theme) => ({
   innerMagic: {
     textAlign: "left",
   },
+  backBtn: {
+    textAlign: "left",
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 export default function Contact() {
   const style = useStyles();
   return (
     <div className={style.root}>
+      <div className={style.backBtn}>
+        <Link to="/account/default" style={{ textDecoration: "none" }}>
+          <Button variant="contained" size="small">
+            <Typography>back to account</Typography>
+          </Button>
+        </Link>
+      </div>
       <div className={style.innerMagic}>
         <Typography variant="h4">support</Typography>
         <hr />

@@ -36,6 +36,10 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     top: 0,
     zIndex: "-1000",
+    objectFit: "cover",
+    [theme.breakpoints.down("sm")]: {
+      objectFit: "cover",
+    },
   },
   searchBarWrap: {
     marginTop: "5rem",

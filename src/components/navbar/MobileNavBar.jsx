@@ -132,7 +132,9 @@ export default function MobileNavbar() {
               </Link>
             )}
             <br />
-            <Button>Favorites</Button>
+            <Link to="/account/favorites" className={classes.btn}>
+              <Button>Favorites</Button>
+            </Link>
             <br />
             <Link to="/checkout" className={classes.btn}>
               <Button>cart</Button>
@@ -162,14 +164,12 @@ export default function MobileNavbar() {
         classes={{ paper: classes.drawerPaper }}
       >
         <div className={classes.drawerHeader}>
-          <Typography style={{ fontFamily: "one-dam-light", color: "grey" }}>
-            Menu
-          </Typography>
+          <Typography style={{ fontFamily: "one-dam-light" }}>Menu</Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
-              <ChevronLeftIcon style={{ color: "rgb(232,232,232)" }} />
+              <ChevronLeftIcon style={{ color: "black" }} />
             ) : (
-              <ChevronRightIcon style={{ color: "rgb(232,232,232)" }} />
+              <ChevronRightIcon style={{ color: "black" }} />
             )}
           </IconButton>
         </div>

@@ -58,7 +58,10 @@ export const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     padding: theme.spacing(0, 1),
-    backgroundColor: "black",
+    backgroundColor: "rgb(152, 118, 84)",
+    color: "black",
+    border: "black",
+
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
@@ -81,7 +84,7 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   iconText: {
-    color: "grey",
+    color: "black",
     textDecoration: "none",
     fontFamily: "one-dam-light",
     fontSize: "22px",
@@ -102,7 +105,7 @@ export const useStyles = makeStyles((theme) => ({
 
   drawerBg: {
     // backgroundColor: "rgb(40, 40, 40)",
-    backgroundColor: "black",
+    backgroundColor: "rgb(152, 118, 84)",
 
     color: "black",
     width: "100%",

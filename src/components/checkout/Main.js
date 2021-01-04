@@ -137,6 +137,9 @@ const useStyles = makeStyles((theme) => ({
       height: "auto",
     },
   },
+  checkOutFormBtn: {
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 export default function Checkout() {
@@ -146,12 +149,14 @@ export default function Checkout() {
   const [tax, setTax] = useState(0);
   const [total, setTotal] = useState(0);
   const [showShippingForm, setShowShippingForm] = useState("none");
+  // const [disableCheckoutBtn, setDisableCheckoutBtn] = useState(false);
+
   const {
     cart,
     auth,
     token,
     guest,
-    guestId,
+    // guestId,
     postalCode,
     setPostalCode,
     address,
@@ -164,15 +169,32 @@ export default function Checkout() {
     state,
     county,
     email,
+    setEmail,
     firstName,
     lastName,
+    setFirstName,
+    setLastName,
+    phone,
+    setPhone,
   } = context;
+
   //hook for showing alertModal. imported from react-alert
   const alert = useAlert();
 
   const handleClick = async (event) => {
-    if (!address || !addressTwo || !city || !state || !postalCode) {
-      return alert.show("Please fill out a shipping address");
+    if (
+      !address ||
+      !city ||
+      !state ||
+      !postalCode ||
+      !email ||
+      !firstName ||
+      !lastName ||
+      !phone
+    ) {
+      return alert.show(
+        "Please fill out all shipping information in the tab above"
+      );
     }
 
     let itemIDs = [];
@@ -188,14 +210,16 @@ export default function Checkout() {
       order: itemIDs,
       user_token: token,
       guest_bool: guest,
-      guestId: guestId || "null",
+      // guestId: guestId || "null",
       country: "US",
       totalItems: itemIDs.length,
       name: `${firstName} ${lastName}`,
       email: email,
+      phone: phone,
+      amount: total,
       shipping: {
         address: address,
-        addressTwo: addressTwo || "",
+        addressTwo: addressTwo,
         postalCode: postalCode,
         city: city,
         state: state,
@@ -356,7 +380,7 @@ export default function Checkout() {
                   Total
                 </Typography>
                 <Typography style={{ textAlign: "center" }}>
-                  {parseFloat(total).toFixed}
+                  {parseFloat(total).toFixed(2)}
                 </Typography>
                 <Button
                   className={styles.shippingBtn}
@@ -368,50 +392,108 @@ export default function Checkout() {
                   className={styles.shippingFormWrap}
                   style={{ display: `${showShippingForm}` }}
                 >
-                  <Paper p={1}>
-                    <Typography>Address</Typography>
+                  <div>
+                    {/* <Typography>First Name</Typography> */}
                     <TextField
                       fullWidth
                       required
+                      className={styles.checkOutFormBtn}
+                      label="first name"
                       variant="outlined"
+                      size="small"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                    />
+                    {/* <Typography>Last Name</Typography> */}
+                    <TextField
+                      fullWidth
+                      className={styles.checkOutFormBtn}
+                      variant="outlined"
+                      label="last name"
+                      size="small"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                    />
+                    {/* <Typography>Email</Typography> */}
+                    <TextField
+                      className={styles.checkOutFormBtn}
+                      fullWidth
+                      required
+                      variant="outlined"
+                      label="email"
+                      size="small"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    {/* <Typography>Phone</Typography> */}
+                    <TextField
+                      fullWidth
+                      className={styles.checkOutFormBtn}
+                      required
+                      variant="outlined"
+                      label="phone"
+                      size="small"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
+                    {/* <Typography>Address</Typography> */}
+                    <TextField
+                      className={styles.checkOutFormBtn}
+                      fullWidth
+                      required
+                      variant="outlined"
+                      label="address"
                       size="small"
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
                     />
-                    <Typography>Address Two</Typography>
+                    {/* <Typography>Address Two</Typography> */}
                     <TextField
+                      className={styles.checkOutFormBtn}
                       fullWidth
                       variant="outlined"
+                      label="address two/optional"
                       size="small"
                       value={addressTwo}
                       onChange={(e) => setAddressTwo(e.target.value)}
                     />
-                    <Typography>City</Typography>
+                    {/* <Typography>City</Typography> */}
                     <TextField
+                      className={styles.checkOutFormBtn}
                       fullWidth
                       variant="outlined"
                       size="small"
+                      label="city"
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
                     />
-                    <Typography>State</Typography>
+                    {/* <Typography>State</Typography> */}
                     <TextField
+                      className={styles.checkOutFormBtn}
                       fullWidth
                       variant="outlined"
                       size="small"
+                      label="state"
                       value={state}
                       onChange={(e) => setState(e.target.value)}
                     />
-                    <Typography>postal code</Typography>
+                    {/* <Typography>postal code</Typography> */}
                     <TextField
+                      className={styles.checkOutFormBtn}
                       variant="outlined"
                       size="small"
+                      label="postal code"
                       value={postalCode}
                       onChange={(e) => setPostalCode(e.target.value)}
                     />
-                  </Paper>
+                  </div>
                 </div>
-                <Button className={styles.checkoutBtn} onClick={handleClick}>
+
+                <Button
+                  className={styles.checkoutBtn}
+                  onClick={handleClick}
+                  // disabled={disableCheckoutBtn}
+                >
                   <Typography>
                     {auth === true ? "go to checkout" : "checkout as guest"}
                   </Typography>
@@ -424,3 +506,65 @@ export default function Checkout() {
     </React.Fragment>
   );
 }
+
+// const arrayOfStates = [
+//   "Alabama",
+//   "Alaska",
+//   "American Samoa",
+//   "Arizona",
+//   "Arkansas",
+//   "California",
+//   "Colorado",
+//   "Connecticut",
+//   "Delaware",
+//   "District of Columbia",
+//   "Federated States of Micronesia",
+//   "Florida",
+//   "Georgia",
+//   "Guam",
+//   "Hawaii",
+//   "Idaho",
+//   "Illinois",
+//   "Indiana",
+//   "Iowa",
+//   "Kansas",
+//   "Kentucky",
+//   "Louisiana",
+//   "Maine",
+//   "Marshall Islands",
+//   "Maryland",
+//   "Massachusetts",
+//   "Michigan",
+//   "Minnesota",
+//   "Mississippi",
+//   "Missouri",
+//   "Montana",
+//   "Nebraska",
+//   "Nevada",
+//   "New Hampshire",
+//   "New Jersey",
+//   "New Mexico",
+//   "New York",
+//   "North Carolina",
+//   "North Dakota",
+//   "Northern Mariana Islands",
+//   "Ohio",
+//   "Oklahoma",
+//   "Oregon",
+//   "Palau",
+//   "Pennsylvania",
+//   "Puerto Rico",
+//   "Rhode Island",
+//   "South Carolina",
+//   "South Dakota",
+//   "Tennessee",
+//   "Texas",
+//   "Utah",
+//   "Vermont",
+//   "Virgin Island",
+//   "Virginia",
+//   "Washington",
+//   "West Virginia",
+//   "Wisconsin",
+//   "Wyoming",
+// ];

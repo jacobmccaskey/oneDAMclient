@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   gridContainer: {
     display: "flex",
     margin: "auto",
-    maxWidth: "800px",
+    maxWidth: "1000px",
     [theme.breakpoints.down("sm")]: {
       width: "100%",
       display: "block",
@@ -74,28 +74,11 @@ export default function Blueprint() {
       <div>
         <img src={blueBg} alt="ocean background" className={styles.topImg} />
       </div>
-      {/* <div className={styles.outerQuoteWrapper}>
-        <div className={styles.quoteDiv}>
-          <Typography
-            className="one-dam-body"
-            style={{ fontSize: "25px", color: "white", fontWeight: "500" }}
-          >
-            <i>
-              {" "}
-              Remember that when you leave this earth, you can take with you
-              nothing that you have received - only what you have given: a full
-              heart, enriched by honest service, love, sacrifice and courage.
-              <br />
-              =St. Francis Assisi{" "}
-            </i>
-          </Typography>
-        </div>
-      </div> */}
       <div className={styles.gridContainer}>
         <Paper className={styles.grid}>
           <Typography
             className="one-dam-body"
-            style={{ textAlign: "left", fontSize: "18px" }}
+            style={{ textAlign: "left", fontSize: "20px" }}
           >
             <span style={{ fontWeight: "600" }}>oneDAM Project</span> is an eco
             and etho co.llaboration inspired by the human connection and the
@@ -116,7 +99,7 @@ export default function Blueprint() {
         <Paper className={styles.grid}>
           <Typography
             className="one-dam-body"
-            style={{ textAlign: "left", fontSize: "18px" }}
+            style={{ textAlign: "left", fontSize: "20px" }}
           >
             Our goal is to create awareness and engagement through our
             communities by inspiring everyone to get out of self and into help.

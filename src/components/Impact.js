@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   motionPicturesContainer: {
     color: "white",
     position: "relative",
-    padding: "4rem",
+    padding: "5rem",
     marginTop: theme.spacing(3),
     maxHeight: "6rem",
     backgroundColor: "#111111",
