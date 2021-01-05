@@ -102,7 +102,7 @@ export default function StateManager({ children }) {
   };
 
   const logoutAccount = () => {
-    document.cookie = "one-dam-token=;max-age=0";
+    document.cookie = "one-dam-token=;Expires/Max-Age=0";
     setEmail("");
     setPassword("");
     setAddress("");

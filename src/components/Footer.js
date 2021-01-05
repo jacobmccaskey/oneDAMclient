@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 // import Button from "@material-ui/core/Button";
 // import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
@@ -34,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     marginLeft: theme.spacing(1),
   },
+  subscribeBtn: {
+    marginTop: theme.spacing(2),
+    textTransform: "none",
+  },
 }));
 
 export default function Footer() {
@@ -54,6 +59,13 @@ export default function Footer() {
         </Typography>
         <i>created with love. sweat. tears</i>
         <br />
+        <Button
+          variant="contained"
+          size="small"
+          className={classes.subscribeBtn}
+        >
+          Subscribe
+        </Button>
       </div>
     </Paper>
   );

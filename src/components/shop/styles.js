@@ -15,6 +15,10 @@ export const useStyles = makeStyles((theme) => ({
   paper: {
     height: "auto",
     width: 300,
+    [theme.breakpoints.down("sm")]: {
+      width: 160,
+      height: "auto",
+    },
   },
   media: {
     height: "auto",

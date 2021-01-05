@@ -10,6 +10,7 @@ import RecentOrders from "./RecentOrders";
 import Favorites from "./Favorites";
 import { Link, useParams } from "react-router-dom";
 import { useStyles } from "./styles";
+// const image = require("../../img/accessAccount.jpg");
 
 export default function Account() {
   const style = useStyles();
@@ -75,18 +76,27 @@ export default function Account() {
     <div>
       {auth === false ? (
         <div style={{ marginTop: "30vh", textAlign: "center", width: "100%" }}>
-          <Container style={{ margin: "auto" }}>
-            <Link to="/signin" style={{ textDecoration: "none" }}>
-              <Button variant="contained" className={style.loginBtn}>
-                login
-              </Button>
-            </Link>
-            <Box m={1} />
-            <Link to="/signup" style={{ textDecoration: "none" }}>
-              <Button className={style.loginBtn} variant="contained">
-                Sign Up
-              </Button>
-            </Link>
+          <Container style={{ margin: "auto", display: "block" }}>
+            <div style={{ width: "100%" }}>
+              <Link to="/signin" style={{ textDecoration: "none" }}>
+                <Button variant="contained" className={style.loginBtn}>
+                  login
+                </Button>
+              </Link>
+              <Box m={1} />
+              <Link to="/signup" style={{ textDecoration: "none" }}>
+                <Button className={style.loginBtn} variant="contained">
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
+            {/* <div className={style.imgWrap}>
+              <img
+                src={image}
+                alt="man avatar looking at phone"
+                className={style.photo}
+              />
+            </div> */}
           </Container>
         </div>
       ) : (

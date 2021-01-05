@@ -79,6 +79,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   favContainer: {
     display: "flex",
+    marginBottom: theme.spacing(1),
   },
   favImg: {
     flex: 1,
@@ -119,8 +120,12 @@ export const useStyles = makeStyles((theme) => ({
     display: "block",
     fontSize: "20px",
     // marginBottom: theme.spacing(1),
-    width: "50%",
+    width: "45%",
+    fontFamily: "one-dam-light",
     margin: "auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "55%",
+    },
   },
   ordersWrap: {
     textAlign: "left",
@@ -131,5 +136,24 @@ export const useStyles = makeStyles((theme) => ({
   orderText: {
     marginLeft: theme.spacing(1),
     fontWeight: "600",
+  },
+  photo: {
+    height: "100%",
+    width: "100%",
+    objectFit: "contain",
+    textAlign: "right",
+  },
+  imgWrap: {
+    right: 0,
+    left: 0,
+    width: "32%",
+    height: "auto",
+    margin: "auto",
+    position: "absolute",
+    zIndex: "-1000",
+    top: 0,
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
 }));

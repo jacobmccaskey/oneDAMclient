@@ -251,7 +251,7 @@ export default function Checkout() {
     cart.forEach((item) => (amount += item.item.price * item.count));
     setSubtotal(amount);
 
-    setTax(parseFloat(subtotal).toFixed(2) * 0.07);
+    setTax(parseFloat(subtotal).toFixed(2) * 0.06);
     setTotal(subtotal + tax);
   }, [cart, subtotal, tax]);
 
