@@ -117,7 +117,7 @@ export default function authenticate(
     new Date().getTime() + 60 * 60 * 24 * 1000
   ).toUTCString();
 
-  fetch("http://localhost:4545/api/auth/login", {
+  fetch(process.env.REACT_APP_LOGIN, {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",

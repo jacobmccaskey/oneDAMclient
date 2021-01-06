@@ -231,7 +231,7 @@ export default function StateManager({ children }) {
   };
   //fetches current inventory from database, limit to 50 items at a time
   const fetchShop = () => {
-    axios.get("http://localhost:4545/api/store").then((response) => {
+    axios.get(process.env.REACT_APP_STORE).then((response) => {
       console.log(response.data);
       setStore(response.data);
     });
