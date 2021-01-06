@@ -74,7 +74,7 @@ export function authCheck(
           setCity(res.data.city);
           setOrders(res.data.orders);
           setState(res.data.state);
-          setGuest(res.data.guest_bool);
+          setGuest(false);
           setGuestId(res.data.guestId);
           setToken(token);
         }

@@ -210,9 +210,14 @@ export default function Home() {
             </a>
           </Typography>
           <div style={{ margin: "auto" }}>
-            <InstagramIcon className={classes.icon} />
+            <a
+              href="https://www.youtube.com/channel/UCEM_TXoGMhBRDEvmWtieTtg/videos"
+              style={{ color: "white" }}
+            >
+              <YouTubeIcon className={classes.icon} />
+            </a>
             <FacebookIcon className={classes.icon} />
-            <YouTubeIcon className={classes.icon} />
+            <InstagramIcon className={classes.icon} />
           </div>
         </Paper>
       </div>

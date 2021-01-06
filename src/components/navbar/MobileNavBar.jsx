@@ -225,7 +225,10 @@ export default function MobileNavbar() {
               <ListItem button key="Impact">
                 <ListItemIcon>
                   <NaturePeopleIcon className={classes.iconText} />
-                  <ListItemText primary="Impact" className={classes.iconText} />
+                  <ListItemText
+                    primary="Motion Pictures"
+                    className={classes.iconText}
+                  />
                 </ListItemIcon>
               </ListItem>
             </Link>

@@ -83,7 +83,7 @@ export default function DefaultNavbar() {
             <Button className={styles.btnText}>blueprint</Button>
           </Link>
           <Link to="/impact" style={{ textDecoration: "none" }}>
-            <Button className={styles.btnText}>impact</Button>
+            <Button className={styles.btnText}>Motion Pictures</Button>
           </Link>
         </div>
         <div className={styles.accountBtnGroup}>
