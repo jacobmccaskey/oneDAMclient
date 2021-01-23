@@ -6,7 +6,7 @@ export default function PaymentSuccess() {
       <h1>Thanks for your order!</h1>
       <p>
         We appreciate your business! If you have any questions, please email{" "}
-        <a href="mailto:mccaskey316@gmail.com">orders@onedam.com</a>.
+        <a href="matthew@onedamproject.co">orders@onedam.com</a>.
       </p>
     </div>
   );

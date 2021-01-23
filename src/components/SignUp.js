@@ -15,6 +15,7 @@ import Container from "@material-ui/core/Container";
 import Modal from "@material-ui/core/Modal";
 import { User } from "../Context";
 import { Redirect } from "react-router-dom";
+import { useAlert } from "react-alert";
 
 function Copyright() {
   return (
@@ -67,11 +68,27 @@ export default function SignUp() {
   const [disableBtn, setDisableBtn] = useState(true);
   const [formError, setFormError] = useState(false);
   const [redirect, setRedirect] = useState(false);
+  const alert = useAlert();
+
+  function checkForWhiteSpace(str) {
+    if (/\s/.test(str)) {
+      return true;
+    }
+    return false;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = context;
-    if (email !== undefined && password !== undefined) {
+    const passwordCheck = checkForWhiteSpace(password);
+    if (passwordCheck === true) {
+      return alert.show("password must not have any spaces in it");
+    }
+    if (
+      email !== undefined &&
+      password !== undefined &&
+      passwordCheck === false
+    ) {
       context.createNewUser();
       setRedirect(true);
     }

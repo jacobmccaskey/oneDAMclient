@@ -195,7 +195,7 @@ export default function StateManager({ children }) {
   const createNewUser = () => {
     const userFirstName = firstName.trim();
     const userLastName = lastName.trim();
-    const userEmail = email.trim();
+    const userEmail = email.trim().toLowerCase();
     axios({
       method: "post",
       url: process.env.REACT_APP_NEWUSER,

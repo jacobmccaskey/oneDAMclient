@@ -108,7 +108,7 @@ export default function authenticate(
   setBadPassword
 ) {
   let body = {
-    email: email,
+    email: email.trim().toLowerCase(),
     password: password,
   };
 
