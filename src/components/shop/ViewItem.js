@@ -133,6 +133,14 @@ const useStyles = makeStyles((theme) => ({
       margin: "auto",
     },
   },
+
+  checkoutBtnLinkDisabled: {
+    textDecoration: "none",
+    display: "none",
+  },
+  checkoutBtnLinkEnabled: {
+    textDecoration: "none",
+  },
 }));
 
 export default function ViewItem() {
@@ -346,8 +354,18 @@ export default function ViewItem() {
             Remove From Cart
           </Button>
           <Box m={1} />
-          <Link to="/checkout" style={{ textDecoration: "none" }}>
-            <Button className={classes.checkoutButton}>
+          <Link
+            to="/checkout"
+            className={
+              context.cart.length === 0
+                ? `${classes.checkoutBtnLinkDisabled}`
+                : `${classes.checkoutBtnLinkEnabled}`
+            }
+          >
+            <Button
+              className={classes.checkoutButton}
+              disabled={context.cart.length === 0}
+            >
               <Typography>Checkout</Typography>
             </Button>
           </Link>
