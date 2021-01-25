@@ -138,7 +138,7 @@ export default function Blueprint() {
                 fontFamily: "one-dam-light",
               }}
             >
-              Matt Jost
+              Matthew Jost
               <br />
               <span style={{ color: "grey" }}>Servant</span>
             </Typography>

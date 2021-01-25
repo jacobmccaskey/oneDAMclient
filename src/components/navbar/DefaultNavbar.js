@@ -73,14 +73,14 @@ export default function DefaultNavbar() {
         <Typography className={styles.header}>oneDAM</Typography>
         <div className={styles.btnGroup}>
           <Link to="/" className={styles.textDecoNone}>
-            <Button className={styles.btnText}>home</Button>
+            <Button className={styles.btnText}>Home</Button>
           </Link>
 
           <Link to="/shop" className={styles.textDecoNone}>
-            <Button className={styles.btnText}>shop </Button>
+            <Button className={styles.btnText}>Shop </Button>
           </Link>
           <Link to="/blueprint" className={styles.textDecoNone}>
-            <Button className={styles.btnText}>blueprint</Button>
+            <Button className={styles.btnText}>Blueprint</Button>
           </Link>
           <Link to="/impact" style={{ textDecoration: "none" }}>
             <Button className={styles.btnText}>Motion Pictures</Button>
