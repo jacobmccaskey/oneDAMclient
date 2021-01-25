@@ -6,6 +6,7 @@ import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 import { Typography } from "@material-ui/core";
 const manBg = require("../img/human-kindness.jpg");
+// const oregonTrail = require("../img/mpb.jpeg");
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -109,6 +110,19 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
       marginRight: 0,
       marginTop: "15rem",
+    },
+  },
+
+  oregonTrailBackground: {
+    position: "fixed",
+    height: "100vh",
+    width: "100%",
+    right: 0,
+    top: 0,
+    zIndex: "-1000",
+    objectFit: "cover",
+    [theme.breakpoints.down("sm")]: {
+      objectFit: "cover",
     },
   },
 }));
