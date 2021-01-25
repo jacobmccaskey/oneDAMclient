@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
+import CheckboxShipping from "./Checkbox";
 import { Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { useAlert } from "react-alert";
@@ -149,6 +150,7 @@ export default function Checkout() {
   const [tax, setTax] = useState(0);
   const [total, setTotal] = useState(0);
   const [showShippingForm, setShowShippingForm] = useState("none");
+  const [checked, setChecked] = useState(false);
   // const [disableCheckoutBtn, setDisableCheckoutBtn] = useState(false);
 
   const {
@@ -180,8 +182,13 @@ export default function Checkout() {
 
   //hook for showing alertModal. imported from react-alert
   const alert = useAlert();
-
-  const handleClick = async (event) => {
+  const validateInputForPickup = async () => {
+    if (!email || !firstName || !lastName) {
+      return false;
+    }
+    return true;
+  };
+  const validateInputForShipping = async () => {
     if (
       !address ||
       !city ||
@@ -192,9 +199,28 @@ export default function Checkout() {
       !lastName ||
       !phone
     ) {
-      return alert.show(
-        "Please fill out all shipping information in the tab above"
-      );
+      return false;
+    }
+    return true;
+  };
+
+  const handleClick = async (event) => {
+    event.preventDefault();
+    if (checked === false) {
+      const validate = await validateInputForShipping();
+      if (validate === false) {
+        return alert.show(
+          "please make sure to fill in all the shipping information"
+        );
+      }
+    }
+    if (checked === true) {
+      const validate = await validateInputForPickup();
+      if (validate === false) {
+        return alert.show(
+          "please make sure to fill in your name and email before continuing to payment"
+        );
+      }
     }
 
     let itemIDs = [];
@@ -214,6 +240,7 @@ export default function Checkout() {
       country: "US",
       totalItems: itemIDs.length,
       name: `${firstName} ${lastName}`,
+      pickupOrder: checked,
       email: email,
       phone: phone,
       amount: total,
@@ -227,6 +254,7 @@ export default function Checkout() {
         country: "US",
       },
     };
+
     const stripe = await stripePromise;
     const response = await fetch(process.env.REACT_APP_CHECKOUT, {
       method: "POST",
@@ -244,6 +272,10 @@ export default function Checkout() {
         "whoops!! :( Looks like there was a problem with your request. Please try again in a moment.."
       );
     }
+  };
+
+  const handleCheckboxClick = () => {
+    checked === false ? setChecked(true) : setChecked(false);
   };
 
   useEffect(() => {
@@ -316,6 +348,10 @@ export default function Checkout() {
               ))}
             </div>
             <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+              <CheckboxShipping
+                handleClick={handleCheckboxClick}
+                checked={checked}
+              />
               <Paper elevation={1} className={styles.checkOutDiv}>
                 <Typography
                   variant="h5"
@@ -382,12 +418,20 @@ export default function Checkout() {
                 <Typography style={{ textAlign: "center" }}>
                   {parseFloat(total).toFixed(2)}
                 </Typography>
-                <Button
-                  className={styles.shippingBtn}
-                  onClick={() => setShowShippingForm("block")}
+                <div
+                  style={
+                    checked === true
+                      ? { display: "none" }
+                      : { display: "block" }
+                  }
                 >
-                  <Typography>Add Shipping Information</Typography>
-                </Button>
+                  <Button
+                    className={styles.shippingBtn}
+                    onClick={() => setShowShippingForm("block")}
+                  >
+                    <Typography>Add Shipping Information</Typography>
+                  </Button>
+                </div>
                 <div
                   className={styles.shippingFormWrap}
                   style={{ display: `${showShippingForm}` }}
