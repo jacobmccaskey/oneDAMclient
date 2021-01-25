@@ -16,6 +16,8 @@ import Modal from "@material-ui/core/Modal";
 import { User } from "../Context";
 import { Redirect } from "react-router-dom";
 import { useAlert } from "react-alert";
+import emailjs from "emailjs-com";
+import moment from "moment";
 
 function Copyright() {
   return (
@@ -27,6 +29,27 @@ function Copyright() {
       {new Date().getFullYear()}
       {"."}
     </Typography>
+  );
+}
+
+function subscribeUser(email, first, last) {
+  const USER_ID = process.env.REACT_APP_EMAILJS_ID;
+  const SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = "template_vx414xh";
+
+  const templateParams = {
+    user_email: `${email} |${first} |${last}`,
+    reply_to: process.env.REACT_APP_ADMIN_EMAIL,
+    date: moment.utc(),
+  };
+
+  emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID).then(
+    function (response) {
+      alert.show("thanks for subscribing");
+    },
+    function (error) {
+      alert.show("looks like there was an error on our end");
+    }
   );
 }
 
@@ -90,6 +113,7 @@ export default function SignUp() {
       passwordCheck === false
     ) {
       context.createNewUser();
+      subscribeUser(email, context.firstName, context.lastName);
       setRedirect(true);
     }
   };
