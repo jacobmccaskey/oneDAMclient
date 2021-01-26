@@ -160,6 +160,7 @@ export default function ViewItem() {
   const [color, setColor] = useState("");
   const [showModalMessage, setShowModalMessage] = useState(false);
   const [inStock, setInStock] = useState(true);
+  const [amountInStock, setAmountInStock] = useState(null);
 
   const { ID } = useParams();
 
@@ -207,7 +208,7 @@ export default function ViewItem() {
     for (const index of item.sizes) {
       if (index.size === target) {
         index.variant.forEach((item) => colorsForSize.push(item.color));
-        console.log(colorsForSize);
+        // console.log(colorsForSize);
         setColors(colorsForSize);
       }
     }
@@ -220,9 +221,11 @@ export default function ViewItem() {
       setItem(data);
       setImages(data.images);
       setSizes(data.sizes);
+      setAmountInStock(data.quantity);
       // setColors(data.colors);
       if (data.quantity <= 0) {
         setInStock(false);
+        setAmountInStock(data.quantity);
       }
     });
   }, [ID, context.cart]);
@@ -284,12 +287,24 @@ export default function ViewItem() {
           <br />
           <div className={classes.counter}>
             <RemoveIcon
-              onClick={() => setCount((prevState) => prevState - 1)}
+              onClick={() =>
+                setCount((prevState) => {
+                  prevState === 0 ? setCount(0) : setCount(prevState - 1);
+                })
+              }
             />
             <Typography component="body2" style={{ margin: "0.5rem" }}>
               {count}
             </Typography>
-            <AddIcon onClick={() => setCount((prevState) => prevState + 1)} />
+            <AddIcon
+              onClick={() =>
+                setCount((prevState) =>
+                  prevState === amountInStock
+                    ? setCount(amountInStock)
+                    : setCount(prevState + 1)
+                )
+              }
+            />
           </div>
           <br />
           <div style={{ display: "block" }}>
