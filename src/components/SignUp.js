@@ -43,14 +43,7 @@ function subscribeUser(email, first, last) {
     date: moment.utc(),
   };
 
-  emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID).then(
-    function (response) {
-      alert.show("thanks for subscribing");
-    },
-    function (error) {
-      alert.show("looks like there was an error on our end");
-    }
-  );
+  emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID);
 }
 
 const useStyles = makeStyles((theme) => ({

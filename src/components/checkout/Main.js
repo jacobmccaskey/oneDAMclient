@@ -11,7 +11,13 @@ import CheckboxShipping from "./Checkbox";
 import { Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { useAlert } from "react-alert";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import isEmail from "validator/lib/isEmail";
 
+// import { Menu } from "@material-ui/core";
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_DEV);
 
 const useStyles = makeStyles((theme) => ({
@@ -141,14 +147,21 @@ const useStyles = makeStyles((theme) => ({
   checkOutFormBtn: {
     marginBottom: theme.spacing(1),
   },
+  stateSelector: {
+    minWidth: "10rem",
+    // display: "inherit",
+    textAlign: "left",
+    verticalAlign: "baseline",
+    marginRight: theme.spacing(1),
+  },
 }));
 
 export default function Checkout() {
   const styles = useStyles();
   const context = useContext(User);
   const [subtotal, setSubtotal] = useState(0);
-  const [tax, setTax] = useState(0);
-  const [total, setTotal] = useState(0);
+  // const [tax, setTax] = useState(0);
+  // const [total, setTotal] = useState(0);
   const [showShippingForm, setShowShippingForm] = useState("none");
   const [checked, setChecked] = useState(false);
   // const [disableCheckoutBtn, setDisableCheckoutBtn] = useState(false);
@@ -182,8 +195,9 @@ export default function Checkout() {
 
   //hook for showing alertModal. imported from react-alert
   const alert = useAlert();
+
   const validateInputForPickup = async () => {
-    if (!email || !firstName || !lastName) {
+    if (!isEmail(email) || !firstName || !lastName) {
       return false;
     }
     return true;
@@ -194,7 +208,7 @@ export default function Checkout() {
       !city ||
       !state ||
       !postalCode ||
-      !email ||
+      !isEmail(email) ||
       !firstName ||
       !lastName ||
       !phone
@@ -243,7 +257,7 @@ export default function Checkout() {
       pickupOrder: checked,
       email: email,
       phone: phone,
-      amount: total,
+      amount: subtotal,
       shipping: {
         address: address,
         addressTwo: addressTwo,
@@ -263,6 +277,7 @@ export default function Checkout() {
     });
 
     const session = await response.json();
+    console.log(session);
 
     const result = await stripe.redirectToCheckout({
       sessionId: session.id,
@@ -282,10 +297,7 @@ export default function Checkout() {
     let amount = 0;
     cart.forEach((item) => (amount += item.item.price * item.count));
     setSubtotal(amount);
-
-    setTax(parseFloat(subtotal).toFixed(2) * 0.06);
-    setTotal(subtotal + tax);
-  }, [cart, subtotal, tax]);
+  }, [cart, subtotal]);
 
   return (
     <React.Fragment>
@@ -382,17 +394,23 @@ export default function Checkout() {
                 <Typography
                   style={{
                     textDecoration: "underline",
-                    fontSize: "18px",
+                    fontSize: "20px",
                     fontFamily: "one-dam-light",
                     marginLeft: "1rem",
                   }}
                 >
                   Subtotal
                 </Typography>
-                <Typography style={{ marginLeft: "2rem" }}>
+                <Typography
+                  style={{
+                    marginLeft: "2rem",
+                    marginBottom: "1rem",
+                    fontSize: "18px",
+                  }}
+                >
                   ${subtotal}
                 </Typography>
-                <Typography
+                {/* <Typography
                   style={{
                     textDecoration: "underline",
                     fontSize: "18px",
@@ -404,8 +422,8 @@ export default function Checkout() {
                 </Typography>
                 <Typography style={{ marginLeft: "2rem" }}>
                   {parseFloat(tax).toFixed(2)}
-                </Typography>
-                <Typography
+                </Typography> */}
+                {/* <Typography
                   variant="h5"
                   style={{
                     textDecoration: "underline",
@@ -417,7 +435,7 @@ export default function Checkout() {
                 </Typography>
                 <Typography style={{ textAlign: "center" }}>
                   {parseFloat(total).toFixed(2)}
-                </Typography>
+                </Typography> */}
                 <div
                   style={
                     checked === true
@@ -464,6 +482,7 @@ export default function Checkout() {
                       fullWidth
                       required
                       variant="outlined"
+                      type="email"
                       label="email"
                       size="small"
                       value={email}
@@ -511,17 +530,25 @@ export default function Checkout() {
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
                     />
-                    {/* <Typography>State</Typography> */}
-                    <TextField
-                      className={styles.checkOutFormBtn}
-                      fullWidth
+
+                    <FormControl
+                      className={styles.stateSelector}
                       variant="outlined"
                       size="small"
-                      label="state"
-                      value={state}
-                      onChange={(e) => setState(e.target.value)}
-                    />
-                    {/* <Typography>postal code</Typography> */}
+                    >
+                      <InputLabel id="select-state-label">State</InputLabel>
+                      <Select
+                        labelId="select-state-label"
+                        id="select-state"
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
+                      >
+                        {arrayOfStates.map((state) => (
+                          <MenuItem value={state}>{state}</MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+
                     <TextField
                       className={styles.checkOutFormBtn}
                       variant="outlined"
@@ -551,64 +578,64 @@ export default function Checkout() {
   );
 }
 
-// const arrayOfStates = [
-//   "Alabama",
-//   "Alaska",
-//   "American Samoa",
-//   "Arizona",
-//   "Arkansas",
-//   "California",
-//   "Colorado",
-//   "Connecticut",
-//   "Delaware",
-//   "District of Columbia",
-//   "Federated States of Micronesia",
-//   "Florida",
-//   "Georgia",
-//   "Guam",
-//   "Hawaii",
-//   "Idaho",
-//   "Illinois",
-//   "Indiana",
-//   "Iowa",
-//   "Kansas",
-//   "Kentucky",
-//   "Louisiana",
-//   "Maine",
-//   "Marshall Islands",
-//   "Maryland",
-//   "Massachusetts",
-//   "Michigan",
-//   "Minnesota",
-//   "Mississippi",
-//   "Missouri",
-//   "Montana",
-//   "Nebraska",
-//   "Nevada",
-//   "New Hampshire",
-//   "New Jersey",
-//   "New Mexico",
-//   "New York",
-//   "North Carolina",
-//   "North Dakota",
-//   "Northern Mariana Islands",
-//   "Ohio",
-//   "Oklahoma",
-//   "Oregon",
-//   "Palau",
-//   "Pennsylvania",
-//   "Puerto Rico",
-//   "Rhode Island",
-//   "South Carolina",
-//   "South Dakota",
-//   "Tennessee",
-//   "Texas",
-//   "Utah",
-//   "Vermont",
-//   "Virgin Island",
-//   "Virginia",
-//   "Washington",
-//   "West Virginia",
-//   "Wisconsin",
-//   "Wyoming",
-// ];
+const arrayOfStates = [
+  "Alabama",
+  "Alaska",
+  "American Samoa",
+  "Arizona",
+  "Arkansas",
+  "California",
+  "Colorado",
+  "Connecticut",
+  "Delaware",
+  "District of Columbia",
+  "Federated States of Micronesia",
+  "Florida",
+  "Georgia",
+  "Guam",
+  "Hawaii",
+  "Idaho",
+  "Illinois",
+  "Indiana",
+  "Iowa",
+  "Kansas",
+  "Kentucky",
+  "Louisiana",
+  "Maine",
+  "Marshall Islands",
+  "Maryland",
+  "Massachusetts",
+  "Michigan",
+  "Minnesota",
+  "Mississippi",
+  "Missouri",
+  "Montana",
+  "Nebraska",
+  "Nevada",
+  "New Hampshire",
+  "New Jersey",
+  "New Mexico",
+  "New York",
+  "North Carolina",
+  "North Dakota",
+  "Northern Mariana Islands",
+  "Ohio",
+  "Oklahoma",
+  "Oregon",
+  "Palau",
+  "Pennsylvania",
+  "Puerto Rico",
+  "Rhode Island",
+  "South Carolina",
+  "South Dakota",
+  "Tennessee",
+  "Texas",
+  "Utah",
+  "Vermont",
+  "Virgin Island",
+  "Virginia",
+  "Washington",
+  "West Virginia",
+  "Wisconsin",
+  "Wyoming",
+];
