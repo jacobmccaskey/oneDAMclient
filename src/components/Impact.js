@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   quoteDiv: {
-    float: "left",
+    // float: "left",
     marginLeft: "20%",
     [theme.breakpoints.down("sm")]: {
       width: "100%",
@@ -102,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
 
   mainBlock: {
     textAlign: "center",
-    marginTop: "8rem",
+    marginTop: "15rem",
     marginRight: "10rem",
     marginBottom: "8rem",
     display: "relative",
@@ -180,7 +180,7 @@ export default function Impact() {
             </Typography>
             <Paper>
               <Typography className={styles.impactBody}>
-                Since the 1st of 2020, as a result of your support and love we
+                {/* Since the 1st of 2020, as a result of your support and love we
                 have been to able to accomplish so much… * Help 5 people off of
                 the streets and into shelters/permanent housing 3 of which we
                 helped get jobs in Tampa and Houston
@@ -210,7 +210,67 @@ export default function Impact() {
                 while tagging if you fancy us :) #oneDAMproject ☝️🚧 #giveoneDAM
                 🧑🏿‍🎨👨🏼‍🚀👨🏽‍🔧🧑🏻‍🚒👨🏽‍🏭 #theProjectistoproject 🎥 Do your little bit of
                 good where you are; it's those little bits of good put together
-                that overwhelm the world. -Desmond Tutu
+                that overwhelm the world. -Desmond Tutu */}
+                Building the oneDAM brand isn’t about buying our apparel, (of
+                course we are stoked when you do) our goal, however is to
+                project being mindful of our presence here on earth both
+                consumptively and ethically.
+                <br />
+                We are all human, it is nearly impossible to LNT (Leave No
+                Trace) but we can ensure we are putting our energy and money
+                towards businesses and communities were people are treated with
+                integrity so we can uplift our communities consciously and
+                intentional.
+                <br />
+                With that said :) in our birth year, together we have
+                accomplished so much * Helped 5 people off of the streets, into
+                temporary and permanent housing in Tampa and Houston.
+                <br />
+                * Helped navigate resumes and job applications for 1 individual
+                to find Full-Time employment in Tampa
+                <br />
+                * Raised $3312 dollars to provide housing for Bobby in Atlantic
+                City and get back on the grid with:
+                <br />
+                Birth Certificate ✅
+                <br />
+                New Jersey State ID ✅
+                <br />
+                New Bank account ✅
+                <br />
+                Economic Stimulus Check ✅
+                <br />
+                Social Security Direct Deposit ✅
+                <br />
+                Created Phone Plan ✅
+                <br />
+                Food Stamps✅
+                <br />
+                working on Medicaid and Long-Term Housing now.
+                <br />
+                * used $2,174.63 dollars to handed out over 900 meals in
+                Atlantic City, Tampa, Philadelphia, Wilmington, DE, Fort
+                Lauderdale, Houston, LA, San Francisco and throughout our Lost
+                Across America drive
+                <br />
+                * Sent a printer, paper and ink cartridges to Dorian’s Caribbean
+                Flat-Patties and a medical clinic in Marsh Harbour and HopeTown
+                in the Bahamas (who have been so devastatingly affected by the
+                September 2019 Hurricane even still)
+                <br />* Volunteered with Feeding Tampa Bay and Volunteer at a
+                local HS to coach wrestling
+                <br /> * Picked up and removed countless debris from the road
+                and filled up bags of roadside Trash and Recyclables
+                <br />* Picked up 2 hitchhikers :)
+                <br />* Donated $1,091 money to help Humanitarian efforts within
+                the realm of; Natural Disaster Relief, Covid-19, and
+                Equal/Social Justice Initiatives organizations.
+                <br /> Thank you so much, we are humbled to be on this journey
+                with you together we are better.
+                <br />
+                “That’s all folks”
+                <br /> #oneDAMproject ☝️🚧#giveoneDAM
+                🧑🏿‍🎨👨🏼‍🚀👨🏽‍🔧🧑🏻‍🚒👨🏽‍🏭#theProjectistoproject 🎥
               </Typography>
             </Paper>
           </Container>
