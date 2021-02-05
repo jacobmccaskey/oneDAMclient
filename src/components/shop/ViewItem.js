@@ -354,9 +354,10 @@ export default function ViewItem() {
           <Button
             className={classes.cartButton}
             onClick={() => handleItemAndCart(item)}
-            disabled={addItem}
+            // disabled={addItem}
           >
-            add to cart
+            {addItem ? "add more to cart" : "add to cart"}
+            {/* add to cart */}
           </Button>
           <Box m={1} />
           <Button
@@ -364,7 +365,12 @@ export default function ViewItem() {
               addItem === true ? { display: "block" } : { display: "none" }
             }
             className={classes.cartButton}
-            onClick={() => removeItemFromCart(item)}
+            onClick={() => {
+              if (addItem === true) {
+                return window.location.replace("/checkout");
+              }
+              removeItemFromCart(item);
+            }}
           >
             Remove From Cart
           </Button>

@@ -3,9 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Fade from "@material-ui/core/Fade";
 // import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
-import Paper from "@material-ui/core/Paper";
+// import Paper from "@material-ui/core/Paper";
 import { Typography } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 const manBg = require("../img/human-kindness.jpg");
+
 // const oregonTrail = require("../img/mpb.jpeg");
 
 const useStyles = makeStyles((theme) => ({
@@ -25,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     zIndex: "-1000",
     [theme.breakpoints.down("sm")]: {
+      display: "none",
       top: "2rem",
       width: "90%",
       height: "auto",
@@ -43,6 +46,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   impactBody: {
+    fontSize: "20px",
+    fontWeight: "600",
     marginTop: theme.spacing(3),
     padding: "1rem",
     textAlign: "left",
@@ -55,20 +60,25 @@ const useStyles = makeStyles((theme) => ({
   mpHeader: {
     textAlign: "right",
     color: "white",
+    [theme.breakpoints.down("sm")]: {
+      textAlign: "right",
+      marginLeft: theme.spacing(1),
+      verticalAlign: "middle",
+    },
   },
   motionPicturesContainer: {
     color: "white",
     position: "relative",
-    padding: "5rem",
+    paddingTop: "3rem",
     marginTop: theme.spacing(3),
-    maxHeight: "6rem",
+    // marginBottom: theme.spacing(1),
+    // maxHeight: "8rem",
     backgroundColor: "#111111",
     [theme.breakpoints.down("sm")]: {
       height: "auto",
       width: "100%",
-      marginTop: "25rem",
+      // marginTop: "10rem",
     },
-    // width: "100%",
   },
   cover: {
     width: "100%",
@@ -93,11 +103,28 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
     },
   },
-
+  mainYouTubeVid: {
+    maring: "auto",
+    width: "80%",
+    textAlign: "center",
+    marginTop: theme.spacing(1),
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+  },
   quoteBlock: {
     fontFamily: 'Nunito", sans-serif',
     textAlign: "left",
     fontSize: "25px",
+  },
+
+  impactSmallViewPortOnly: {
+    display: "none",
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+      width: "100%",
+      marginBottom: theme.spacing(2),
+    },
   },
 
   mainBlock: {
@@ -113,18 +140,18 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  oregonTrailBackground: {
-    position: "fixed",
-    height: "100vh",
-    width: "100%",
-    right: 0,
-    top: 0,
-    zIndex: "-1000",
-    objectFit: "cover",
-    [theme.breakpoints.down("sm")]: {
-      objectFit: "cover",
-    },
-  },
+  // oregonTrailBackground: {
+  //   position: "fixed",
+  //   height: "100vh",
+  //   width: "100%",
+  //   right: 0,
+  //   top: 0,
+  //   zIndex: "-1000",
+  //   objectFit: "cover",
+  //   [theme.breakpoints.down("sm")]: {
+  //     objectFit: "cover",
+  //   },
+  // },
 }));
 
 // const urlList = [
@@ -169,6 +196,14 @@ export default function Impact() {
         </Fade>
         <div className={styles.mainBlock}>
           <Container maxWidth="sm" className={styles.quoteDiv}>
+            <div className={styles.impactSmallViewPortOnly}>
+              <Typography variant="h3" className={styles.mpHeader}>
+                <span style={{ color: "#7FDBFF", fontFamily: "one-dam-light" }}>
+                  Impact
+                </span>
+                <span style={{ fontFamily: "one-dam-light" }}>oneDAM</span>
+              </Typography>
+            </div>
             <Typography className={styles.quoteBlock}>
               <i>
                 Do your little bit of good where you are; it's those little bits
@@ -178,101 +213,128 @@ export default function Impact() {
               <br />
               -Desmond Tutu
             </Typography>
-            <Paper>
-              <Typography className={styles.impactBody}>
-                {/* Since the 1st of 2020, as a result of your support and love we
-                have been to able to accomplish so much… * Help 5 people off of
-                the streets and into shelters/permanent housing 3 of which we
-                helped get jobs in Tampa and Houston
-                <br />
-                <br />
-                * Made and handed out over 600 meals through 'oneDAM meal' in
-                Atlantic City, Tampa, Philadelphia, Wilmington, Delaware,
-                Houston, LA and San Francisco
-                <br />
-                <br />
-                ​ * Raised $3312 dollars to provide housing for Bobby ​
-                <br />
-                <br />
-                * Volunteered with Feeding Tampa Bay, HOPE Inc, coached
-                Wrestling at Plant High in Tampa
-                <br />
-                <br />
-                * Raised money to help Humanitarian efforts within the realm of;
-                Natural Disaster Relief, Covid-19, and Equal/Social Justice
-                Initiatives.
-                <br />
-                <br />
-                Thus far we have invested and donated all $2,174.63 in Revenue
-                we have received towards our communities. All we can say is
-                thank you so much for the love and support. Join in on the fun,
-                by buying made in the USA 100% recycled shirts and do some good
-                while tagging if you fancy us :) #oneDAMproject ☝️🚧 #giveoneDAM
-                🧑🏿‍🎨👨🏼‍🚀👨🏽‍🔧🧑🏻‍🚒👨🏽‍🏭 #theProjectistoproject 🎥 Do your little bit of
-                good where you are; it's those little bits of good put together
-                that overwhelm the world. -Desmond Tutu */}
-                Building the oneDAM brand isn’t about buying our apparel, (of
-                course we are stoked when you do) our goal, however is to
-                project being mindful of our presence here on earth both
-                consumptively and ethically.
-                <br />
-                We are all human, it is nearly impossible to LNT (Leave No
-                Trace) but we can ensure we are putting our energy and money
-                towards businesses and communities were people are treated with
-                integrity so we can uplift our communities consciously and
-                intentional.
-                <br />
-                With that said :) in our birth year, together we have
-                accomplished so much * Helped 5 people off of the streets, into
-                temporary and permanent housing in Tampa and Houston.
-                <br />
-                * Helped navigate resumes and job applications for 1 individual
-                to find Full-Time employment in Tampa
-                <br />
-                * Raised $3312 dollars to provide housing for Bobby in Atlantic
-                City and get back on the grid with:
-                <br />
-                Birth Certificate ✅
-                <br />
-                New Jersey State ID ✅
-                <br />
-                New Bank account ✅
-                <br />
-                Economic Stimulus Check ✅
-                <br />
-                Social Security Direct Deposit ✅
-                <br />
-                Created Phone Plan ✅
-                <br />
-                Food Stamps✅
-                <br />
-                working on Medicaid and Long-Term Housing now.
-                <br />
-                * used $2,174.63 dollars to handed out over 900 meals in
-                Atlantic City, Tampa, Philadelphia, Wilmington, DE, Fort
-                Lauderdale, Houston, LA, San Francisco and throughout our Lost
-                Across America drive
-                <br />
-                * Sent a printer, paper and ink cartridges to Dorian’s Caribbean
-                Flat-Patties and a medical clinic in Marsh Harbour and HopeTown
-                in the Bahamas (who have been so devastatingly affected by the
-                September 2019 Hurricane even still)
-                <br />* Volunteered with Feeding Tampa Bay and Volunteer at a
-                local HS to coach wrestling
-                <br /> * Picked up and removed countless debris from the road
-                and filled up bags of roadside Trash and Recyclables
-                <br />* Picked up 2 hitchhikers :)
-                <br />* Donated $1,091 money to help Humanitarian efforts within
-                the realm of; Natural Disaster Relief, Covid-19, and
-                Equal/Social Justice Initiatives organizations.
-                <br /> Thank you so much, we are humbled to be on this journey
-                with you together we are better.
-                <br />
-                “That’s all folks”
-                <br /> #oneDAMproject ☝️🚧#giveoneDAM
-                🧑🏿‍🎨👨🏼‍🚀👨🏽‍🔧🧑🏻‍🚒👨🏽‍🏭#theProjectistoproject 🎥
-              </Typography>
-            </Paper>
+            <div>
+              <Fade in={true} timeout={1000}>
+                <div className={styles.impactBody}>
+                  <Typography style={{ fontWeight: "bold" }}>
+                    Building the oneDAM brand isn’t about buying our apparel,
+                    (of course we are stoked when you do) our goal, however is
+                    to project being mindful of our presence here on earth both
+                    consumptively and ethically.
+                  </Typography>
+                  <br />
+                  <Typography style={{ fontWeight: "bold" }}>
+                    We are all human, it is nearly impossible to LNT (Leave No
+                    Trace) but we can ensure we are putting our energy and money
+                    towards businesses and communities were people are treated
+                    with integrity so we can uplift our communities consciously
+                    and intentional.
+                  </Typography>
+                  <br />
+                  <Typography style={{ fontWeight: "bold" }}>
+                    With that said :) in our birth year, together we have
+                    accomplished so much * Helped 5 people off of the streets,
+                    into temporary and permanent housing in Tampa and Houston.
+                  </Typography>
+                  <br />
+                  <Typography style={{ fontWeight: "bold" }}>
+                    <ul>
+                      <li>
+                        Helped navigate resumes and job applications for 1
+                        individual to find Full-Time employment in Tampa
+                      </li>
+                      <li>
+                        Raised $3312 dollars to provide housing for Bobby in
+                        Atlantic City and get back on the grid with:
+                      </li>
+                      <li>
+                        Birth Certificate{" "}
+                        <span role="img" aria-label="emoji">
+                          ✅
+                        </span>
+                      </li>
+                      <li>
+                        New Jersey State ID{" "}
+                        <span role="img" aria-label="emoji">
+                          ✅
+                        </span>
+                      </li>
+                      <li>
+                        New Bank account{" "}
+                        <span role="img" aria-label="emoji">
+                          ✅
+                        </span>
+                      </li>
+                      <li>
+                        Economic Stimulus Check{" "}
+                        <span role="img" aria-label="emoji">
+                          ✅
+                        </span>
+                      </li>
+                      <li>
+                        Social Security Direct Deposit{" "}
+                        <span role="img" aria-label="emoji">
+                          ✅
+                        </span>
+                      </li>
+                      <li>
+                        Created Phone Plan{" "}
+                        <span role="img" aria-label="emoji">
+                          ✅
+                        </span>
+                      </li>
+                      <li>
+                        Food Stamps{" "}
+                        <span role="img" aria-label="emoji">
+                          ✅
+                        </span>
+                      </li>
+                      <li>working on Medicaid and Long-Term Housing now.</li>
+                      <li>
+                        used $2,174.63 dollars to handed out over 900 meals in
+                        Atlantic City, Tampa, Philadelphia, Wilmington, DE, Fort
+                        Lauderdale, Houston, LA, San Francisco and throughout
+                        our Lost Across America drive
+                      </li>
+                      <li>
+                        Sent a printer, paper and ink cartridges to Dorian’s
+                        Caribbean Flat-Patties and a medical clinic in Marsh
+                        Harbour and HopeTown in the Bahamas (who have been so
+                        devastatingly affected by the September 2019 Hurricane
+                        even still)
+                      </li>
+                      <li>
+                        Volunteered with Feeding Tampa Bay and Volunteer at a
+                        local HS to coach wrestling
+                      </li>
+                      <li>
+                        Picked up and removed countless debris from the road and
+                        filled up bags of roadside Trash and Recyclables
+                      </li>
+                      <li>Picked up 2 hitchhikers :)</li>
+                      <li>
+                        Donated $1,091 money to help Humanitarian efforts within
+                        the realm of; Natural Disaster Relief, Covid-19, and
+                        Equal/Social Justice Initiatives organizations.
+                      </li>
+                    </ul>
+                  </Typography>
+                  <br />
+                  <Typography style={{ fontWeight: "bold" }}>
+                    Thank you so much, we are humbled to be on this journey with
+                    you together we are better.
+                  </Typography>
+                  <br />
+                  <Typography style={{ fontWeight: "bold" }}>
+                    “That’s all folks”
+                    <br />
+                    <br />
+                    #oneDAMproject ☝️🚧#giveoneDAM
+                    🧑🏿‍🎨👨🏼‍🚀👨🏽‍🔧🧑🏻‍🚒👨🏽‍🏭#theProjectistoproject 🎥
+                  </Typography>
+                </div>
+              </Fade>
+            </div>
           </Container>
         </div>
       </div>
@@ -284,10 +346,47 @@ export default function Impact() {
             </span>
             <span style={{ fontFamily: "one-dam-light" }}>Pictures</span>
           </Typography>
+          <div
+            className={styles.mainYouTubeVid}
+            style={{ textAlign: "center", margin: "auto", display: "block" }}
+          >
+            <div className="mainVideoWrapper">
+              <iframe
+                width="560"
+                title="onedam1"
+                height="315"
+                src="https://www.youtube.com/embed/08csO40I9vo"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+          {/* <Button>
+            <Typography style={{ fontFamily: "one-dam-light" }}>
+              Full Series{" "}
+            </Typography>
+          </Button> */}
         </div>
       </Fade>
       <Fade in={true} timeout={1000}>
         <div className={styles.cover}>
+          <a
+            href="https://www.youtube.com/channel/UCEM_TXoGMhBRDEvmWtieTtg/videos"
+            style={{ textDecoration: "none" }}
+          >
+            <Button>
+              <Typography
+                style={{
+                  fontFamily: "one-dam-light",
+                  fontWeight: "bold",
+                  fontSize: "18px",
+                }}
+              >
+                Full Series{" "}
+              </Typography>
+            </Button>
+          </a>
           <Container maxWidth="lg">
             <div className={styles.flexContainer}>
               <div className={styles.flexItem}>
