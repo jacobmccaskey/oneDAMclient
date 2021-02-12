@@ -233,86 +233,93 @@ export default function Impact() {
                   <br />
                   <Typography style={{ fontWeight: "bold" }}>
                     With that said :) in our birth year, together we have
-                    accomplished so much * Helped 5 people off of the streets,
-                    into temporary and permanent housing in Tampa and Houston.
+                    accomplished so much
                   </Typography>
                   <br />
                   <Typography style={{ fontWeight: "bold" }}>
                     <ul>
-                      <li>
+                      <li style={{ marginBottom: "0.5rem" }}>
+                        Helped 5 people off of the streets, into temporary and
+                        permanent housing in Tampa and Houston.
+                      </li>
+                      <li style={{ marginBottom: "0.5rem" }}>
                         Helped navigate resumes and job applications for 1
                         individual to find Full-Time employment in Tampa
                       </li>
-                      <li>
+                      <li style={{ marginBottom: "0.5rem" }}>
                         Raised $3312 dollars to provide housing for Bobby in
                         Atlantic City and get back on the grid with:
                       </li>
-                      <li>
+                      <li style={{ marginBottom: "0.5rem" }}>
                         Birth Certificate{" "}
                         <span role="img" aria-label="emoji">
                           ✅
                         </span>
                       </li>
-                      <li>
+                      <li style={{ marginBottom: "0.5rem" }}>
                         New Jersey State ID{" "}
                         <span role="img" aria-label="emoji">
                           ✅
                         </span>
                       </li>
-                      <li>
+                      <li style={{ marginBottom: "0.5rem" }}>
                         New Bank account{" "}
                         <span role="img" aria-label="emoji">
                           ✅
                         </span>
                       </li>
-                      <li>
+                      <li style={{ marginBottom: "0.5rem" }}>
                         Economic Stimulus Check{" "}
                         <span role="img" aria-label="emoji">
                           ✅
                         </span>
                       </li>
-                      <li>
+                      <li style={{ marginBottom: "0.5rem" }}>
                         Social Security Direct Deposit{" "}
                         <span role="img" aria-label="emoji">
                           ✅
                         </span>
                       </li>
-                      <li>
+                      <li style={{ marginBottom: "0.5rem" }}>
                         Created Phone Plan{" "}
                         <span role="img" aria-label="emoji">
                           ✅
                         </span>
                       </li>
-                      <li>
+                      <li style={{ marginBottom: "0.5rem" }}>
                         Food Stamps{" "}
                         <span role="img" aria-label="emoji">
                           ✅
                         </span>
                       </li>
-                      <li>working on Medicaid and Long-Term Housing now.</li>
-                      <li>
+                      <li style={{ marginBottom: "0.5rem" }}>
+                        working on Medicaid and Long-Term Housing now.
+                      </li>
+                      <li style={{ marginBottom: "0.5rem" }}>
                         used $2,174.63 dollars to handed out over 900 meals in
                         Atlantic City, Tampa, Philadelphia, Wilmington, DE, Fort
                         Lauderdale, Houston, LA, San Francisco and throughout
                         our Lost Across America drive
                       </li>
-                      <li>
+                      <li style={{ marginBottom: "0.5rem" }}>
                         Sent a printer, paper and ink cartridges to Dorian’s
                         Caribbean Flat-Patties and a medical clinic in Marsh
                         Harbour and HopeTown in the Bahamas (who have been so
                         devastatingly affected by the September 2019 Hurricane
                         even still)
                       </li>
-                      <li>
+                      <li style={{ marginBottom: "0.5rem" }}>
                         Volunteered with Feeding Tampa Bay and Volunteer at a
                         local HS to coach wrestling
                       </li>
-                      <li>
+                      <li style={{ marginBottom: "0.5rem" }}>
                         Picked up and removed countless debris from the road and
                         filled up bags of roadside Trash and Recyclables
                       </li>
-                      <li>Picked up 2 hitchhikers :)</li>
-                      <li>
+                      <li style={{ marginBottom: "0.5rem" }}>
+                        Picked up 2 hitchhikers :)
+                      </li>
+                      <li style={{ marginBottom: "0.5rem" }}>
                         Donated $1,091 money to help Humanitarian efforts within
                         the realm of; Natural Disaster Relief, Covid-19, and
                         Equal/Social Justice Initiatives organizations.
