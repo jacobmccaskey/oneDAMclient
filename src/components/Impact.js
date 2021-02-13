@@ -69,7 +69,8 @@ const useStyles = makeStyles((theme) => ({
   motionPicturesContainer: {
     color: "white",
     position: "relative",
-    paddingTop: "3rem",
+    padding: "3rem",
+    textAlign: "center",
     marginTop: theme.spacing(3),
     // marginBottom: theme.spacing(1),
     // maxHeight: "8rem",
@@ -77,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       height: "auto",
       width: "100%",
+      padding: theme.spacing(1),
       // marginTop: "10rem",
     },
   },
@@ -107,9 +109,13 @@ const useStyles = makeStyles((theme) => ({
     maring: "auto",
     width: "80%",
     textAlign: "center",
-    marginTop: theme.spacing(1),
+    margin: "auto",
+    display: "block",
     [theme.breakpoints.down("sm")]: {
       width: "100%",
+      margin: "auto",
+      left: 0,
+      right: 0,
     },
   },
   quoteBlock: {
@@ -353,10 +359,7 @@ export default function Impact() {
             </span>
             <span style={{ fontFamily: "one-dam-light" }}>Pictures</span>
           </Typography>
-          <div
-            className={styles.mainYouTubeVid}
-            style={{ textAlign: "center", margin: "auto", display: "block" }}
-          >
+          <div className={styles.mainYouTubeVid}>
             <div className="mainVideoWrapper">
               <iframe
                 width="560"

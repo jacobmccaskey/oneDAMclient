@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
+// import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 const blueBg = require("../../img/blue-bg.jpg");
 const mattHeadshot = require("../../img/mattheadshot.jpg");
@@ -75,10 +75,10 @@ export default function Blueprint() {
         <img src={blueBg} alt="ocean background" className={styles.topImg} />
       </div>
       <div className={styles.gridContainer}>
-        <Paper className={styles.grid}>
+        <div className={styles.grid}>
           <Typography
             className="one-dam-body"
-            style={{ textAlign: "left", fontSize: "20px" }}
+            style={{ textAlign: "left", fontSize: "18px" }}
           >
             <span style={{ fontWeight: "600" }}>oneDAM Project</span> is an eco
             and etho co.llaboration inspired by the human connection and the
@@ -95,11 +95,11 @@ export default function Blueprint() {
             can't be everywhere at once but we can use this portal to create a
             meaningful difference. A difference that outlasts our existence :)
           </Typography>
-        </Paper>
-        <Paper className={styles.grid}>
+        </div>
+        <div className={styles.grid}>
           <Typography
             className="one-dam-body"
-            style={{ textAlign: "left", fontSize: "20px" }}
+            style={{ textAlign: "left", fontSize: "18px" }}
           >
             Our goal is to create awareness and engagement through our
             communities by inspiring everyone to get out of self and into help.
@@ -113,7 +113,7 @@ export default function Blueprint() {
             HOPE. That you join us on this JOURNEY and TOGETHER we will rewrite
             our future…
           </Typography>
-        </Paper>
+        </div>
         <div style={{ margin: "3rem" }} />
       </div>
       <Container
