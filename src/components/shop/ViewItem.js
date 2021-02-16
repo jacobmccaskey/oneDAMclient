@@ -174,7 +174,7 @@ export default function ViewItem() {
   //either adds to cart or removes based on button events
   const removeItemFromCart = (item) => {
     setaddItem(false);
-    context.deleteCart(item);
+    context.deleteCart(item, setaddItem);
   };
 
   const handleItemAndCart = (item) => {
@@ -366,7 +366,7 @@ export default function ViewItem() {
             }
             className={classes.cartButton}
             onClick={() => {
-              if (addItem === true) {
+              if (addItem === true && context.auth === true) {
                 return window.location.replace("/checkout");
               }
               removeItemFromCart(item);
