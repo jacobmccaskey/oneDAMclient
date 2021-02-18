@@ -142,7 +142,9 @@ export default function StateManager({ children }) {
   };
 
   const deleteCart = (item) => {
-    let filteredArray = cart.filter((index) => index._id !== item._id);
+    let filteredArray = cart.filter(
+      (index) => index.cartItemID !== item.cartItemID
+    );
     setCart(filteredArray);
     // if (token === null) {
     //   setCart(filteredArray);

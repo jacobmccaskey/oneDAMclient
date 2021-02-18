@@ -16,6 +16,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import isEmail from "validator/lib/isEmail";
+import { v4 as uuid } from "uuid";
 
 // import { Menu } from "@material-ui/core";
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_DEV);
@@ -330,7 +331,7 @@ export default function Checkout() {
                 Cart
               </Typography>
               {cart.map((index) => (
-                <div key={index.item.name} className={styles.itemContainer}>
+                <div key={uuid()} className={styles.itemContainer}>
                   <div style={{ display: "flex" }}>
                     <div style={{ flex: 1, textAlign: "center" }}>
                       <img
@@ -381,9 +382,9 @@ export default function Checkout() {
                       style={{
                         textAlign: "left",
                       }}
-                      key={index.item.name}
+                      key={index.item.name + uuid()}
                     >
-                      <li>
+                      <li key={uuid()}>
                         <Typography>
                           {index.item.name} X {index.count}
                         </Typography>

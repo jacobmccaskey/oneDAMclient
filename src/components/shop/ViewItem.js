@@ -20,6 +20,7 @@ import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import HomeIcon from "@material-ui/icons/Home";
 import CheckIcon from "@material-ui/icons/Check";
 import Box from "@material-ui/core/Box";
+import { v4 as uuid } from "uuid";
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -174,7 +175,7 @@ export default function ViewItem() {
   //either adds to cart or removes based on button events
   const removeItemFromCart = (item) => {
     setaddItem(false);
-    context.deleteCart(item, setaddItem);
+    context.deleteCart(item);
   };
 
   const handleItemAndCart = (item) => {
@@ -192,6 +193,7 @@ export default function ViewItem() {
       count: count,
       size: sizePick,
       color: color,
+      cartItemID: uuid(),
     });
 
     if ((count === 0 || sizePick === "") && addItem === false) {
