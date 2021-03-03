@@ -365,7 +365,7 @@ export default function Impact() {
                 width="560"
                 title="onedam155648"
                 height="315"
-                src="https://www.youtube.com/embed/08csO40I9vo"
+                src="https://www.youtube.com/embed/mVPxzwF97b8"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -405,7 +405,7 @@ export default function Impact() {
                     width="560"
                     title="onedam15879"
                     height="315"
-                    src="https://www.youtube.com/embed/waNb7__yL_M"
+                    src="https://www.youtube.com/embed/VDU28YngRsQ"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -418,7 +418,7 @@ export default function Impact() {
                     title="onedam2458"
                     width="560"
                     height="315"
-                    src="https://www.youtube.com/embed/mVPxzwF97b8"
+                    src="https://www.youtube.com/embed/waNb7__yL_M"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
